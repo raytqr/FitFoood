@@ -4,4 +4,98 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <style name="Theme.FitFoood" parent="Base.Theme.FitFoood" />
+    <style name="Heading1_Light">
+        <item name="android:textSize">24dp</item>
+        <item name="fontFamily">@font/work_sans_light</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="Heading2_Light">
+        <item name="android:textSize">20dp</item>
+        <item name="fontFamily">@font/work_sans_light</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="SubHeading1_Light">
+        <item name="android:textSize">16dp</item>
+        <item name="fontFamily">@font/work_sans_light</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="SubHeading2_Light">
+        <item name="android:textSize">14dp</item>
+        <item name="fontFamily">@font/work_sans_light</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="Body1_Light">
+        <item name="android:textSize">14dp</item>
+        <item name="fontFamily">@font/work_sans_light</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="Body2_Light">
+        <item name="android:textSize">10dp</item>
+        <item name="fontFamily">@font/work_sans_light</item>
+        <item name="color">@color/white</item>
+    </style>
+
+    <style name="Heading1_Regular">
+        <item name="android:textSize">24dp</item>
+        <item name="fontFamily">@font/work_sans_regular</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="Heading2_Regular">
+        <item name="android:textSize">20dp</item>
+        <item name="fontFamily">@font/work_sans_regular</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="SubHeading1_Regular">
+        <item name="android:textSize">16dp</item>
+        <item name="fontFamily">@font/work_sans_regular</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="SubHeading2_Regular">
+        <item name="android:textSize">14dp</item>
+        <item name="fontFamily">@font/work_sans_regular</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="Body1_Regular">
+        <item name="android:textSize">14dp</item>
+        <item name="fontFamily">@font/work_sans_regular</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="Body2_Regular">
+        <item name="android:textSize">10dp</item>
+        <item name="fontFamily">@font/work_sans_regular</item>
+        <item name="color">@color/white</item>
+    </style>
+
+    <style name="Heading1_Bold">
+        <item name="android:textSize">24dp</item>
+        <item name="fontFamily">@font/work_sans_bold</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="Heading2_Bold">
+        <item name="android:textSize">20dp</item>
+        <item name="fontFamily">@font/work_sans_bold</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="SubHeading1_Bold">
+        <item name="android:textSize">16dp</item>
+        <item name="fontFamily">@font/work_sans_bold</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="SubHeading2_Bold">
+        <item name="android:textSize">14dp</item>
+        <item name="fontFamily">@font/work_sans_bold</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="Body1_Bold">
+        <item name="android:textSize">14dp</item>
+        <item name="fontFamily">@font/work_sans_bold</item>
+        <item name="color">@color/white</item>
+    </style>
+    <style name="Body2_Bold">
+        <item name="android:textSize">10dp</item>
+        <item name="fontFamily">@font/work_sans_bold</item>
+        <item name="color">@color/white</item>
+    </style>
 </resources>

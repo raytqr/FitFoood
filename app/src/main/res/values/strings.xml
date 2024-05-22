@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">FitFoood</string>
+    <string name="title_menu_1">Know Your Weight Category</string>
+    <string name="title_menu_2">Food and Exercise Recommendations</string>
+    <string name="title_menu_3">Reminder Notification</string>
+    <string name="desc_menu_1">Weight categories can be found using a BMI calculator</string>
+    <string name="desc_menu_2">Get food and exercise recommendations based on your weight, height and age.</string>
+    <string name="desc_menu_3">Stay motivated with reminders to eat healthy and exercise.</string>
+    <string name="explore">Lets explore</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
 </resources>
