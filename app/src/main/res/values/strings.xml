@@ -9,4 +9,29 @@
     <string name="explore">Lets explore</string>
     <string name="next">Next</string>
     <string name="skip">Skip</string>
+
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="message_welcome_page">Tempat berbagi keseruan sesama pengguna Dicoding</string>
+    <string name="title_welcome_page">Selamat datang di dicoStory!</string>
+    <string name="title_signup_page">Selamat datang 👋</string>
+    <string name="title_form_page">Masukan data diri Anda</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Masuk ke akun Anda untuk melanjutkan</string>
+    <string name="massage_signup_page">Silahkan masukan data diri Anda</string>
+    <string name="gender">Jenis Kelamin</string>
+    <string name="gender_man">Laki-laki</string>
+    <string name="gender_girl">Perempuan</string>
+    <string name="birth_date">Tanggal Lahir</string>
+    <string name="weight">Berat (kg)</string>
+    <string name="height">Tinggi (cm)</string>
+    <string name="title_login_page">Selamat datang kembali 👋</string>
+    <string name="name">Name</string>
+    <string name="message_main_page">Selamat Belajar di Dicoding.</string>
+    <string name="greeting">Halo %1$s,</string>
+    <string name="logout">Keluar</string>
+    <string name="dont_have_account">Belum punya akun?</string>
+    <string name="password_repeat">Password Repeat</string>
+    <string name="have_account">Sudah punya akun?</string>
 </resources>

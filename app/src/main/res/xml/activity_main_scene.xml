@@ -197,7 +197,6 @@
         motion:constraintSetEnd="@+id/menu2" >
         <OnSwipe motion:dragDirection="dragLeft" />
         <OnClick motion:targetId="@+id/fab_next" />
-        <OnClick motion:targetId="@+id/fab_next" />
     </Transition>
     <ConstraintSet
         android:id="@+id/menu3"
@@ -299,10 +298,5 @@
         motion:constraintSetEnd="@+id/menu3" >
         <OnSwipe motion:dragDirection="dragLeft" />
         <OnClick motion:targetId="@+id/fab_next" />
-    </Transition>
-    <Transition
-        motion:constraintSetStart="@+id/menu3"
-        motion:constraintSetEnd="@+id/menu4" >
-        <OnSwipe motion:dragDirection="dragLeft" />
     </Transition>
 </MotionScene>

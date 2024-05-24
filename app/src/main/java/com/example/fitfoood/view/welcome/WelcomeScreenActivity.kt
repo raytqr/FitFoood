@@ -8,6 +8,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import com.example.fitfoood.R
 import com.example.fitfoood.databinding.ActivityWelcomeScreenBinding
+import com.example.fitfoood.view.form.FormActivity
 import com.example.fitfoood.view.login.LoginActivity
 
 class WelcomeScreenActivity : AppCompatActivity() {
