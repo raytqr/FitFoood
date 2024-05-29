@@ -34,4 +34,16 @@
     <string name="dont_have_account">Belum punya akun?</string>
     <string name="password_repeat">Password Repeat</string>
     <string name="have_account">Sudah punya akun?</string>
+
+
+    <string name="isi_manual">Isi Manual\n</string>
+
+    <string name="beranda">Beranda</string>
+    <string name="analisa">Analisa</string>
+    <string name="profile">Profile</string>
+    <string name="title_activity_buttom">buttom</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

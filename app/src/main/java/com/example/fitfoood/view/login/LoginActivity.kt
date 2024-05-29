@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import com.example.fitfoood.view.main.MainActivity
+import com.example.fitfoood.MainActivity
 import com.example.fitfoood.databinding.ActivityLoginBinding
 import com.example.fitfoood.view.signup.SignUpActivity
 
@@ -26,8 +26,8 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passwordEditText.text.toString()
             if(email == "admin@gmail.com" && password == "admin123"){
                 startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }else if(email.isEmpty() || password.isEmpty()){
+//                finish()
+            }else if(email .isEmpty() || password.isEmpty()){
                 binding.emailEditText.error = "Field ini tidak boleh kosong"
                 binding.passwordEditText.error = "Field ini tidak boleh kosong"
             }else{
