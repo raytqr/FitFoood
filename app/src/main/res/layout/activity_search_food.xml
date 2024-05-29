@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.foodchecker.SearchFoodActivity">
 
-    <Button
-        android:id="@+id/btn_foodchecker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Food Checker"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <include layout="@layout/toolbar"/>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:background="@drawable/toolbar"
+        android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

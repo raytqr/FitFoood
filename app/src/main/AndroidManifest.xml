@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+<!-- Camera Permissions -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +17,12 @@
         android:theme="@style/Theme.FitFoood"
         tools:targetApi="31">
         <activity
+            android:name=".view.foodchecker.SearchFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.foodchecker.CameraActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.form.FormActivity"
             android:exported="false" />
         <activity
@@ -20,9 +30,6 @@
             android:exported="false" />
         <activity
             android:name=".view.login.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.login.LoginAcivity"
             android:exported="false" />
         <activity
             android:name=".view.welcome.WelcomeScreenActivity"
@@ -39,6 +46,19 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <!-- Trigger Google Play services to install the backported photo picker module. -->
+        <!--suppress AndroidDomInspection -->
+        <service android:name="com.google.android.gms.metadata.ModuleDependencies"
+            android:enabled="false"
+            android:exported="false"
+            tools:ignore="MissingClass">
+            <intent-filter>
+                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+            </intent-filter>
+            <meta-data android:name="photopicker_activity:0:required" android:value="" />
+        </service>
+
     </application>
 
 </manifest>
