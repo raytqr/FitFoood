@@ -3,8 +3,6 @@ package com.example.fitfoood.view.signup
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.fitfoood.MainActivity
-import com.example.fitfoood.R
 import com.example.fitfoood.databinding.ActivitySignUpBinding
 import com.example.fitfoood.view.form.FormActivity
 import com.example.fitfoood.view.login.LoginActivity
