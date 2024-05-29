@@ -13,29 +13,6 @@
         android:theme="@style/Theme.FitFoood"
         tools:targetApi="31">
         <activity
-            android:name=".view.artikel.DetailArtikelActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.artikel.ArtikelActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.foodrecomendation.FoodActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.workoutrecomendation.WorkOutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity
             android:name=".view.form.FormActivity"
             android:exported="false" />
         <activity
@@ -45,13 +22,10 @@
             android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.foodchecker.SearchFoodActivity"
+            android:name=".view.login.LoginAcivity"
             android:exported="false" />
         <activity
             android:name=".view.welcome.WelcomeScreenActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.foodchecker.CameraActivity"
             android:exported="false" />
         <activity
             android:name=".view.splash.SplashActivity"
@@ -62,10 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
     </application>
-
-    <uses-feature android:name="android.hardware.camera" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>
