@@ -113,7 +113,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tablet_login_amico_1" />
+        app:srcCompat="@drawable/img_login" />
 
     <TextView
         android:id="@+id/textView2"

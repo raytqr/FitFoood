@@ -60,4 +60,7 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.3.3")
     implementation("androidx.camera:camera-view:1.3.3")
 
+    //circle image view
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
 }

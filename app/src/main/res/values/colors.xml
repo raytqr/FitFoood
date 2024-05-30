@@ -14,4 +14,5 @@
     <color name="navi">#2D3D4F</color>
 
     <color name="base_blue">#219EBC</color>
+    <color name="transparent">#00000000</color>
 </resources>

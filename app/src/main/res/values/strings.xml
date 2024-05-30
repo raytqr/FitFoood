@@ -46,4 +46,14 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="guest_name">Hi, Lucy!</string>
+    <string name="guest_welcome">Selamat Datang</string>
+    <string name="bmi_card">Berat Badan Ideal</string>
+    <string name="bmi_desc">Pastikan asupan kalori sesuai dengan kebutuhan kalori harian.</string>
+    <string name="recomend_for_you">Rekomendasi untuk kamu</string>
+
+    <string name="dummy_artikel_headline">Pola Hidup Sehat Untuk Menjaga Berat Badan Ideal</string>
+    <string name="home_artikel">Artikel</string>
+    <string name="home_see_all">Lihat lainya</string>
 </resources>
