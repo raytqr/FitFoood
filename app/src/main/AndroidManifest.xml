@@ -13,6 +13,12 @@
         android:theme="@style/Theme.FitFoood"
         tools:targetApi="31">
         <activity
+            android:name=".view.foodchecker.FillManualActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.foodchecker.ResultRecActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.foodchecker.ListFoodActivity"
             android:exported="false" />
         <activity

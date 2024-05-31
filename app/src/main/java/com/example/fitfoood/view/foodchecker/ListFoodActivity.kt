@@ -1,5 +1,6 @@
 package com.example.fitfoood.view.foodchecker
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -33,5 +34,18 @@ class ListFoodActivity : AppCompatActivity() {
         binding.toolbar.setOnClickListener {
             finish()
         }
+
+        binding.addFood.setOnClickListener { startAddFood() }
+        binding.cekRecButton.setOnClickListener { startCekRecom() }
+    }
+
+    private fun startCekRecom() {
+        val intent = Intent(this, ResultRecActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun startAddFood() {
+        val intent = Intent(this, SearchFoodActivity::class.java)
+        startActivity(intent)
     }
 }

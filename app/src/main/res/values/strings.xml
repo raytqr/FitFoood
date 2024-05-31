@@ -62,4 +62,11 @@
     <string name="dummy_gr">100 gr</string>
     <string name="cek_rekomendasi">Cek Rekomendasi</string>
     <string name="add_food">Tambah Makanan</string>
+    <string name="dummy_total_kcal">Total Kalori : 317 kal</string>
+    <string name="food_not_recommended">Tidak Direkomendasikan</string>
+    <string name="empty_food">Makanan tidak ditemukan.</string>
+    <string name="descEmptyFood">Maaf, tidak ada hasil untuk pencarian ini. Silakan coba yang lain atau tambahkan secara manual.</string>
+    <string name="food_name_form">Nama Makanan</string>
+    <string name="calories_number_form">Jumlah (kalori)</string>
+    <string name="btn_add">Tambahkan</string>
 </resources>
