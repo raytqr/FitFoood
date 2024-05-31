@@ -46,32 +46,4 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_main">MainActivity</string>
-
-    <string name="guest_name">Hi, Lucy!</string>
-    <string name="guest_welcome">Selamat Datang</string>
-    <string name="bmi_card">Berat Badan Ideal</string>
-    <string name="bmi_desc">Pastikan asupan kalori sesuai dengan kebutuhan kalori harian.</string>
-    <string name="recomend_for_you">Rekomendasi untuk kamu</string>
-
-    <string name="dummy_artikel_headline">Pola Hidup Sehat Untuk Menjaga Berat Badan Ideal</string>
-    <string name="home_artikel">Artikel</string>
-    <string name="home_see_all">Lihat lainya</string>
-
-    <string name="bmi_head">Beat Badan Ideal</string>
-    <string name="food_desc">Untuk mempertahankan berat badan ideal, kamu perlu mengonsumsi makanan yang kaya nutrisi dan rendah kalori. Berikut beberapa jenis makanan yang direkomendasikan.</string>
-    <string name="wo_desc">Untuk mempertahankan berat badan ideal, kombinasi antara olahraga kardio dan latihan kekuatan adalah kunci utama. Berikut beberapa pilihannya.</string>
-    <string name="food_recomendation_text">Rekomendasi Makanan Terbaikmu</string>
-    <string name="wo_recomendation_text">Rekomendasi Olahraga Terbaikmu</string>
-    <string name="dummy_food_name">Sayur Bayam</string>
-    <string name="dummy_food_calories">100 kcal</string>
-    <string name="dummy_wo_name">Lari Pagi</string>
-
-    <string name="tambah_berat">Tambah Berat Badan</string>
-    <string name="bb_sekarang_text"> 50Kg</string>
-    <string name="bb_awal_text"> 45Kg</string>
-    <string name="bb_sasaran_text"> 55Kg</string>
-    <string name="bb_sekarang_desc">Berat Saat Ini</string>
-    <string name="bb_awal_desc">Berat Awal</string>
-    <string name="bb_sasaran_desc">Berat Sasaran</string>
-
 </resources>
