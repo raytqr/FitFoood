@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#444444</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -15,4 +16,7 @@
 
     <color name="base_blue">#219EBC</color>
     <color name="transparent">#00000000</color>
+
+    <color name="orange">#FB8500</color>
+    <color name="red">#DC1B1B</color>
 </resources>

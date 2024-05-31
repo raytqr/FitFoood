@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.fitfoood.databinding.FragmentHomeBinding
 import com.example.fitfoood.view.artikel.ArtikelActivity
 import com.example.fitfoood.view.artikel.DetailArtikelActivity

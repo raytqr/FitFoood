@@ -23,7 +23,7 @@
             android:layout_marginStart="92dp"
             android:layout_toEndOf="@+id/btn_back"
             android:fontFamily="@font/work_sans_bold"
-            android:text="Tambah Makanan"
+            android:text="@{toolbar_title}"
             android:textSize="18sp" />
 
         <ImageView

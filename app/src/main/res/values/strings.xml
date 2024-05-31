@@ -57,6 +57,19 @@
     <string name="home_artikel">Artikel</string>
     <string name="home_see_all">Lihat lainya</string>
 
+    <string name="dummy_food_headline">Ayam Bakar</string>
+    <string name="dummy_kcal">239 kcal</string>
+    <string name="dummy_gr">100 gr</string>
+    <string name="cek_rekomendasi">Cek Rekomendasi</string>
+    <string name="add_food">Tambah Makanan</string>
+    <string name="dummy_total_kcal">Total Kalori : 317 kal</string>
+    <string name="food_not_recommended">Tidak Direkomendasikan</string>
+    <string name="empty_food">Makanan tidak ditemukan.</string>
+    <string name="descEmptyFood">Maaf, tidak ada hasil untuk pencarian ini. Silakan coba yang lain atau tambahkan secara manual.</string>
+    <string name="food_name_form">Nama Makanan</string>
+    <string name="calories_number_form">Jumlah (kalori)</string>
+    <string name="btn_add">Tambahkan</string>
+
 
     <string name="bmi_head">Berat Badan Ideal</string>
     <string name="wo_desc">Untuk mempertahankan berat badan ideal, kombinasi antara olahraga kardio dan latihan kekuatan adalah kunci utama. Berikut beberapa pilihannya.</string>
