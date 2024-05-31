@@ -58,7 +58,7 @@ dependencies {
     //circle image view
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
-    //chart
-    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+//    //chart
+//    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 }
