@@ -56,4 +56,10 @@
     <string name="dummy_artikel_headline">Pola Hidup Sehat Untuk Menjaga Berat Badan Ideal</string>
     <string name="home_artikel">Artikel</string>
     <string name="home_see_all">Lihat lainya</string>
+
+    <string name="dummy_food_headline">Ayam Bakar</string>
+    <string name="dummy_kcal">239 kcal</string>
+    <string name="dummy_gr">100 gr</string>
+    <string name="cek_rekomendasi">Cek Rekomendasi</string>
+    <string name="add_food">Tambah Makanan</string>
 </resources>
