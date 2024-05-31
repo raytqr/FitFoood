@@ -80,7 +80,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/food_recomendation_text"
         tools:ignore="MissingConstraints"
-        tools:listitem="@layout/food_row" />
+        tools:listitem="@layout/food_artikel_row" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

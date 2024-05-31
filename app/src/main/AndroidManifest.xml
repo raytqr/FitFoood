@@ -29,14 +29,14 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
+            android:exported="true">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity
             android:name=".view.form.FormActivity"
@@ -55,12 +55,23 @@
         <activity android:name=".view.foodchecker.CameraActivity"
             android:exported="false" />
         <activity android:name=".view.artikel.DetailArtikelActivity"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
         <activity android:name=".view.artikel.ArtikelActivity"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
         <activity android:name=".view.foodrecomendation.FoodActivity"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
         <activity android:name=".view.workoutrecomendation.WorkOutActivity"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
+
+        <activity android:name=".view.foodchecker.ListFoodActivity"
+            android:exported="false" />
+        <activity android:name=".view.foodchecker.FillManualActivity"
+            android:exported="false" />
+        <activity android:name=".view.foodchecker.ResultRecActivity"
             android:exported="false" />
         <activity
             android:name=".view.splash.SplashActivity"

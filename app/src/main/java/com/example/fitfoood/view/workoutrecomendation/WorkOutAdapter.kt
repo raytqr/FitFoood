@@ -19,8 +19,8 @@ class WorkOutAdapter (private val woList: List<WorkOutItem>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: WorkOutViewHolder, position: Int) {
         val foodItem = woList[position]
-        holder.binding.tvName.text = foodItem.name
-        holder.binding.imgPhoto.setImageResource(foodItem.imageResId)
+        holder.binding.dummywoname.text = foodItem.name
+        holder.binding.imgwodummy.setImageResource(foodItem.imageResId)
     }
 
     override fun getItemCount(): Int = woList.size
