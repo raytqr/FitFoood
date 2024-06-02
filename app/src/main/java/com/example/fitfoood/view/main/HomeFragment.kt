@@ -12,6 +12,7 @@ import com.example.fitfoood.databinding.FragmentHomeBinding
 import com.example.fitfoood.view.artikel.ArtikelActivity
 import com.example.fitfoood.view.artikel.DetailArtikelActivity
 import com.example.fitfoood.view.foodrecomendation.FoodActivity
+import com.example.fitfoood.view.notification.NotificationActivity
 import com.example.fitfoood.view.workoutrecomendation.WorkOutActivity
 
 class HomeFragment : Fragment() {
@@ -48,6 +49,9 @@ class HomeFragment : Fragment() {
             }
             recyclerView.setOnClickListener {
                 startActivity(Intent(requireContext(), DetailArtikelActivity::class.java))
+            }
+            btnNotification.setOnClickListener {
+                startActivity(Intent(requireContext(), NotificationActivity::class.java))
             }
 
         }

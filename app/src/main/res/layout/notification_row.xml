@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CardView"
+    android:layout_width="380dp"
+    android:layout_height="100dp"
+    android:layout_margin="3dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/notif_heading"
+            style="@style/SubHeading1_Bold"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginHorizontal="12dp"
+            android:text="@string/dummy_notif_headline"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_notif"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.539"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ic_notif"
+            app:layout_constraintVertical_bias="0.288" />
+
+        <TextView
+            android:id="@+id/desc_notif"
+            style="@style/Body1_Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:paddingRight="8dp"
+            android:paddingBottom="3dp"
+            android:text="@string/dummy_desc_notif"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_notif"
+            app:layout_constraintStart_toStartOf="@+id/notif_heading"
+            app:layout_constraintTop_toBottomOf="@+id/notif_heading" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ic_notif"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="32dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/notif_heading"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.466"
+            tools:src="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
