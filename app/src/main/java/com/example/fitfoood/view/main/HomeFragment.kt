@@ -1,4 +1,3 @@
-
 package com.example.fitfoood
 
 import android.content.Intent
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitfoood.databinding.FragmentHomeBinding
 import com.example.fitfoood.view.artikel.ArtikelActivity
-import com.example.fitfoood.view.artikel.DetailArtikelActivity
 import com.example.fitfoood.view.foodrecomendation.FoodActivity
 import com.example.fitfoood.view.workoutrecomendation.WorkOutActivity
 
@@ -31,9 +29,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val artikelList = listOf(
-            Artikel("Artikel 1", R.drawable.dummy_img_artikel),
-            Artikel("Artikel 2", R.drawable.dummy_img_artikel),
-            // Tambahkan artikel lainnya
+            Artikel("Artikel 1", R.drawable.dummy_img_artikel, 1),
+            Artikel("Artikel 2", R.drawable.dummy_img_artikel, 2),
+            // Add more articles with appropriate categories
         )
 
         binding.apply {
@@ -46,10 +44,6 @@ class HomeFragment : Fragment() {
             homeSeeAll.setOnClickListener {
                 startActivity(Intent(requireContext(), ArtikelActivity::class.java))
             }
-            recyclerView.setOnClickListener {
-                startActivity(Intent(requireContext(), DetailArtikelActivity::class.java))
-            }
-
         }
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
