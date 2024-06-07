@@ -106,5 +106,10 @@
         <item name="color">@color/black</item>
     </style>
 
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">65dp</item>
+    </style>
+
     
 </resources>

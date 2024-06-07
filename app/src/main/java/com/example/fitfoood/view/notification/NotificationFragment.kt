@@ -50,7 +50,4 @@ class NotificationFragment : Fragment() {
 
     }
 
-
-
-
 }
