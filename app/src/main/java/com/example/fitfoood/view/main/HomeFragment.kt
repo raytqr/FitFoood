@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitfoood.databinding.FragmentHomeBinding
 import com.example.fitfoood.view.artikel.ArtikelActivity
 import com.example.fitfoood.view.foodrecomendation.FoodActivity
+import com.example.fitfoood.view.notification.NotificationActivity
 import com.example.fitfoood.view.workoutrecomendation.WorkOutActivity
 
 class HomeFragment : Fragment() {
@@ -44,6 +45,9 @@ class HomeFragment : Fragment() {
             }
             homeSeeAll.setOnClickListener {
                 startActivity(Intent(requireContext(), ArtikelActivity::class.java))
+            }
+            btnNotification.setOnClickListener {
+                startActivity(Intent(requireContext(), NotificationActivity::class.java))
             }
         }
 
