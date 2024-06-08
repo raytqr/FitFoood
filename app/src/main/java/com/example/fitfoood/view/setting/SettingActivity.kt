@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.fitfoood.R
 import com.example.fitfoood.databinding.ActivitySettingBinding
 import com.example.fitfoood.databinding.DboxLogoutBinding
+import com.example.fitfoood.view.reminder.ReminderActivity
 
 class SettingActivity : AppCompatActivity() {
     private lateinit var  binding: ActivitySettingBinding
@@ -34,6 +35,12 @@ class SettingActivity : AppCompatActivity() {
         binding.arrowAccount.setOnClickListener { startAccountDetail() }
         binding.arrowLogout.setOnClickListener { showLogoutDialog() }
         binding.arrowLanguage.setOnClickListener { startLanguageSetting() }
+        binding.arrowReminder.setOnClickListener { startReminderSetting() }
+    }
+
+    private fun startReminderSetting() {
+        val intent = Intent(this, ReminderActivity::class.java)
+        startActivity(intent)
     }
 
     private fun startLanguageSetting() {
