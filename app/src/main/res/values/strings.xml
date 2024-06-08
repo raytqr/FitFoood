@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FitFoood</string>
     <string name="title_menu_1">Know Your Weight Category</string>
@@ -86,22 +85,22 @@
     <string name="bb_sekarang_desc">Current Weight</string>
     <string name="bb_sasaran_text">50 kg</string>
 
+
     <string name="title_artikel">Pola Hidup Sehat Untuk Menjaga Berat Badan Ideal</string>
     <string name="desc_artikel">Morem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia.
 </string>
     <string name="title_artikel_page">Sedang Trending</string>
+
+
     <string name="berat_sasaran_title">Masukan Berat Sasaran</string>
     <string name="text_bb_sasaran">50 Kg</string>
     <string name="berat_awal_title">Masukan Berat Awal</string>
     <string name="text_bb_awal">50 Kg</string>
-    <string name="bb_sasaran_desc">Target Weight</string>
-    <string name="tambah_berat">Add Weight</string>
-    <string name="ups">Oops!</string>
-    <string name="desc_ups">Sorry, your food was not detected.</string>
-    <string name="desc_logout">Are you sure you want to log out?</string>
-    <string name="dummy_notif_headline">Lunch!</string>
-    <string name="dummy_desc_notif">"Lorem ipsum dolor sit amet consectetur."</string>
-
+    <string name="ups">Ups!</string>
+    <string name="desc_ups">Maaf, makananmu tidak terdeteksi.</string>
+    <string name="desc_logout">Apakah kamu yakin ingin log out?</string>
+    <string name="dummy_notif_headline">Makan Siang!</string>
+    <string name="dummy_desc_notif">"Lorem ipsum dolor sit amet consectetur. "</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dummy_detail_desc_notif">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus.</string>
@@ -126,4 +125,7 @@
     <string name="save">Save</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+    <string name="bb_sasaran_desc">Target Weight</string>
+    <string name="tambah_berat">Add Weight</string>
 </resources>
