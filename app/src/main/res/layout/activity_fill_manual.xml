@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/include" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/foodtEditTextLayout"
+        android:id="@+id/foodEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -61,15 +61,15 @@
         style="@style/Body1_Regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/calories_number_form"
         android:layout_marginTop="16dp"
+        android:text="@string/calories_number_form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodtEditTextLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/foodEditTextLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/caloriestEditTextLayout"
+        android:id="@+id/caloriesEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:ems="10"
-            android:focusable="false"
+            android:focusable="true"
             android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 

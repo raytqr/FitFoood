@@ -36,7 +36,7 @@
     <string name="have_account">Sudah punya akun?</string>
 
 
-    <string name="isi_manual">Isi Manual\n</string>
+    <string name="isi_manual">Isi Manual</string>
 
     <string name="beranda">Beranda</string>
     <string name="analisa">Analisa</string>
@@ -100,4 +100,12 @@
     <string name="text_bb_sasaran">50 Kg</string>
     <string name="berat_awal_title">Masukan Berat Awal</string>
     <string name="text_bb_awal">50 Kg</string>
+    <string name="ups">Ups!</string>
+    <string name="desc_ups">Maaf, makananmu tidak terdeteksi.</string>
+    <string name="desc_logout">Apakah kamu yakin ingin log out?</string>
+    <string name="dummy_notif_headline">Makan Siang!</string>
+    <string name="dummy_desc_notif">"Lorem ipsum dolor sit amet consectetur. "</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dummy_detail_desc_notif">Morem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus.\n</string>
 </resources>

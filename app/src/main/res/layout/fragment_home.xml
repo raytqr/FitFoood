@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center">
 
-        <ImageView
+    <ImageView
         android:id="@+id/bg_home"
         android:layout_width="485dp"
         android:layout_height="288dp"
@@ -16,6 +16,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bg_home"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/btn_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="32dp"
+        android:src="@drawable/ic_notifications_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
