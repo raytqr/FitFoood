@@ -106,7 +106,7 @@
     <string name="language">Language</string>
     <string name="weight_scale_reminder">Weight Reminder</string>
     <string name="breakfast">Breakfast</string>
-    <string name="breakfast_time">7:45</string>
+    <string name="breakfast_time">07:45</string>
     <string name="lunch">Lunch</string>
     <string name="lunch_time">12:30</string>
     <string name="set">Set</string>
@@ -116,4 +116,18 @@
     <string name="save">Save</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="title_forgot_password">Forgot Password?</string>
+    <string name="message_forgot_password">Please write your email to receive a confirmation code to set a new password.</string>
+    <string name="confirm_mail">Confirm Mail</string>
+    <string name="title_verifiy_email">Verify Email Address</string>
+    <string name="message_verify_email">Verification code sent to</string>
+    <string name="dummy_email">rayhanwahyu@gmail.com</string>
+    <string name="confirm_code">Confirm Code</string>
+    <string name="resend">Resend Confirmation Code</string>
+    <string name="title_new_pass">New Password</string>
+    <string name="message_new_pass">Please write your new password.</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="or_sign_in_with">- Or sign in with -</string>
+    <string name="or_sign_up_with">- Or sign up with -</string>
 </resources>
