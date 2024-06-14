@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.fitfoood.R
@@ -28,6 +29,12 @@ class SettingFragment : Fragment(), View.OnClickListener {
 
         val btnLanguage: ImageView = view.findViewById(R.id.arrowLanguage)
         btnLanguage.setOnClickListener(this)
+
+        val btnLogout: ImageView = view.findViewById(R.id.arrowLogout)
+        btnLogout.setOnClickListener {
+            val showPopUp = LogoutFragment()
+            showPopUp.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
+        }
     }
     override fun onClick(v: View?) {
         if (v?.id == R.id.arrowAccount) {

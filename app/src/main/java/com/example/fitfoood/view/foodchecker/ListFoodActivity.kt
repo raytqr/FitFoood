@@ -23,8 +23,9 @@ class ListFoodActivity : AppCompatActivity() {
         val foodList = listOf(
             ListFood(R.drawable.dummy_img_food, "Ayam Bakar", "200 kcal", "100 gr"),
             ListFood(R.drawable.dummy_img_food, "Selada", "300 kcal", "150 gr"),
-            ListFood(R.drawable.dummy_img_food, "Nasi Putih", "400 kcal", "150 gr")
+            ListFood(R.drawable.dummy_img_food, "Nasi Putih", "400 kcal", "150 gr"),
         )
+
 
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
