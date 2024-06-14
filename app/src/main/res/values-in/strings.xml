@@ -130,4 +130,19 @@
     <string name="berat_awal_title">Masukan Berat Awal</string>
     <string name="text_bb_awal">50 Kg</string>
 
+    <string name="forgot_password">Lupa kata sandi?</string>
+    <string name="title_forgot_password">Lupa Kata Sandi?</string>
+    <string name="message_forgot_password">Silahkan masukkan email Anda untuk menerima kode konfirmasi untuk mengatur kata sandi baru.</string>
+    <string name="confirm_mail">Konfirmasi Email</string>
+    <string name="title_verifiy_email">Verifikasi Alamat Email</string>
+    <string name="message_verify_email">Kode verifikasi dikirim ke</string>
+    <string name="dummy_email">rayhanwahyu@gmail.com</string> (This string can remain in English for demonstration purposes)
+    <string name="confirm_code">Konfirmasi Kode</string>
+    <string name="resend">Kirim Ulang Kode Konfirmasi</string>
+    <string name="title_new_pass">Kata Sandi Baru</string>
+    <string name="message_new_pass">Silahkan masukkan kata sandi baru Anda.</string>
+    <string name="confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="or_sign_in_with">- Atau masuk dengan -</string>
+    <string name="or_sign_up_with">- Atau daftar dengan -</string>
+
 </resources>
