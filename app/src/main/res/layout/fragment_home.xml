@@ -76,7 +76,7 @@
             android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:src="@drawable/img_food_dummy" />
+            android:src="@drawable/img_food_dummy" />
 
     </RelativeLayout>
 
@@ -196,8 +196,7 @@
             style="@style/Body2_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/home_see_all"
-            android:textColor="@color/black" />
+            android:text="@string/home_see_all" />
 
         <ImageView
             android:layout_width="6dp"

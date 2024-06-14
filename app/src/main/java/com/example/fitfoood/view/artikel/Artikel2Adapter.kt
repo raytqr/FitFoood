@@ -4,13 +4,13 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fitfoood.databinding.ArtikelRowBinding
+import com.example.fitfoood.databinding.Artikel2RowBinding
 import com.example.fitfoood.view.artikel.DetailArtikelActivity
 
-class ArtikelAdapter(private val artikelList: List<Artikel>) : RecyclerView.Adapter<ArtikelAdapter.ArtikelViewHolder>() {
+class Artikel2Adapter(private val artikelList: List<Artikel>) : RecyclerView.Adapter<Artikel2Adapter.ArtikelViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtikelViewHolder {
-        val binding = ArtikelRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = Artikel2RowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ArtikelViewHolder(binding)
     }
 
@@ -22,16 +22,16 @@ class ArtikelAdapter(private val artikelList: List<Artikel>) : RecyclerView.Adap
         return artikelList.size
     }
 
-    inner class ArtikelViewHolder(private val binding: ArtikelRowBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ArtikelViewHolder(private val binding: Artikel2RowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(artikel: Artikel) {
             binding.tvName.text = artikel.title
             binding.imgPhoto.setImageResource(artikel.imageResId)
 
             // Set the icon based on the category
             when (artikel.category) {
-                1 -> binding.idCategoryArtikel.setImageResource(R.drawable.icon_hidupsehat)
-                2 -> binding.idCategoryArtikel.setImageResource(R.drawable.icon_olahraga)
-                else -> binding.idCategoryArtikel.setImageResource(R.drawable.icon_hidupsehat) // Optional default icon
+                1 -> binding.idCategoryArtikel2.setImageResource(R.drawable.icon_hidupsehat)
+                2 -> binding.idCategoryArtikel2.setImageResource(R.drawable.icon_olahraga)
+                else -> binding.idCategoryArtikel2.setImageResource(R.drawable.icon_hidupsehat) // Optional default icon
             }
 
             // Set click listener to navigate to DetailArtikelActivity
@@ -47,6 +47,3 @@ class ArtikelAdapter(private val artikelList: List<Artikel>) : RecyclerView.Adap
         }
     }
 }
-
-
-data class Artikel(val title: String, val imageResId: Int, val category: Int)

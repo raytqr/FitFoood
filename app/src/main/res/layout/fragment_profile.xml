@@ -52,7 +52,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/dummy_img_food" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_berat_awal"

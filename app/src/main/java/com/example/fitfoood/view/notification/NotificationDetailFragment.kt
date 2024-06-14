@@ -27,6 +27,20 @@ class NotificationDetailFragment : Fragment() {
 
         val tbTitle = view.findViewById<TextView>(R.id.title_toolbar)
         tbTitle.text = "Detail Notifikasi"
+
+        arguments?.let {
+            val title = it.getString("NOTIF_TITLE")
+            val imageResId = it.getInt("NOTIF_IMAGE")
+            val desc = it.getString("NOTIF_DESC")
+
+            binding.notifTitle.text = title
+            binding.notifImage.setImageResource(imageResId)
+            binding.notifDesc.text = desc
+        }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

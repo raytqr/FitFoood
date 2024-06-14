@@ -53,6 +53,7 @@
         <activity
             android:name=".view.workoutrecomendation.WorkOutActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
