@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FitFoood</string>
     <string name="title_menu_1">Know Your Weight Category</string>
@@ -87,8 +88,7 @@
 
 
     <string name="title_artikel">Pola Hidup Sehat Untuk Menjaga Berat Badan Ideal</string>
-    <string name="desc_artikel">Morem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia.
-</string>
+    <string name="desc_artikel">Morem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia.</string>
     <string name="title_artikel_page">Sedang Trending</string>
 
 
@@ -115,7 +115,7 @@
     <string name="language">Language</string>
     <string name="weight_scale_reminder">Weight Reminder</string>
     <string name="breakfast">Breakfast</string>
-    <string name="breakfast_time">7:45</string>
+    <string name="breakfast_time">07:45</string>
     <string name="lunch">Lunch</string>
     <string name="lunch_time">12:30</string>
     <string name="set">Set</string>
@@ -128,5 +128,22 @@
 
     <string name="bb_sasaran_desc">Target Weight</string>
     <string name="tambah_berat">Add Weight</string>
+
     <string name="Oke">Oke</string>
+
+    <string name="forgot_password">Forgot password?</string>
+    <string name="title_forgot_password">Forgot Password?</string>
+    <string name="message_forgot_password">Please write your email to receive a confirmation code to set a new password.</string>
+    <string name="confirm_mail">Confirm Mail</string>
+    <string name="title_verifiy_email">Verify Email Address</string>
+    <string name="message_verify_email">Verification code sent to</string>
+    <string name="dummy_email">rayhanwahyu@gmail.com</string>
+    <string name="confirm_code">Confirm Code</string>
+    <string name="resend">Resend Confirmation Code</string>
+    <string name="title_new_pass">New Password</string>
+    <string name="message_new_pass">Please write your new password.</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="or_sign_in_with">- Or sign in with -</string>
+    <string name="or_sign_up_with">- Or sign up with -</string>
 </resources>
+

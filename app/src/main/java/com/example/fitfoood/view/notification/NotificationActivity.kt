@@ -24,5 +24,8 @@ class NotificationActivity : AppCompatActivity() {
                 .add(R.id.frame_container, notificationFragment, NotificationFragment::class.java.simpleName)
                 .commit()
         }
+//        binding.toolbar.setOnClickListener {
+//            finish()
+//        }
     }
 }
