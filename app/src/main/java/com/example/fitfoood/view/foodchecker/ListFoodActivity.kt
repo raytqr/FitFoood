@@ -61,6 +61,8 @@ class ListFoodActivity : AppCompatActivity() {
         "Udang_Goreng_Tepung" to 287
     )
 
+    private val resultLabels = mutableListOf<String>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListFoodBinding.inflate(layoutInflater)
@@ -69,15 +71,16 @@ class ListFoodActivity : AppCompatActivity() {
         val tbTitle = findViewById<TextView>(R.id.title_toolbar)
         tbTitle.text = "Daftar Makanan"
 
-        val resultLabels = intent.getStringArrayListExtra("resultLabels") ?: listOf<String>()
+        val initialLabels = intent.getStringArrayListExtra("resultLabels") ?: listOf<String>()
+        resultLabels.addAll(initialLabels)
 
-        // Buat daftar makanan berdasarkan hasil klasifikasi dan data kalori
+        // daftar makanan berdasarkan hasil klasifikasi dan data kalori
         val foodList = resultLabels.map { label ->
             ListFood(
-                R.drawable.dummy_img_food, // Ganti dengan gambar yang sesuai jika ada
+                R.drawable.dummy_img_food,
                 label,
                 "${calorieMap[label] ?: 0} kcal",
-                "100 gr" // Ganti dengan berat yang sesuai jika ada
+                "100 gr"
             )
         }.toMutableList()
 
@@ -85,7 +88,7 @@ class ListFoodActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = ListFoodAdapter(foodList, calculateTotalCalories()) { food ->
             adapter.removeItem(food)
-            updateTotalCalories()
+            updateTotalCalories(food.title)
         }
         recyclerView.adapter = adapter
 
@@ -110,12 +113,14 @@ class ListFoodActivity : AppCompatActivity() {
     }
 
     private fun calculateTotalCalories(): Int {
-        val resultLabels = intent.getStringArrayListExtra("resultLabels") ?: listOf<String>()
         return resultLabels.sumOf { calorieMap[it] ?: 0 }
     }
 
-    private fun updateTotalCalories() {
+    private fun updateTotalCalories(deletedFoodLabel: String? = null) {
+        if (deletedFoodLabel != null) {
+            resultLabels.remove(deletedFoodLabel)
+        }
         val totalCalories = calculateTotalCalories()
-        adapter.setTotalCalories(totalCalories) // Perbarui total kalori pada adapter
+        adapter.setTotalCalories(totalCalories)
     }
 }
