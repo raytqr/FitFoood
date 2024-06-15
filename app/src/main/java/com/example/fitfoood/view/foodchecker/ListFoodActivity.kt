@@ -1,5 +1,6 @@
 package com.example.fitfoood.view.foodchecker
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -61,7 +62,7 @@ class ListFoodActivity : AppCompatActivity() {
         "Udang_Goreng_Tepung" to 287
     )
 
-    private val resultLabels = mutableListOf<String>()
+    private val foodList = mutableListOf<ListFood>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,26 +72,12 @@ class ListFoodActivity : AppCompatActivity() {
         val tbTitle = findViewById<TextView>(R.id.title_toolbar)
         tbTitle.text = "Daftar Makanan"
 
-        val initialLabels = intent.getStringArrayListExtra("resultLabels") ?: listOf<String>()
-        resultLabels.addAll(initialLabels)
+        val initialLabels = intent.getStringArrayListExtra("resultLabels") ?: emptyList()
+        foodList.addAll(initialLabels.mapNotNull { label ->
+            calorieMap[label]?.let { ListFood(R.drawable.dummy_img_food, label, "$it kcal", "100 gr") }
+        })
 
-        // daftar makanan berdasarkan hasil klasifikasi dan data kalori
-        val foodList = resultLabels.map { label ->
-            ListFood(
-                R.drawable.dummy_img_food,
-                label,
-                "${calorieMap[label] ?: 0} kcal",
-                "100 gr"
-            )
-        }.toMutableList()
-
-        val recyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ListFoodAdapter(foodList, calculateTotalCalories()) { food ->
-            adapter.removeItem(food)
-            updateTotalCalories(food.title)
-        }
-        recyclerView.adapter = adapter
+        setupRecyclerView()
 
         binding.toolbar.setOnClickListener {
             finish()
@@ -100,27 +87,61 @@ class ListFoodActivity : AppCompatActivity() {
         binding.cekRecButton.setOnClickListener { startCekRecom() }
     }
 
+    private fun setupRecyclerView() {
+        val recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = ListFoodAdapter(foodList, calculateTotalCalories()) { food ->
+            adapter.removeItem(food)
+            updateTotalCalories(food.title)
+        }
+        recyclerView.adapter = adapter
+    }
+
     private fun startCekRecom() {
-        updateTotalCalories() // Panggil updateTotalCalories() sebelum berpindah ke ResultRecActivity
+        updateTotalCalories()
         val intent = Intent(this, ResultRecActivity::class.java)
         intent.putExtra("totalCalories", calculateTotalCalories())
         startActivity(intent)
     }
 
     private fun startAddFood() {
-        val intent = Intent(this, SearchFoodActivity::class.java)
-        startActivity(intent)
+        val intent = Intent(this, FillManualActivity::class.java)
+        startActivityForResult(intent, ADD_MANUAL_FOOD_REQUEST_CODE)
     }
 
     private fun calculateTotalCalories(): Int {
-        return resultLabels.sumOf { calorieMap[it] ?: 0 }
+        return foodList.sumBy { food ->
+            val label = food.title
+            if (calorieMap.containsKey(label)) {
+                calorieMap[label] ?: 0
+            } else {
+                food.kcal.replace(" kcal", "").toIntOrNull() ?: 0
+            }
+        }
     }
 
     private fun updateTotalCalories(deletedFoodLabel: String? = null) {
         if (deletedFoodLabel != null) {
-            resultLabels.remove(deletedFoodLabel)
+            foodList.removeAll { it.title == deletedFoodLabel }
         }
-        val totalCalories = calculateTotalCalories()
-        adapter.setTotalCalories(totalCalories)
+        adapter.setTotalCalories(calculateTotalCalories())
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == ADD_MANUAL_FOOD_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val foodName = data?.getStringExtra("foodName")
+            val calories = data?.getIntExtra("calories", 0)
+
+            if (!foodName.isNullOrEmpty() && calories != null && calories > 0) {
+                foodList.add(ListFood(R.drawable.dummy_img_food, foodName, "$calories kcal", "100 gr"))
+                adapter.notifyDataSetChanged()
+                updateTotalCalories()
+            }
+        }
+    }
+
+    companion object {
+        private const val ADD_MANUAL_FOOD_REQUEST_CODE = 1
     }
 }
