@@ -1,8 +1,10 @@
 package com.example.fitfoood.view.foodchecker
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -98,10 +100,28 @@ class ListFoodActivity : AppCompatActivity() {
     }
 
     private fun startCekRecom() {
-        updateTotalCalories()
-        val intent = Intent(this, ResultRecActivity::class.java)
-        intent.putExtra("totalCalories", calculateTotalCalories())
-        startActivity(intent)
+        if (foodList.isEmpty()) {
+            showEmptyFoodListDialog()
+        } else {
+            updateTotalCalories()
+            val intent = Intent(this, ResultRecActivity::class.java)
+            intent.putExtra("totalCalories", calculateTotalCalories())
+            startActivity(intent)
+        }
+    }
+
+    private fun showEmptyFoodListDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_empty_list, null)
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        dialogView.findViewById<Button>(R.id.btnOK).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun startAddFood() {

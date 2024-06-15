@@ -1,5 +1,6 @@
 package com.example.fitfoood.view.foodchecker
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,7 +11,6 @@ import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -24,7 +24,6 @@ import com.example.fitfoood.ml.Model
 import com.example.fitfoood.utils.createCustomTempFile
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.nio.ByteBuffer
@@ -37,6 +36,8 @@ class CameraActivity : AppCompatActivity() {
 
     private var currentImageUri: Uri? = null
     private lateinit var classes: Array<String>
+
+    private val MANUAL_ENTRY_REQUEST_CODE = 1001 // Arbitrary request code for manual entry
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +58,7 @@ class CameraActivity : AppCompatActivity() {
 
     private fun startIsiManual() {
         val intent = Intent(this, SearchFoodActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, MANUAL_ENTRY_REQUEST_CODE)
     }
 
     public override fun onResume() {
@@ -195,11 +196,11 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun startGallery() {
-        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        launcherGallery.launch("image/*")
     }
 
     private val launcherGallery = registerForActivityResult(
-        ActivityResultContracts.PickVisualMedia()
+        ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         if (uri != null) {
             currentImageUri = uri
@@ -216,6 +217,18 @@ class CameraActivity : AppCompatActivity() {
             labels.add(it)
         }
         classes = labels.toTypedArray()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == MANUAL_ENTRY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val resultLabels = data?.getStringArrayListExtra("manualEntryLabels")
+            resultLabels?.let {
+                val intent = Intent(this, ListFoodActivity::class.java)
+                intent.putStringArrayListExtra("resultLabels", ArrayList(resultLabels))
+                startActivity(intent)
+            }
+        }
     }
 
     companion object {

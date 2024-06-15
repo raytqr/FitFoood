@@ -52,8 +52,8 @@
 
         <ImageView
             android:id="@+id/add_food"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:paddingLeft="24dp"
             android:paddingTop="24dp"
             android:src="@drawable/btn_add_food" />
