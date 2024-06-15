@@ -23,8 +23,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="428dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -37,10 +37,11 @@
         tools:listitem="@layout/food_row" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="380dp"
-        android:layout_height="100dp"
-        android:layout_margin="3dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="97dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="#00000000"
         android:paddingTop="3dp"
         app:cardCornerRadius="20dp"
@@ -52,11 +53,20 @@
 
         <ImageView
             android:id="@+id/add_food"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="24dp"
-            android:paddingTop="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="35dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/btn_add_food" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_food"
+            style="@style/SubHeading1_Bold"
+            android:paddingTop="37dp"
+            android:paddingStart="130dp"/>
+
     </androidx.cardview.widget.CardView>
 
     <Button
@@ -65,7 +75,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/base_blue"
         android:text="@string/cek_rekomendasi"
         app:layout_constraintBottom_toBottomOf="parent"

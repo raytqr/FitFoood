@@ -76,7 +76,7 @@ class ListFoodActivity : AppCompatActivity() {
 
         val initialLabels = intent.getStringArrayListExtra("resultLabels") ?: emptyList()
         foodList.addAll(initialLabels.mapNotNull { label ->
-            calorieMap[label]?.let { ListFood(R.drawable.dummy_img_food, label, "$it kcal", "100 gr") }
+            calorieMap[label]?.let { ListFood(R.drawable.ic_food, label, "$it kcal", "100 gr") }
         })
 
         setupRecyclerView()
@@ -154,7 +154,7 @@ class ListFoodActivity : AppCompatActivity() {
             val calories = data?.getIntExtra("calories", 0)
 
             if (!foodName.isNullOrEmpty() && calories != null && calories > 0) {
-                foodList.add(ListFood(R.drawable.dummy_img_food, foodName, "$calories kcal", "100 gr"))
+                foodList.add(ListFood(R.drawable.ic_food, foodName, "$calories kcal", "100 gr"))
                 adapter.notifyDataSetChanged()
                 updateTotalCalories()
             }
