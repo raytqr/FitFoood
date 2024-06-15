@@ -5,6 +5,7 @@ import android.text.format.DateFormat.is24HourFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.fitfoood.R
 import com.example.fitfoood.databinding.FragmentReminderBinding
@@ -33,6 +34,17 @@ class ReminderFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val tbTitle = view.findViewById<TextView>(R.id.title_toolbar)
+        tbTitle.text = getString(R.string.reminder)
+
+        view.findViewById<View>(R.id.toolbar).setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
 
     private fun openTimePicker() {

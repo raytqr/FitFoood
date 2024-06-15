@@ -142,4 +142,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="or_sign_in_with">- Or sign in with -</string>
     <string name="or_sign_up_with">- Or sign up with -</string>
+    <string name="profile_name">"Lucyta Qutsyaning "</string>
+    <string name="account_setting">Account Setting</string>
+    <string name="account_edit">Edit Account</string>
 </resources>
