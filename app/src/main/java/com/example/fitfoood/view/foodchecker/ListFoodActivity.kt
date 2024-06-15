@@ -105,8 +105,8 @@ class ListFoodActivity : AppCompatActivity() {
     }
 
     private fun startAddFood() {
-        val intent = Intent(this, FillManualActivity::class.java)
-        startActivityForResult(intent, ADD_MANUAL_FOOD_REQUEST_CODE)
+        val intent = Intent(this, SearchFoodActivity::class.java)
+        startActivityForResult(intent, ADD_FOOD_REQUEST_CODE)
     }
 
     private fun calculateTotalCalories(): Int {
@@ -129,7 +129,7 @@ class ListFoodActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == ADD_MANUAL_FOOD_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == ADD_FOOD_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val foodName = data?.getStringExtra("foodName")
             val calories = data?.getIntExtra("calories", 0)
 
@@ -142,6 +142,6 @@ class ListFoodActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val ADD_MANUAL_FOOD_REQUEST_CODE = 1
+        private const val ADD_FOOD_REQUEST_CODE = 1
     }
 }
