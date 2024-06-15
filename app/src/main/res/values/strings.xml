@@ -97,7 +97,7 @@
     <string name="berat_awal_title">Masukan Berat Awal</string>
     <string name="text_bb_awal">50 Kg</string>
     <string name="ups">Ups!</string>
-    <string name="desc_ups">Maaf, makananmu tidak terdeteksi.</string>
+    <string name="desc_ups">Anda harus menambahkan makanan secara manual</string>
     <string name="desc_logout">Apakah kamu yakin ingin log out?</string>
     <string name="dummy_notif_headline">Makan Siang!</string>
     <string name="dummy_desc_notif">"Lorem ipsum dolor sit amet consectetur. "</string>
@@ -128,4 +128,5 @@
 
     <string name="bb_sasaran_desc">Target Weight</string>
     <string name="tambah_berat">Add Weight</string>
+    <string name="Oke">Oke</string>
 </resources>
