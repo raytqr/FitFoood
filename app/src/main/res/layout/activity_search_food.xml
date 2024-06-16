@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".view.foodchecker.SearchFoodActivity">
 
+    <!-- Include your toolbar layout -->
     <include
         android:id="@+id/include"
         layout="@layout/toolbar" />
 
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -21,6 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- SearchView -->
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"
@@ -36,6 +39,18 @@
         app:queryHint="Cari Makanan"
         app:iconifiedByDefault="false"/>
 
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_fill_manual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <!-- Empty state image -->
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="100dp"
@@ -47,28 +62,19 @@
         app:layout_constraintStart_toStartOf="@+id/searchView"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
+    <!-- Empty state text -->
     <TextView
         android:id="@+id/emptyFood"
         style="@style/SubHeading1_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/empty_food"
-        app:layout_constraintEnd_toEndOf="@+id/imageView7"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <TextView
-        android:id="@+id/textView6"
-        style="@style/Body1_Regular"
-        android:layout_width="265dp"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:text="@string/descEmptyFood"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/emptyFood"
-        app:layout_constraintStart_toStartOf="@+id/emptyFood"
-        app:layout_constraintTop_toBottomOf="@+id/emptyFood" />
-
+    <!-- Button for manual entry -->
     <Button
         android:id="@+id/btn_fill_manual"
         android:layout_width="wrap_content"
@@ -80,6 +86,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,23 @@ class ApiConfig {
                 .client(client)
                 .build()
             return retrofit.create(ApiService::class.java)
+        }
 
+        fun getFoodApiService(): FoodApiService {
+            val loggingInterceptor = if(BuildConfig.DEBUG) {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            } else {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+            }
+            val client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build()
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://alvinfp.pythonanywhere.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+            return retrofit.create(FoodApiService::class.java)
         }
     }
 }
