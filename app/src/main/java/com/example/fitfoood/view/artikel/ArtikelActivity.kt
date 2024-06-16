@@ -3,7 +3,9 @@ package com.example.fitfoood.view.artikel
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitfoood.Artikel
 import com.example.fitfoood.ArtikelAdapter
@@ -29,11 +31,29 @@ class ArtikelActivity : AppCompatActivity() {
         token = "your_token_here" // Gantikan dengan token Anda
         homeViewModel = ViewModelFactory.getInstance(this).create(HomeViewModel::class.java)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter()
+        val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, articles)
         binding.viewPager.adapter = sectionsPagerAdapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
 
         showRecyclerList()
+        fetchArticles()
+    }
+
+    private fun fetchArticles() {
+        homeViewModel.getAllArticles(token).observe(this) { artikel ->
+            when (artikel) {
+                is ApiResponse.Success -> {
+                    articles = artikel.data ?: listOf()
+                    (binding.viewPager.adapter as SectionsPagerAdapter).notifyDataSetChanged()
+                }
+                is ApiResponse.Error -> {
+                    // Handle error
+                }
+                is ApiResponse.Loading -> {
+                    // Show loading
+                }
+            }
+        }
     }
 
     private fun showRecyclerList() {
@@ -58,7 +78,7 @@ class ArtikelActivity : AppCompatActivity() {
         }
     }
 
-    inner class SectionsPagerAdapter : FragmentPagerAdapter(supportFragmentManager) {
+    inner class SectionsPagerAdapter(fm: FragmentManager, private val articles: List<ArtikelResponseItem>) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         private val tabTitles = arrayOf("All", "Hidup Sehat", "Olahraga")
 
         override fun getItem(position: Int): Fragment {
@@ -79,4 +99,5 @@ class ArtikelActivity : AppCompatActivity() {
             return tabTitles[position]
         }
     }
+
 }
