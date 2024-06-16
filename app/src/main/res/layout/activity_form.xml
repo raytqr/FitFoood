@@ -20,84 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:alpha="100" />
-    <TextView
-        android:id="@+id/genderTextView"
-        style="@style/Body1_Regular"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/gender"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        tools:alpha="100" />
-
-    <RadioGroup
-        android:id="@+id/genderRadioGroup"
-        android:layout_width="239dp"
-        android:layout_height="46dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/genderTextView"
-        app:layout_constraintTop_toBottomOf="@+id/genderTextView">
-
-        <RadioButton
-            android:id="@+id/radioMan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/gender_man"
-            style="@style/Body1_Regular"/>
-
-        <RadioButton
-            android:id="@+id/radioWoman"
-            style="@style/Body1_Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/gender_girl"
-            app:layout_constraintEnd_toStartOf="@+id/radioMan" />
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/dateTextView"
-        style="@style/Body1_Regular"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/birth_date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genderRadioGroup"
-        tools:alpha="100" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/datetEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
-        tools:alpha="100">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dateEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:padding="8dp"
-            android:focusable="false"
-            android:clickable="true" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/weightTextView"
@@ -105,24 +27,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
         android:text="@string/weight"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datetEditTextLayout"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
         tools:alpha="100" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/WeightEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="53dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -133,7 +53,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/WeightEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:ems="10"
             android:padding="8dp"
             android:inputType="text" />
@@ -148,7 +68,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:text="@string/height"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,10 +78,9 @@
         android:id="@+id/HeighEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="53dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -173,7 +91,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/heighEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:ems="10"
             android:padding="8dp"
             android:inputType="text" />
@@ -184,14 +102,14 @@
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/base_blue"
-        android:text="@string/signup"
+        android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HeighEditTextLayout"
         tools:alpha="100" />
 
 
