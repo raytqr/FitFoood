@@ -4,49 +4,52 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.fitfoood.data.response.ArtikelResponseItem
 import com.example.fitfoood.databinding.ArtikelRowBinding
 import com.example.fitfoood.view.artikel.DetailArtikelActivity
 
-class ArtikelAdapter(private val artikelList: List<Artikel>) : RecyclerView.Adapter<ArtikelAdapter.ArtikelViewHolder>() {
+class ArtikelAdapter(private var listItem: List<ArtikelResponseItem>) : RecyclerView.Adapter<ArtikelAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtikelViewHolder {
-        val binding = ArtikelRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ArtikelViewHolder(binding)
-    }
+        class ViewHolder(private val binding: ArtikelRowBinding) : RecyclerView.ViewHolder(binding.root) {
+                fun bind(artikel: ArtikelResponseItem) {
+                        binding.tvName.text = artikel.title
 
-    override fun onBindViewHolder(holder: ArtikelViewHolder, position: Int) {
-        holder.bind(artikelList[position])
-    }
+                        Glide.with(binding.root)
+                                .load(artikel.imageUrl)
+                                .into(binding.imgPhoto)
 
-    override fun getItemCount(): Int {
-        return artikelList.size
-    }
-
-    inner class ArtikelViewHolder(private val binding: ArtikelRowBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(artikel: Artikel) {
-            binding.tvName.text = artikel.title
-            binding.imgPhoto.setImageResource(artikel.imageResId)
-
-            // Set the icon based on the category
-            when (artikel.category) {
-                1 -> binding.idCategoryArtikel.setImageResource(R.drawable.icon_hidupsehat)
-                2 -> binding.idCategoryArtikel.setImageResource(R.drawable.icon_olahraga)
-                else -> binding.idCategoryArtikel.setImageResource(R.drawable.icon_hidupsehat) // Optional default icon
-            }
-
-            // Set click listener to navigate to DetailArtikelActivity
-            binding.root.setOnClickListener {
-                val context = binding.root.context
-                val intent = Intent(context, DetailArtikelActivity::class.java).apply {
-                    putExtra("ARTICLE_TITLE", artikel.title)
-                    putExtra("ARTICLE_IMAGE", artikel.imageResId)
-                    putExtra("ARTICLE_CATEGORY", artikel.category)
+                        val categoryIcon = when (artikel.category) {
+                                "hidup sehat" -> R.drawable.icon_hidupsehat
+                                "olahraga" -> R.drawable.icon_olahraga
+                                else -> R.drawable.icon_hidupsehat // Optional default icon
+                        }
+                        binding.idCategoryArtikel.setImageResource(categoryIcon)
                 }
-                context.startActivity(intent)
-            }
         }
-    }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+                val binding = ArtikelRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return ViewHolder(binding)
+        }
+
+        override fun getItemCount(): Int {
+                return listItem.size
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+                val artikel = listItem[position]
+                holder.bind(artikel)
+
+                holder.itemView.setOnClickListener {
+                        val intent = Intent(holder.itemView.context, DetailArtikelActivity::class.java)
+                        intent.putExtra("Artikel", artikel)
+                        holder.itemView.context.startActivity(intent)
+                }
+        }
+
+        fun updateData(newList: List<ArtikelResponseItem>) {
+                listItem = newList
+                notifyDataSetChanged()
+        }
 }
-
-
-data class Artikel(val title: String, val imageResId: Int, val category: Int)

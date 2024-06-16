@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.artikel.ArtikelActivity">
 
-
     <TextView
         android:id="@+id/textView3"
         style="@style/SubHeading1_Bold"
@@ -59,11 +58,11 @@
         android:layout_width="411dp"
         android:layout_height="369dp"
         android:layout_marginTop="4dp"
+        tools:listitem="@layout/fragment_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

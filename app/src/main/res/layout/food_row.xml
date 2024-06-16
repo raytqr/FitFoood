@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/CardView"
-    android:layout_width="380dp"
+    android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_margin="3dp"
     app:cardCornerRadius="20dp"
@@ -17,13 +17,13 @@
         <TextView
             android:id="@+id/tv_name"
             style="@style/SubHeading1_Bold"
-            android:layout_width="150dp"
+            android:layout_width="205dp"
             android:layout_height="25dp"
             android:layout_marginHorizontal="12dp"
             android:text="@string/dummy_food_headline"
             app:layout_constraintBottom_toBottomOf="@+id/img_photo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.633"
+            app:layout_constraintHorizontal_bias="0.737"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/img_photo"
             app:layout_constraintVertical_bias="0.244" />
@@ -56,15 +56,15 @@
             android:background="@drawable/rounded_corner_blue"
             android:gravity="center"
             android:paddingLeft="8dp"
-            android:paddingRight="8dp"
             android:paddingTop="3dp"
+            android:paddingRight="8dp"
             android:paddingBottom="3dp"
             android:text="@string/dummy_gr"
             android:textColor="@color/white"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/food_kcal"
             app:layout_constraintEnd_toEndOf="@+id/tv_name"
-            app:layout_constraintHorizontal_bias="0.239"
+            app:layout_constraintHorizontal_bias="0.148"
             app:layout_constraintStart_toEndOf="@+id/food_kcal" />
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -80,9 +80,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.466"
-            tools:src="@tools:sample/avatars" />
-
+            android:src="@drawable/ic_food" />
         <ImageView
+            android:id="@+id/deleteButton"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="16dp"
@@ -91,7 +91,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/img_photo"
             app:layout_constraintVertical_bias="0.525" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

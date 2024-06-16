@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.foodchecker.SearchFoodActivity">
+    tools:context=".view.foodchecker.FillManualActivity">
 
     <include
         android:id="@+id/include"
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/food_name_form"
+        android:text="Nama Makanan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,9 +50,7 @@
             android:id="@+id/foodEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:ems="10"
-            android:focusable="true"
             android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/calories_number_form"
+        android:text="Jumlah Kalori"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,9 +83,8 @@
             android:id="@+id/caloriesEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:ems="10"
-            android:focusable="true"
+            android:inputType="number"
             android:padding="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +96,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/base_blue"
-        android:text="@string/btn_add"
+        android:text="Tambah"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
