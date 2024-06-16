@@ -5,13 +5,11 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fitfoood.Artikel
 import com.example.fitfoood.ArtikelAdapter
 import com.example.fitfoood.R
 import com.example.fitfoood.data.ApiResponse
-import com.example.fitfoood.data.response.ArtikelResponse
 import com.example.fitfoood.data.response.ArtikelResponseItem
 import com.example.fitfoood.databinding.ActivityArtikelBinding
 import com.example.fitfoood.view.ViewModelFactory
@@ -31,20 +29,23 @@ class ArtikelActivity : AppCompatActivity() {
         token = "your_token_here" // Gantikan dengan token Anda
         homeViewModel = ViewModelFactory.getInstance(this).create(HomeViewModel::class.java)
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, articles)
-        binding.viewPager.adapter = sectionsPagerAdapter
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
-
+        setupViewPager()
         showRecyclerList()
         fetchArticles()
     }
 
+    private fun setupViewPager() {
+        val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, listOf())
+        binding.viewPager.adapter = sectionsPagerAdapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+    }
+
     private fun fetchArticles() {
-        homeViewModel.getAllArticles(token).observe(this) { artikel ->
+        homeViewModel.getAllArticles(token).observe(this, Observer { artikel ->
             when (artikel) {
                 is ApiResponse.Success -> {
                     articles = artikel.data ?: listOf()
-                    (binding.viewPager.adapter as SectionsPagerAdapter).notifyDataSetChanged()
+                    (binding.viewPager.adapter as SectionsPagerAdapter).updateArticles(articles)
                 }
                 is ApiResponse.Error -> {
                     // Handle error
@@ -53,15 +54,15 @@ class ArtikelActivity : AppCompatActivity() {
                     // Show loading
                 }
             }
-        }
+        })
     }
 
     private fun showRecyclerList() {
-        homeViewModel.getAllArticles(token).observe(this) { artikel ->
+        homeViewModel.getAllArticles(token).observe(this, Observer { artikel ->
             when (artikel) {
                 is ApiResponse.Success -> {
-                    val list = artikel.data
-                    val adapter = ArtikelAdapter(list!!)
+                    val list = artikel.data ?: listOf()
+                    val adapter = ArtikelAdapter(list)
                     with(binding.recyclerView) {
                         layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                         setHasFixedSize(true)
@@ -75,15 +76,15 @@ class ArtikelActivity : AppCompatActivity() {
                     // Show loading
                 }
             }
-        }
+        })
     }
 
-    inner class SectionsPagerAdapter(fm: FragmentManager, private val articles: List<ArtikelResponseItem>) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    inner class SectionsPagerAdapter(fm: FragmentManager, private var articles: List<ArtikelResponseItem>) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         private val tabTitles = arrayOf("All", "Hidup Sehat", "Olahraga")
 
         override fun getItem(position: Int): Fragment {
             val filteredArticles = when (position) {
-                0 -> articles
+                0 -> articles // Show all articles for the "All" tab
                 1 -> articles.filter { it.category.equals("hidup sehat", ignoreCase = true) }
                 2 -> articles.filter { it.category.equals("olahraga", ignoreCase = true) }
                 else -> articles
@@ -98,6 +99,10 @@ class ArtikelActivity : AppCompatActivity() {
         override fun getPageTitle(position: Int): CharSequence? {
             return tabTitles[position]
         }
-    }
 
+        fun updateArticles(newArticles: List<ArtikelResponseItem>) {
+            articles = newArticles
+            notifyDataSetChanged()
+        }
+    }
 }
