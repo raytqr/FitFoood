@@ -74,10 +74,14 @@ class ListFoodActivity : AppCompatActivity() {
         val tbTitle = findViewById<TextView>(R.id.title_toolbar)
         tbTitle.text = "Daftar Makanan"
 
-        val initialLabels = intent.getStringArrayListExtra("resultLabels") ?: emptyList()
-        foodList.addAll(initialLabels.mapNotNull { label ->
-            calorieMap[label]?.let { ListFood(R.drawable.ic_food, label, "$it kcal", "100 gr") }
-        })
+        if (intent.getBooleanExtra("noPrediction", false)) {
+            showNoPredictionDialog()
+        } else {
+            val initialLabels = intent.getStringArrayListExtra("resultLabels") ?: emptyList()
+            foodList.addAll(initialLabels.mapNotNull { label ->
+                calorieMap[label]?.let { ListFood(R.drawable.ic_food, label, "$it kcal", "100 gr") }
+            })
+        }
 
         setupRecyclerView()
 
@@ -87,6 +91,20 @@ class ListFoodActivity : AppCompatActivity() {
 
         binding.addFood.setOnClickListener { startAddFood() }
         binding.cekRecButton.setOnClickListener { startCekRecom() }
+    }
+
+    private fun showNoPredictionDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_no_prediction, null)
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        dialogView.findViewById<Button>(R.id.btnOK).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun setupRecyclerView() {

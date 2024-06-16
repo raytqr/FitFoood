@@ -47,32 +47,43 @@
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_fill_manual"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <!-- Empty state image -->
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="112dp"
-        android:src="@drawable/empty_food_img"
-        app:layout_constraintEnd_toEndOf="@+id/searchView"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/searchView"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
-    <!-- Empty state text -->
-    <TextView
-        android:id="@+id/emptyFood"
-        style="@style/SubHeading1_Bold"
-        android:layout_width="wrap_content"
+    <!-- Empty state container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/emptyFoodContainer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/empty_food"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/empty_food_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/emptyFood"
+            style="@style/SubHeading1_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_food"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Button for manual entry -->
     <Button

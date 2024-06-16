@@ -175,7 +175,11 @@ class CameraActivity : AppCompatActivity() {
             model.close()
 
             val intent = Intent(this, ListFoodActivity::class.java)
-            intent.putStringArrayListExtra("resultLabels", ArrayList(resultLabels))
+            if (resultLabels.isEmpty()) {
+                intent.putExtra("noPrediction", true)
+            } else {
+                intent.putStringArrayListExtra("resultLabels", ArrayList(resultLabels))
+            }
             startActivity(intent)
         } catch (e: IOException) {
             e.printStackTrace()

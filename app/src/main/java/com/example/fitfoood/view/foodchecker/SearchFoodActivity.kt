@@ -14,12 +14,18 @@ import com.example.fitfoood.databinding.ActivitySearchFoodBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.TimeUnit
 
 class SearchFoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchFoodBinding
     private lateinit var searchAdapter: FoodSearchAdapter
     private val foodList = mutableListOf<FoodResponse>()
 
+    private val scheduler: ScheduledExecutorService = Executors.newScheduledThreadPool(1)
+    private var searchTask: ScheduledFuture<*>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchFoodBinding.inflate(layoutInflater)
@@ -45,8 +51,17 @@ class SearchFoodActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // You can implement live searching here if needed
-                return false
+                // Batalkan task sebelumnya jika ada
+                searchTask?.cancel(false)
+
+                // Jadwalkan task baru
+                searchTask = scheduler.schedule({
+                    runOnUiThread {
+                        newText?.let { searchFood(it) }
+                    }
+                }, 300, TimeUnit.MILLISECONDS) // Debounce time 300ms
+
+                return true
             }
         })
     }
@@ -75,6 +90,13 @@ class SearchFoodActivity : AppCompatActivity() {
                         foodList.addAll(it)
                     }
                     searchAdapter.notifyDataSetChanged()
+                    if (foodList.isEmpty()) {
+                        binding.emptyFoodContainer.visibility = View.VISIBLE
+                        binding.recyclerView.visibility = View.GONE
+                    } else {
+                        binding.emptyFoodContainer.visibility = View.GONE
+                        binding.recyclerView.visibility = View.VISIBLE
+                    }
 
                     // Show or hide empty state based on the search results
                     if (foodList.isEmpty()) {
