@@ -9,6 +9,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.example.fitfoood.MainActivity
 import com.example.fitfoood.databinding.ActivityLoginBinding
+import com.example.fitfoood.view.forgotpass.ForgotPassActivity
 import com.example.fitfoood.view.signup.SignUpActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -38,6 +39,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.SignUpTextView.setOnClickListener{
             startActivity(Intent(this, SignUpActivity::class.java))
+            finish()
+        }
+
+        binding.forgotPassword.setOnClickListener {
+            startActivity(Intent(this, ForgotPassActivity::class.java))
             finish()
         }
 

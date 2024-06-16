@@ -111,7 +111,7 @@ class ListFoodActivity : AppCompatActivity() {
     }
 
     private fun showEmptyFoodListDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_empty_list, null)
+        val dialogView = layoutInflater.inflate(R.layout.dbox_empty_food, null)
         val dialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .setCancelable(false)
