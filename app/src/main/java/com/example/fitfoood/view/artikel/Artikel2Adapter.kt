@@ -47,3 +47,5 @@ class Artikel2Adapter(private val artikelList: List<Artikel>) : RecyclerView.Ada
         }
     }
 }
+data class Artikel(val title: String, val imageResId: Int, val category: Int)
+

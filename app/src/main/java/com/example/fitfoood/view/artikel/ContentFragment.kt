@@ -6,46 +6,48 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.fitfoood.Artikel
-import com.example.fitfoood.Artikel2Adapter
-import com.example.fitfoood.R
+import com.example.fitfoood.ArtikelAdapter
+import com.example.fitfoood.data.response.ArtikelResponseItem
+import com.example.fitfoood.databinding.FragmentContentBinding
 
 class ContentFragment : Fragment() {
-
-    companion object {
-        private const val ARG_SECTION = "section"
-
-        fun newInstance(section: String): ContentFragment {
-            val fragment = ContentFragment()
-            val args = Bundle()
-            args.putString(ARG_SECTION, section)
-            fragment.arguments = args
-            return fragment
-        }
-    }
+    private var _binding: FragmentContentBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var artikelAdapter: ArtikelAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_content, container, false)
+    ): View {
+        _binding = FragmentContentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView2)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = Artikel2Adapter(getArtikelList())
+        val articles = arguments?.getParcelableArrayList<ArtikelResponseItem>("category") ?: listOf()
+        artikelAdapter = ArtikelAdapter(articles)
+
+        binding.recyclerView2.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = artikelAdapter
+        }
     }
 
-    private fun getArtikelList(): List<Artikel> {
-        // Provide the list of articles
-        return listOf(
-            Artikel("Artikel 1", R.drawable.dummy_img_artikel,1),
-            Artikel("Artikel 2", R.drawable.dummy_img_artikel,2),
-            // Add more articles as needed
-        )
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(articles: List<ArtikelResponseItem>) = ContentFragment().apply {
+            arguments = Bundle().apply {
+                putParcelableArrayList("articles", ArrayList(articles))
+            }
+            return this
+        }
+
     }
 }
