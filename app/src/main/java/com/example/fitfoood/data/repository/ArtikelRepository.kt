@@ -15,8 +15,8 @@ class ArtikelRepository {
     fun getAllArticle(token: String): LiveData<ApiResponse<List<ArtikelResponseItem>>> {
         val result = MediatorLiveData<ApiResponse<List<ArtikelResponseItem>>>()
         result.value = ApiResponse.Loading
-        val apiService =ApiConfig.getApiService()
-        val client = apiService.getAllArticle("Bearer $token")
+        val ArticlesApiService =ApiConfig.getApiService()
+        val client = ArticlesApiService.getAllArticle("Bearer $token")
         client.enqueue(object : Callback<List<ArtikelResponseItem>> {
             override fun onResponse(
                 call: Call<List<ArtikelResponseItem>>,
