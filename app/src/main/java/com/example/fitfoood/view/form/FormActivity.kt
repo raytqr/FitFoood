@@ -27,17 +27,6 @@ class FormActivity : AppCompatActivity() {
         val dateEditText = findViewById<TextInputEditText>(R.id.dateEditText)
         dateEditText.setOnClickListener { showDatePicker() }
 
-        val genderRadioGroup = findViewById<RadioGroup>(R.id.genderRadioGroup)
-        genderRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.radioMan -> {
-                    // Handle 'Man' selection
-                }
-                R.id.radioWoman -> {
-                    // Handle 'Woman' selection
-                }
-            }
-        }
     }
 
     private fun showDatePicker() {
