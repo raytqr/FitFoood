@@ -16,7 +16,6 @@ import com.example.fitfoood.view.setting.AccountFragment
 import com.example.fitfoood.view.setting.LanguageFragment
 import com.example.fitfoood.view.setting.LogoutFragment
 import com.example.fitfoood.view.setting.ReminderFragment
-import com.example.fitfoood.view.setting.SettingActivity
 
 class ProfileFragment : Fragment(), View.OnClickListener {
 

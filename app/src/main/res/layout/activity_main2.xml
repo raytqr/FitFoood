@@ -95,12 +95,21 @@
                     android:layout_marginLeft="32dp"/>
 
                 <TextView
+                    android:id="@+id/dummy_breakfast_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/breakfast_time"
+                    style="@style/SubHeading1_Regular"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+                <TextView
                     android:id="@+id/set_breakfast_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/set"
                     style="@style/SubHeading1_Bold"
-                    android:layout_marginLeft="280dp"
+                    android:layout_marginLeft="320dp"
                     android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
                 <TextView
@@ -113,12 +122,21 @@
                     android:layout_marginLeft="32dp"/>
 
                 <TextView
+                    android:id="@+id/dummy_lunch_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dinner_time"
+                    style="@style/SubHeading1_Regular"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="85dp"/>
+
+                <TextView
                     android:id="@+id/set_lunch_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/set"
                     style="@style/SubHeading1_Bold"
-                    android:layout_marginLeft="280dp"
+                    android:layout_marginLeft="320dp"
                     android:layout_marginTop="50dp"/>
 
                 <TextView
@@ -131,12 +149,21 @@
                     android:layout_marginLeft="32dp"/>
 
                 <TextView
+                    android:id="@+id/dummy_dinner_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lunch_time"
+                    style="@style/SubHeading1_Regular"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="50dp"/>
+
+                <TextView
                     android:id="@+id/set_dinner_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/set"
                     style="@style/SubHeading1_Bold"
-                    android:layout_marginLeft="280dp"
+                    android:layout_marginLeft="320dp"
                     android:layout_marginTop="85dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -187,6 +214,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Switch
+                android:id="@+id/switchWeightReminder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
