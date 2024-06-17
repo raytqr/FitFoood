@@ -14,6 +14,7 @@ import com.example.fitfoood.data.ApiResponse
 import com.example.fitfoood.data.pref.UserModel
 import com.example.fitfoood.databinding.ActivityLoginBinding
 import com.example.fitfoood.view.ViewModelFactory
+import com.example.fitfoood.view.signup.SignUpActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginViewModel
@@ -43,6 +44,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
+        binding.SignUpTextView.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()

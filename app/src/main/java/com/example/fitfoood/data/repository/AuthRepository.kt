@@ -38,11 +38,11 @@ class AuthRepository (
         return result
     }
 
-    fun userRegister(name: String, email: String, password: String, dateOfBirth: String): LiveData<ApiResponse<SignUpResponse>> {
+    fun userRegister(username: String, email: String, password: String, dateOfBirth: String): LiveData<ApiResponse<SignUpResponse>> {
         val result = MutableLiveData<ApiResponse<SignUpResponse>>()
         result.value = ApiResponse.Loading
 
-        val client = apiService.signUp(name, email, password, dateOfBirth)
+        val client = apiService.signUp(username, email, password, dateOfBirth)
         client.enqueue(object : Callback<SignUpResponse> {
             override fun onResponse(
                 call: Call<SignUpResponse>,
