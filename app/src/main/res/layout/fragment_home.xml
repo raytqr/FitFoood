@@ -21,7 +21,6 @@
         android:id="@+id/relativeLayout"
         android:layout_width="300dp"
         android:layout_height="82dp"
-
         android:layout_marginTop="76dp"
         android:background="@color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -232,7 +231,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="212dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

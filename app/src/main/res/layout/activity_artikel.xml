@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/textView3"
-        style="@style/SubHeading1_Bold"
+        style="@style/Heading2_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -21,8 +21,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="346dp"
         android:layout_height="212dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.195"
@@ -55,8 +55,8 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
-        android:layout_width="411dp"
-        android:layout_height="369dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
         android:layout_marginTop="4dp"
         tools:listitem="@layout/fragment_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
