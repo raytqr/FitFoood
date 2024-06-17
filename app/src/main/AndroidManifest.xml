@@ -9,8 +9,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -59,10 +57,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+            <!-- Intent filter removed -->
         </activity>
         <activity
             android:name=".view.form.FormActivity"
@@ -73,45 +68,52 @@
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="false" />
-        <activity android:name=".view.foodchecker.SearchFoodActivity"
+        <activity
+            android:name=".view.foodchecker.SearchFoodActivity"
             android:exported="false" />
         <activity
             android:name=".view.welcome.WelcomeScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.foodchecker.CameraActivity"
             android:exported="false" />
-        <activity android:name=".view.foodchecker.CameraActivity"
-            android:exported="false" />
-        <activity android:name=".view.artikel.DetailArtikelActivity"
+        <activity
+            android:name=".view.artikel.DetailArtikelActivity"
             android:exported="false"
             tools:ignore="DuplicateActivity" />
-        <activity android:name=".view.artikel.ArtikelActivity"
+        <activity
+            android:name=".view.artikel.ArtikelActivity"
             android:exported="false"
             tools:ignore="DuplicateActivity" />
-        <activity android:name=".view.foodrecomendation.FoodActivity"
+        <activity
+            android:name=".view.foodrecomendation.FoodActivity"
             android:exported="false"
             tools:ignore="DuplicateActivity" />
-        <activity android:name=".view.workoutrecomendation.WorkOutActivity"
+        <activity
+            android:name=".view.workoutrecomendation.WorkOutActivity"
             android:exported="false"
             tools:ignore="DuplicateActivity" />
 
-        <activity android:name=".view.foodchecker.ListFoodActivity"
+        <activity
+            android:name=".view.foodchecker.ListFoodActivity"
             android:exported="false" />
-        <activity android:name=".view.foodchecker.FillManualActivity"
+        <activity
+            android:name=".view.foodchecker.FillManualActivity"
             android:exported="false" />
-        <activity android:name=".view.foodchecker.ResultRecActivity"
+        <activity
+            android:name=".view.foodchecker.ResultRecActivity"
             android:exported="false" />
         <activity
             android:name=".view.splash.SplashActivity"
             android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
     </application>
 
     <uses-feature android:name="android.hardware.camera" />
-
     <uses-permission android:name="android.permission.CAMERA" />
-
 </manifest>
