@@ -13,6 +13,7 @@ import com.example.fitfoood.databinding.FragmentHomeBinding
 import com.example.fitfoood.view.ViewModelFactory
 import com.example.fitfoood.view.artikel.ArtikelActivity
 import com.example.fitfoood.view.foodrecomendation.FoodActivity
+import com.example.fitfoood.view.login.LoginActivity
 import com.example.fitfoood.view.main.HomeViewModel
 import com.example.fitfoood.view.notification.NotificationActivity
 import com.example.fitfoood.view.workoutrecomendation.WorkOutActivity
@@ -39,6 +40,12 @@ class HomeFragment : Fragment() {
 
         homeViewModel = ViewModelFactory.getInstance(requireContext()).create(HomeViewModel::class.java)
 
+
+        homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
+            token = user.token
+            binding.tvItem.text = "Hai, " + user.username
+
+        }
         binding.apply {
             btnFoodRecomendation.setOnClickListener {
                 startActivity(Intent(requireContext(), FoodActivity::class.java))

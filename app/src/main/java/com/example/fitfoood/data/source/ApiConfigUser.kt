@@ -1,5 +1,6 @@
 package com.example.fitfoood.data.source
 
+import com.example.fitfood.data.source.ApiServiceUser
 import com.example.fitfoood.source.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,12 +15,12 @@ object ApiConfigUser {
         })
         .build()
 
-//    fun getApiServiceUser(): ApiServiceUser {
-//        return Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .client(client)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//            .create(ApiServiceUser::class.java)
-//    }
+    fun getApiServiceUser(): ApiServiceUser {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiServiceUser::class.java)
+    }
 }

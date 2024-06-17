@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class UserResponse(
 
 	@field:SerializedName("UserResponse")
-	val userResponse: List<UserResponseItem?>? = null
+	val userResponse: UserResponseItem? = null
 )
 
 data class UserResponseItem(
@@ -38,11 +38,4 @@ data class DateOfBirth(
 	val seconds: Int? = null
 )
 
-data class CreatedAt(
 
-	@field:SerializedName("_nanoseconds")
-	val nanoseconds: Int? = null,
-
-	@field:SerializedName("_seconds")
-	val seconds: Int? = null
-)

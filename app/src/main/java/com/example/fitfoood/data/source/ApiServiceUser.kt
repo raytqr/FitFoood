@@ -1,5 +1,8 @@
 package com.example.fitfood.data.source
 
+import com.example.fitfoood.data.response.LoginResponse
+import com.example.fitfoood.data.response.SignUpResponse
+import com.example.fitfoood.data.response.UserResponse
 import com.example.fitfoood.data.response.UserResponseItem
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -7,17 +10,12 @@ import retrofit2.http.*
 
 interface ApiServiceUser {
 
-    @GET("api/users")
-    fun getAllUsers(
-        @Header("Authorization") token: String
-    ): Call<List<UserResponseItem>>
-
     @FormUrlEncoded
     @POST("api/login")
     fun login(
         @Field("email") email: String,
         @Field("password") password: String
-    ): Call<UserResponseItem>
+    ): Call<LoginResponse>
 
     @FormUrlEncoded
     @POST("api/register")
@@ -26,7 +24,7 @@ interface ApiServiceUser {
         @Field("email") email: String,
         @Field("password") password: String,
         @Field("date_of_birth") dateOfBirth: String
-    ): Call<UserResponseItem>
+    ): Call<SignUpResponse>
 
     @FormUrlEncoded
     @PUT("api/users/{id}")
@@ -34,11 +32,11 @@ interface ApiServiceUser {
         @Field("name") username: String,
         @Field("email") email: String,
         @Field("password") password: String,
-    ): Call<UserResponseItem>
+    ): Call<UserResponse>
 
     @DELETE("api/users/{id}")
     fun deleteUser(
         @Header("Authorization") token: String,
         @Path("id") userId: String
-    ): Call<ResponseBody>
+    ): Call<UserResponse>
 }
