@@ -8,14 +8,11 @@ import retrofit2.http.Header
 import retrofit2.http.Path
 
 interface ApiService {
-    @GET("/getArticle")
+    @GET("/api/getArticle")
     fun getAllArticle(
         @Header("Authorization") token: String
     ): Call<List<ArtikelResponseItem>>
 
-//    @GET("/getArticleById/{article_id}")
-//    fun getArticleDetails(
-//        @Header("Authorization") token: String,
-//        @Path("id") articleId: Int
-//    ): Call<ArtikelResponseItem>
+
+
 }

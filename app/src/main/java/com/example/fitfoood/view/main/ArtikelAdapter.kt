@@ -20,7 +20,7 @@ class ArtikelAdapter(private var listItem: List<ArtikelResponseItem>) : Recycler
                                 .into(binding.imgPhoto)
 
                         val categoryIcon = when (artikel.category) {
-                                "hidup sehat" -> R.drawable.icon_hidupsehat
+                                "hidup-sehat" -> R.drawable.icon_hidupsehat
                                 "olahraga" -> R.drawable.icon_olahraga
                                 else -> R.drawable.icon_hidupsehat // Optional default icon
                         }
