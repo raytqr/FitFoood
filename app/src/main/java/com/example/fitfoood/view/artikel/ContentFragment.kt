@@ -1,6 +1,7 @@
 package com.example.fitfoood.view.artikel
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,9 @@ class ContentFragment : Fragment() {
         fun newInstance(articles: List<ArtikelResponseItem>) = ContentFragment().apply {
             arguments = Bundle().apply {
                 putParcelableArrayList("articles", ArrayList(articles))
+            }
+            articles.forEach {
+                Log.d("Content Fragment", it.toString())
             }
         }
     }
