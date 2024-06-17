@@ -56,7 +56,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowFullscreen="true">
             <!-- Intent filter removed -->
         </activity>
         <activity

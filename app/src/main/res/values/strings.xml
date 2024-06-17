@@ -15,7 +15,7 @@
     <string name="login">Login</string>
     <string name="message_welcome_page">A place to share the excitement among Dicoding users</string>
     <string name="title_welcome_page">Welcome to dicoStory!</string>
-    <string name="title_signup_page">Welcome </string>
+    <string name="title_signup_page">Welcome 👋</string>
     <string name="title_form_page">Enter your data</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -27,7 +27,7 @@
     <string name="birth_date">Date of Birth</string>
     <string name="weight">Weight (kg)</string>
     <string name="height">Height (cm)</string>
-    <string name="title_login_page">Welcome back </string>
+    <string name="title_login_page">Welcome back 👋</string>
     <string name="name">Name</string>
     <string name="message_main_page">Happy Learning at Dicoding.</string>
     <string name="greeting">Hello %1$s,</string>
@@ -49,7 +49,7 @@
     <string name="title_activity_main">MainActivity</string>
 
     <string name="guest_name">Hi, Lucy!</string>
-    <string name="guest_welcome">Welcome</string>
+    <string name="guest_welcome">Welcome to FitFood</string>
     <string name="bmi_card">Ideal Body Weight</string>
     <string name="bmi_desc">Make sure your calorie intake matches your daily calorie needs.</string>
     <string name="recomend_for_you">Recommendations for you</string>
@@ -146,5 +146,7 @@
     <string name="or_sign_in_with">- Or sign in with -</string>
     <string name="or_sign_up_with">- Or sign up with -</string>
     <string name="submit">Submit</string>
+    <string name="food">Food</string>
+    <string name="workout">Workout</string>
 </resources>
 

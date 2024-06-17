@@ -49,9 +49,6 @@ class HomeFragment : Fragment() {
             homeSeeAll.setOnClickListener {
                 startActivity(Intent(requireContext(), ArtikelActivity::class.java))
             }
-            btnNotification.setOnClickListener {
-                startActivity(Intent(requireContext(), NotificationActivity::class.java))
-            }
         }
         showRecyclerList()
     }
