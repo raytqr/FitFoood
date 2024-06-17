@@ -1,11 +1,13 @@
 package com.example.fitfood.data.source
 
+import com.example.fitfoood.data.RegisterRequest
 import com.example.fitfoood.data.response.LoginResponse
 import com.example.fitfoood.data.response.SignUpResponse
 import com.example.fitfoood.data.response.UserResponse
 import com.example.fitfoood.data.response.UserResponseItem
 import okhttp3.ResponseBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiServiceUser {
@@ -16,6 +18,11 @@ interface ApiServiceUser {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<LoginResponse>
+
+    @POST("api/register")
+    suspend fun register(
+        @Body registerRequest: RegisterRequest
+    ): Response<SignUpResponse>
 
     @FormUrlEncoded
     @POST("api/register")

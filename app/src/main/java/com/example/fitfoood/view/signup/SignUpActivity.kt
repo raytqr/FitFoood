@@ -70,22 +70,23 @@ class SignUpActivity : AppCompatActivity() {
             val dateOfBirth =  dateBirth
 
 
-
+            if (username.isBlank() || email.isBlank() || password.isBlank() || dateOfBirth.isBlank()) {
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             viewModel.register(username, email, password, dateOfBirth).observe(this) { result ->
                 when (result) {
-                    is ApiResponse.Success -> {
+                    is ApiResponse.Success<*> -> {
                         AlertDialog.Builder(this).apply {
                             setTitle("Yeah!")
                             setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
-                            setPositiveButton("Lanjut") { _, _ ->
-                                finish()
-                            }
                             create()
                             show()
+                            startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
                         }
                     }
-                    is ApiResponse.Error -> {
+                    is ApiResponse.Error<*> -> {
                         Toast.makeText(this, "Terjadi kesalahan : ${result.message}", Toast.LENGTH_SHORT).show()
                     }
                     ApiResponse.Loading -> {
