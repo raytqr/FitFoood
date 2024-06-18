@@ -1,13 +1,20 @@
 package com.example.fitfoood.view.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.fitfoood.R
 import com.example.fitfoood.databinding.FragmentAccountBinding
 import com.example.fitfoood.view.ViewModelFactory
+import com.example.fitfoood.view.artikel.ArtikelActivity
+import com.example.fitfoood.view.foodchecker.SearchFoodActivity
+import com.example.fitfoood.view.setting.EditAccountFragment
+
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,6 +35,13 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val tbTitle = view.findViewById<TextView>(R.id.title_toolbar)
+        tbTitle.text = getString(R.string.account)
+
+        binding.toolbar.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
         accountViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext())).get(AccountViewModel::class.java)
 

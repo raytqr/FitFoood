@@ -12,12 +12,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
+import com.example.fitfoood.R
 import com.example.fitfoood.databinding.ActivityMain2Binding
 import com.example.fitfoood.databinding.FragmentReminderBinding
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -84,6 +86,17 @@ class ReminderFragment : Fragment() {
         }
 
         return binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val tbTitle = view.findViewById<TextView>(R.id.title_toolbar)
+        tbTitle.text = getString(R.string.reminder)
+
+        binding?.toolbar?.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     private fun createNotificationChannel() {

@@ -15,7 +15,7 @@ class ResultRecActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val tbTitle = findViewById<TextView>(R.id.title_toolbar)
-        tbTitle.text = "Hasil Rekomendasi"
+        tbTitle.text = getString(R.string.recommendation_result)
 
         val totalCalories = intent.getIntExtra("totalCalories", 0)
         binding.totalKcal.text = "$totalCalories kcal"

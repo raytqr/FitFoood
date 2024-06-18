@@ -153,5 +153,11 @@
     <string name="workout">Workout</string>
     <string name="food_list">Food List</string>
     <string name="food_recommendation">Food Recommendation</string>
+    <string name="search_food">Search Food</string>
+    <string name="food_name">Food Name</string>
+    <string name="number_of_calories">Number of Calories</string>
+    <string name="desc_no_prediction">Model tidak dapat memprediksi makanan dari gambar. \nSilahkan input secara manual.</string>
+    <string name="total_calories">Total Calories</string>
+    <string name="recommendation_result">Recommencation Results</string>
 </resources>
 

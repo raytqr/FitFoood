@@ -29,5 +29,9 @@ class FoodActivity : AppCompatActivity() {
         val tbTitle = findViewById<TextView>(R.id.title_toolbar)
         tbTitle.text = getString(R.string.food)
 
+        binding.toolbar.setOnClickListener {
+            finish()
+        }
+
     }
 }
