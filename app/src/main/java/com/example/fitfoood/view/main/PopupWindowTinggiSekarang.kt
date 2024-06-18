@@ -5,20 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.example.fitfoood.R
-import com.example.fitfoood.databinding.PopupWindowBeratAwalBinding
-import com.example.fitfoood.databinding.PopupWindowBeratSasaranBinding
+import com.example.fitfoood.databinding.PopupWindowBeratSekarangBinding
 
-class PopupWindowBeratAwal : DialogFragment() {
+class PopupWindowTinggiSekarang : DialogFragment() {
 
-    private var _binding: PopupWindowBeratAwalBinding? = null
+    private var _binding: PopupWindowBeratSekarangBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = PopupWindowBeratAwalBinding.inflate(inflater, container, false)
+        _binding = PopupWindowBeratSekarangBinding.inflate(inflater, container, false)
         return binding.root
     }
 

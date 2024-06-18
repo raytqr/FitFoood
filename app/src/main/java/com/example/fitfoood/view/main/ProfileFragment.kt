@@ -8,13 +8,11 @@ import androidx.fragment.app.Fragment
 import com.example.fitfoood.R
 import android.content.Intent
 import android.provider.Settings
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.commit
 import com.example.fitfoood.databinding.FragmentProfileBinding
 import com.example.fitfoood.view.ViewModelFactory
-import com.example.fitfoood.view.setting.LanguageFragment
 import com.example.fitfoood.view.setting.LogoutFragment
 import com.example.fitfoood.view.setting.ReminderFragment
 
@@ -35,19 +33,16 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        binding.apply {
-//            bgBeratSasaran.setOnClickListener {
-//                val popupWindowBeratSasaran = PopupWindowBeratSasaran()
-//                popupWindowBeratSasaran.show(parentFragmentManager, "PopupWindowBeratSasaran")
-//            }
-//            bgBeratAwal.setOnClickListener {
-//                val popupWindowBeratAwal = PopupWindowBeratAwal()
-//                popupWindowBeratAwal.show(parentFragmentManager, "PopupWindowBeratAwal")
-//            }
-//            btnSetting.setOnClickListener {
-//                startActivity(Intent(requireContext(), SettingActivity::class.java))
-//            }
-//        }
+        binding.apply {
+            bgBeratSekarang.setOnClickListener {
+                val popupWindowBeratSekarang = PopupWindowBeratSekarang()
+                popupWindowBeratSekarang.show(parentFragmentManager, "PopupWindowBeratSasaran")
+            }
+            bgTinggiSekarang.setOnClickListener {
+                val popupWindowTinggiSekarang = PopupWindowTinggiSekarang()
+                popupWindowTinggiSekarang.show(parentFragmentManager, "PopupWindowBeratAwal")
+            }
+        }
         homeViewModel = ViewModelFactory.getInstance(requireContext()).create(HomeViewModel::class.java)
 
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->

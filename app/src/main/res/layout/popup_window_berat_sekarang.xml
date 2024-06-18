@@ -5,7 +5,7 @@
     android:id="@+id/popup_window_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main.PopupWindowBeratSasaran">
+    tools:context=".view.main.PopupWindowBeratSekarang">
 
 
     <androidx.cardview.widget.CardView
@@ -47,12 +47,12 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/popup_window_title"
+                    style="@style/Heading2_Bold"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="148dp"
                     android:gravity="center"
-                    android:text="@string/berat_awal_title"
-                    style="@style/Heading2_Bold"
+                    android:text="@string/tb_sekarang_title"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -91,11 +91,11 @@
 
                 <TextView
                     android:id="@+id/text_bb_sasaran"
+                    style="@style/Heading2_Bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/text_bb_awal"
-                    style="@style/Heading2_Bold"
+                    android:text="@string/text_bb_sasaran"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/popup_window_title" />

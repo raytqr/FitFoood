@@ -161,5 +161,9 @@
     <string name="recommendation_result">Recommencation Results</string>
     <string name="dummy_bmi">BMI 21</string>
     <string name="desc_bmi">You are overweight</string>
+    <string name="tb_sekarang_desc">Current Height</string>
+    <string name="tb_sekarang_text">150 cm</string>
+    <string name="berat_sekarang_title">Enter the current weight</string>
+    <string name="tb_sekarang_title">Enter the current height</string>
 </resources>
 

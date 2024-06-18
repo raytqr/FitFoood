@@ -149,7 +149,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btn_berat_sasaran"
+        android:id="@+id/btn_tinggi_sekarang"
         android:layout_width="110dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
@@ -158,7 +158,7 @@
 
 
         <ImageView
-            android:id="@+id/bg_berat_sasaran"
+            android:id="@+id/bg_tinggi_sekarang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -175,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/bb_sasaran_text"
+            android:text="@string/tb_sekarang_text"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -189,7 +189,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@string/bb_sasaran_desc"
+            android:text="@string/tb_sekarang_desc"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/bg_berat_sasaran"
             app:layout_constraintHorizontal_bias="0.51"
