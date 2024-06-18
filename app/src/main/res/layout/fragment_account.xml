@@ -24,12 +24,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Profile image -->
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_photo"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginTop="64dp"
-        android:src="@drawable/ic_man"
+        android:src="@drawable/profle_photo"
         app:layout_constraintBottom_toTopOf="@+id/imageView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -113,6 +113,9 @@
         style="@style/SubHeading1_Bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="16dp"
         android:text="@string/age"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.136"
@@ -148,7 +151,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dumb_age"
         tools:alpha="100" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

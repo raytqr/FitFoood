@@ -75,7 +75,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setupAction() {
-        binding.arrowLanguage.setOnClickListener {
+        binding.cardViewLanguage.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
     }
@@ -100,17 +100,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 replace(
                     R.id.fragment_container,
                     reminderFragment,
-                    ReminderFragment::class.java.simpleName
-                )
-            }
-        } else if (v?.id == R.id.cardViewLanguage) {
-            val languageFragment = LanguageFragment()
-            val fragmentManager = parentFragmentManager
-            fragmentManager.commit {
-                addToBackStack(null)
-                replace(
-                    R.id.fragment_container,
-                    languageFragment,
                     ReminderFragment::class.java.simpleName
                 )
             }

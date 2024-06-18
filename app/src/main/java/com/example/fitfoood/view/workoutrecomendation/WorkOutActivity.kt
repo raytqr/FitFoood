@@ -27,5 +27,10 @@ class WorkOutActivity : AppCompatActivity() {
 
          val tbTitle = findViewById<TextView>(R.id.title_toolbar)
          tbTitle.text = getString(R.string.workout)
+
+         binding.toolbar.setOnClickListener {
+             finish()
+         }
+
      }
 }

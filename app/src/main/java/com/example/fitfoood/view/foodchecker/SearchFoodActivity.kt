@@ -32,7 +32,7 @@ class SearchFoodActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val tbTitle = findViewById<TextView>(R.id.title_toolbar)
-        tbTitle.text = "Cari Makanan"
+        tbTitle.text = getString(R.string.search_food)
 
         binding.toolbar.setOnClickListener {
             finish()

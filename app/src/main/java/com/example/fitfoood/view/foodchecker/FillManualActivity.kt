@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.fitfoood.R
 import com.example.fitfoood.databinding.ActivityFillManualBinding
 
 class FillManualActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class FillManualActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val tbTitle = findViewById<TextView>(com.example.fitfoood.R.id.title_toolbar)
-        tbTitle.text = "Tambah Makanan"
+        tbTitle.text = getString(R.string.add_food)
 
         binding.toolbar.setOnClickListener {
             finish()
