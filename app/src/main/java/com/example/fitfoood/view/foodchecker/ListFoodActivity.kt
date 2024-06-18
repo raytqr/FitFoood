@@ -72,7 +72,7 @@ class ListFoodActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val tbTitle = findViewById<TextView>(R.id.title_toolbar)
-        tbTitle.text = "Daftar Makanan"
+        tbTitle.text = getString(R.string.food_list)
 
         if (intent.getBooleanExtra("noPrediction", false)) {
             showNoPredictionDialog()

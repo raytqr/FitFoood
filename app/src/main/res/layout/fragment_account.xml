@@ -39,7 +39,7 @@
     <!-- Background image -->
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:src="@drawable/bg_account_detail"
@@ -52,9 +52,10 @@
     <TextView
         android:id="@+id/tv_name"
         style="@style/SubHeading1_Bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,8 +65,10 @@
     <!-- Display username -->
     <TextView
         android:id="@+id/dumbName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="8dp"
         android:text="@string/dumb_name"
         style="@style/Body1_Regular"
@@ -78,8 +81,10 @@
     <TextView
         android:id="@+id/tv_email"
         style="@style/SubHeading1_Bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="16dp"
         android:text="@string/email"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,8 +95,10 @@
     <!-- Display email -->
     <TextView
         android:id="@+id/dumbEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="8dp"
         android:text="@string/dumbEmail"
         style="@style/Body1_Regular"
@@ -104,7 +111,7 @@
     <TextView
         android:id="@+id/tv_age"
         style="@style/SubHeading1_Bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/age"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,8 +123,10 @@
     <TextView
         android:id="@+id/dumb_age"
         style="@style/Body1_Regular"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="4dp"
         android:text="@string/dummy_age"
         app:layout_constraintEnd_toEndOf="parent"

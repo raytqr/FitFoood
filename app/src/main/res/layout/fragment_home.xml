@@ -126,9 +126,7 @@
         android:layout_width="168dp"
         android:layout_height="68dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_wo_recomendation"
-        app:layout_constraintHorizontal_bias="0.888"
+        android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:srcCompat="@drawable/btn_makanan" />
@@ -150,9 +148,10 @@
         android:id="@+id/btn_wo_recomendation"
         android:layout_width="190dp"
         android:layout_height="72dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_food_recomendation"
+        app:layout_constraintStart_toEndOf="@+id/btn_food_recomendation"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:srcCompat="@drawable/btn_olahraga" />
 
     <TextView
@@ -163,7 +162,7 @@
         android:textColor="@color/grey_500"
         app:layout_constraintBottom_toBottomOf="@+id/btn_wo_recomendation"
         app:layout_constraintEnd_toEndOf="@+id/btn_wo_recomendation"
-        app:layout_constraintHorizontal_bias="0.674"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toEndOf="@+id/btn_food_recomendation"
         app:layout_constraintTop_toTopOf="@+id/btn_wo_recomendation"
         app:layout_constraintVertical_bias="0.437" />
@@ -232,10 +231,11 @@
         android:layout_width="0dp"
         android:layout_height="212dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:ignore="MissingConstraints"
         tools:listitem="@layout/artikel_row" />
 

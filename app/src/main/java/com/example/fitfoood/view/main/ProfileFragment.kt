@@ -7,10 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.fitfoood.R
 import android.content.Intent
+import android.provider.Settings
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.fragment.app.commit
 import com.example.fitfoood.databinding.FragmentProfileBinding
-import com.example.fitfoood.view.setting.SettingActivity
+import com.example.fitfoood.view.setting.AccountFragment
+import com.example.fitfoood.view.setting.LanguageFragment
+import com.example.fitfoood.view.setting.LogoutFragment
+import com.example.fitfoood.view.setting.ReminderFragment
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
@@ -25,17 +33,77 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.apply {
-            bgBeratSasaran.setOnClickListener {
-                val popupWindowBeratSasaran = PopupWindowBeratSasaran()
-                popupWindowBeratSasaran.show(parentFragmentManager, "PopupWindowBeratSasaran")
+//        binding.apply {
+//            bgBeratSasaran.setOnClickListener {
+//                val popupWindowBeratSasaran = PopupWindowBeratSasaran()
+//                popupWindowBeratSasaran.show(parentFragmentManager, "PopupWindowBeratSasaran")
+//            }
+//            bgBeratAwal.setOnClickListener {
+//                val popupWindowBeratAwal = PopupWindowBeratAwal()
+//                popupWindowBeratAwal.show(parentFragmentManager, "PopupWindowBeratAwal")
+//            }
+//            btnSetting.setOnClickListener {
+//                startActivity(Intent(requireContext(), SettingActivity::class.java))
+//            }
+//        }
+
+        val btnAccount: CardView = view.findViewById(R.id.cardViewAccount)
+        btnAccount.setOnClickListener(this)
+
+        val btnReminder: CardView = view.findViewById(R.id.cardViewReminder)
+        btnReminder.setOnClickListener(this)
+
+        val btnLanguage: CardView = view.findViewById(R.id.cardViewLanguage)
+        btnLanguage.setOnClickListener(this)
+
+        val btnLogout: CardView = view.findViewById(R.id.cardViewLogout)
+        btnLogout.setOnClickListener {
+            val showPopUp = LogoutFragment()
+            showPopUp.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
+        }
+
+        setupAction()
+    }
+
+    private fun setupAction() {
+        binding.arrowLanguage.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
+    }
+
+    override fun onClick(v: View?) {
+        if (v?.id == R.id.cardViewAccount) {
+            val accountFragment = AccountFragment()
+            val fragmentManager = parentFragmentManager
+            fragmentManager.commit {
+                addToBackStack(null)
+                replace(
+                    R.id.fragment_container,
+                    accountFragment,
+                    AccountFragment::class.java.simpleName
+                )
             }
-            bgBeratAwal.setOnClickListener {
-                val popupWindowBeratAwal = PopupWindowBeratAwal()
-                popupWindowBeratAwal.show(parentFragmentManager, "PopupWindowBeratAwal")
+        } else if (v?.id == R.id.cardViewReminder) {
+            val reminderFragment = ReminderFragment()
+            val fragmentManager = parentFragmentManager
+            fragmentManager.commit {
+                addToBackStack(null)
+                replace(
+                    R.id.fragment_container,
+                    reminderFragment,
+                    ReminderFragment::class.java.simpleName
+                )
             }
-            btnSetting.setOnClickListener {
-                startActivity(Intent(requireContext(), SettingActivity::class.java))
+        } else if (v?.id == R.id.cardViewLanguage) {
+            val languageFragment = LanguageFragment()
+            val fragmentManager = parentFragmentManager
+            fragmentManager.commit {
+                addToBackStack(null)
+                replace(
+                    R.id.fragment_container,
+                    languageFragment,
+                    ReminderFragment::class.java.simpleName
+                )
             }
         }
     }
