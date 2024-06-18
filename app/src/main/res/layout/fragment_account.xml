@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/blue_200">
 
+    <!-- Include your custom toolbar -->
     <include
         android:id="@+id/include"
         layout="@layout/toolbar" />
 
+    <!-- Main toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -21,20 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!--    <com.google.android.material.imageview.ShapeableImageView-->
-    <!--        android:id="@+id/img_photo"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="32dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.498"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/include"-->
-    <!--        app:shapeAppearanceOverlay="@style/circleImageView"-->
-    <!--        tools:src="@tools:sample/avatars" />-->
-
-
+    <!-- Profile image -->
     <ImageView
         android:id="@+id/img_photo"
         android:layout_width="130dp"
@@ -47,16 +36,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
 
+    <!-- Background image -->
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="160dp"
         android:src="@drawable/bg_account_detail"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
 
+    <!-- Text: "Name" -->
     <TextView
         android:id="@+id/tv_name"
         style="@style/SubHeading1_Bold"
@@ -69,6 +61,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.471" />
 
+    <!-- Display username -->
     <TextView
         android:id="@+id/dumbName"
         android:layout_width="wrap_content"
@@ -81,6 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
+    <!-- Text: "Email" -->
     <TextView
         android:id="@+id/tv_email"
         style="@style/SubHeading1_Bold"
@@ -93,6 +87,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dumbName" />
 
+    <!-- Display email -->
     <TextView
         android:id="@+id/dumbEmail"
         android:layout_width="wrap_content"
@@ -105,42 +100,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
-    <TextView
-        android:id="@+id/tv_gender"
-        style="@style/SubHeading1_Bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/gender"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dumbEmail" />
-
-    <TextView
-        android:id="@+id/dumb_gender"
-        style="@style/Body1_Regular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/gender_man"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.144"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
-
+    <!-- Text: "Age" -->
     <TextView
         android:id="@+id/tv_age"
         style="@style/SubHeading1_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/age"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dumb_gender" />
+        app:layout_constraintTop_toBottomOf="@+id/dumbEmail" />
 
+    <!-- Display age (placeholder) -->
     <TextView
         android:id="@+id/dumb_age"
         style="@style/Body1_Regular"
@@ -153,6 +125,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_age" />
 
+    <!-- Edit button -->
     <Button
         android:id="@+id/btnEdit"
         android:layout_width="0dp"

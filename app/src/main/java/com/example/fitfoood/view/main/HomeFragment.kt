@@ -6,18 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitfoood.data.ApiResponse
 import com.example.fitfoood.databinding.FragmentHomeBinding
 import com.example.fitfoood.view.ViewModelFactory
 import com.example.fitfoood.view.artikel.ArtikelActivity
 import com.example.fitfoood.view.foodrecomendation.FoodActivity
-import com.example.fitfoood.view.login.LoginActivity
 import com.example.fitfoood.view.main.HomeViewModel
-import com.example.fitfoood.view.notification.NotificationActivity
 import com.example.fitfoood.view.workoutrecomendation.WorkOutActivity
-
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -40,12 +36,12 @@ class HomeFragment : Fragment() {
 
         homeViewModel = ViewModelFactory.getInstance(requireContext()).create(HomeViewModel::class.java)
 
-
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             token = user.token
-            binding.tvItem.text = "Hai, " + user.username
-
+            val username = user.username.split(" ").firstOrNull() ?: user.username // Ambil kata pertama atau username jika tidak ada spasi
+            binding.tvItem.text = "Hai, $username"
         }
+
         binding.apply {
             btnFoodRecomendation.setOnClickListener {
                 startActivity(Intent(requireContext(), FoodActivity::class.java))
@@ -81,7 +77,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

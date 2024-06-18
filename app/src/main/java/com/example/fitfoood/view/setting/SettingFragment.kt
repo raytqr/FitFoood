@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.fitfoood.R
 import com.example.fitfoood.databinding.FragmentSettingBinding
+import com.example.fitfoood.view.main.AccountFragment
 
 class SettingFragment : Fragment(), View.OnClickListener {
 

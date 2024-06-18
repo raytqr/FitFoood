@@ -1,5 +1,4 @@
 package com.example.fitfoood.data.repository
-
 import com.example.fitfoood.data.pref.UserModel
 import com.example.fitfoood.data.pref.UserPreference
 import kotlinx.coroutines.flow.Flow
@@ -15,9 +14,6 @@ class UserRepository private constructor(
     fun getSession(): Flow<UserModel> {
         return userPreference.getSession()
     }
-
-
-
 
 
     suspend fun logout() {

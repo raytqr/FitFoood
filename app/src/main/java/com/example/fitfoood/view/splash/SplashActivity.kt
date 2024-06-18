@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.fitfoood.MainActivity
-import com.example.fitfoood.R
 import com.example.fitfoood.databinding.ActivitySplashBinding
 import com.example.fitfoood.view.ViewModelFactory
 import com.example.fitfoood.view.welcome.WelcomeScreenActivity
