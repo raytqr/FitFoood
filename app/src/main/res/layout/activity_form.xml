@@ -89,7 +89,7 @@
         tools:alpha="100">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/heighEditText"
+            android:id="@+id/heightEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
@@ -111,6 +111,4 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:alpha="100" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
