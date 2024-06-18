@@ -159,5 +159,7 @@
     <string name="desc_no_prediction">Model tidak dapat memprediksi makanan dari gambar. \nSilahkan input secara manual.</string>
     <string name="total_calories">Total Calories</string>
     <string name="recommendation_result">Recommencation Results</string>
+    <string name="dummy_bmi">BMI 21</string>
+    <string name="desc_bmi">You are overweight</string>
 </resources>
 
