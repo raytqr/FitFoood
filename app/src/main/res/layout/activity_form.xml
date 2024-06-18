@@ -75,7 +75,7 @@
         tools:alpha="100" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/HeighEditTextLayout"
+        android:id="@+id/HeightEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="53dp"
@@ -89,7 +89,7 @@
         tools:alpha="100">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/heighEditText"
+            android:id="@+id/heightEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
