@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                                 show()
                             }
                         }
-                        viewModel.saveSession(UserModel(result.data?.user?.username!!,email, result.data?.token!!))
+                        viewModel.saveSession(UserModel(result.data?.user?.username!!,email, result.data?.token!!, result.data?.user?.dateOfBirth!!))
                         startActivity(Intent(this, MainActivity::class.java))
                         return@observe
                     }

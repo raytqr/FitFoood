@@ -15,12 +15,15 @@ import com.example.fitfoood.view.artikel.ArtikelActivity
 import com.example.fitfoood.view.foodchecker.SearchFoodActivity
 import com.example.fitfoood.view.setting.EditAccountFragment
 
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AccountFragment : Fragment() {
 
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
     private lateinit var accountViewModel: AccountViewModel
+    private lateinit var token: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,25 +45,35 @@ class AccountFragment : Fragment() {
 
         accountViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext())).get(AccountViewModel::class.java)
 
+        accountViewModel.getSession().observe(viewLifecycleOwner) { user ->
+            token = user.token
+            val dateOfBirth = user.dateOfBirth
+            binding.dumbAge.text = calculateAge(dateOfBirth)
+        }
         observeViewModel()
     }
 
     private fun observeViewModel() {
         accountViewModel.getSession().observe(viewLifecycleOwner) { userModel ->
-
             binding.dumbName.text = userModel.username
             binding.dumbEmail.text = userModel.email
-//            binding.dumbAge.text = userModel.dateOfBirth// Calculate age
-
         }
     }
 
-//    private fun calculateAge(dateOfBirth: String): String {
-//        // Implement your age calculation logic here
-//        // Example: You can use SimpleDateFormat to parse dateOfBirth and calculate age
-//        // For simplicity, I'll assume a placeholder method for demonstration
-//        return "Age Calculation Placeholder"
-//    }
+    private fun calculateAge(dateOfBirth: String): String {
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.US)
+        val dob = sdf.parse(dateOfBirth)
+        val today = Calendar.getInstance()
+
+        val dobCalendar = Calendar.getInstance().apply { time = dob }
+        var age = today.get(Calendar.YEAR) - dobCalendar.get(Calendar.YEAR)
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dobCalendar.get(Calendar.DAY_OF_YEAR)) {
+            age--
+        }
+
+        return age.toString()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
