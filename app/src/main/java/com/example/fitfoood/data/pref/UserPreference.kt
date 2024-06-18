@@ -10,7 +10,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "session")
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "sessionbmi")
 
 class UserPreference private constructor(private val dataStore: DataStore<Preferences>) {
 
@@ -21,6 +21,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 preferences[EMAIL_KEY] ?: "",
                 preferences[TOKEN_KEY] ?: "",
                 preferences[DATE_BIRTH] ?: "",
+                preferences[USER_ID] ?: "",
             )
         }
     }
@@ -30,6 +31,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[EMAIL_KEY] = user.email
             preferences[TOKEN_KEY] = user.token
             preferences[DATE_BIRTH] = user.dateOfBirth
+            preferences[USER_ID] = user.userId
             preferences[IS_LOGIN_KEY] = true
         }
     }
@@ -41,6 +43,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 preferences[EMAIL_KEY] ?: "",
                 preferences[TOKEN_KEY] ?: "",
                 preferences[DATE_BIRTH] ?: "",
+                preferences[USER_ID] ?: "",
                 preferences[IS_LOGIN_KEY] ?: false
             )
         }
@@ -63,6 +66,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val DATE_BIRTH = stringPreferencesKey("dateOfBirth")
+        private val USER_ID = stringPreferencesKey("userId")
         private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {

@@ -3,8 +3,8 @@ package com.example.fitfood.data.source
 import com.example.fitfoood.data.RegisterRequest
 import com.example.fitfoood.data.response.LoginResponse
 import com.example.fitfoood.data.response.SignUpResponse
+import com.example.fitfoood.data.response.UpdatUserResponse
 import com.example.fitfoood.data.response.UserResponse
-import com.example.fitfoood.data.response.UserResponseItem
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -36,10 +36,10 @@ interface ApiServiceUser {
     @FormUrlEncoded
     @PUT("api/users/{id}")
     fun updateUser(
-        @Field("name") username: String,
+        @Header("Authorization") token: String,
         @Field("email") email: String,
-        @Field("password") password: String,
-    ): Call<UserResponse>
+        @Field("password") password: String
+    ): Call<UpdatUserResponse>
 
     @DELETE("api/users/{id}")
     fun deleteUser(

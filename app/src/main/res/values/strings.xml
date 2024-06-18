@@ -129,7 +129,7 @@
     <string name="bb_sasaran_desc">Target Weight</string>
     <string name="tambah_berat">Add Weight</string>
 
-    <string name="Oke">Oke</string>
+    <string name="Oke" translatable="false">Oke</string>
 
     <string name="forgot_password">Forgot password?</string>
     <string name="title_forgot_password">Forgot Password?</string>
@@ -165,5 +165,6 @@
     <string name="tb_sekarang_text">150 cm</string>
     <string name="berat_sekarang_title">Enter the current weight</string>
     <string name="tb_sekarang_title">Enter the current height</string>
+
 </resources>
 

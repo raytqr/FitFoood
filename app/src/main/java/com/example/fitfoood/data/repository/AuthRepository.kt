@@ -8,13 +8,13 @@ import com.example.fitfoood.data.ApiResponse
 import com.example.fitfoood.data.RegisterRequest
 import com.example.fitfoood.data.response.LoginResponse
 import com.example.fitfoood.data.response.SignUpResponse
-import com.example.fitfoood.data.response.UserResponseItem
+import com.example.fitfoood.data.response.UpdatUserResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Error
 
-class AuthRepository (
+class AuthRepository(
     private val apiService: ApiServiceUser
 ) {
     fun userLogin(email: String, password: String): LiveData<ApiResponse<LoginResponse>> {
@@ -53,5 +53,29 @@ class AuthRepository (
         } catch (e: Exception) {
             emit(Error(e.message))
         }
+    }
+
+    fun updateUser(token: String, email: String, password: String): LiveData<ApiResponse<UpdatUserResponse>> {
+        val result = MutableLiveData<ApiResponse<UpdatUserResponse>>()
+        result.value = ApiResponse.Loading
+
+        val client = apiService.updateUser(token, email, password)
+        client.enqueue(object : Callback<UpdatUserResponse> {
+            override fun onResponse(
+                call: Call<UpdatUserResponse>,
+                response: Response<UpdatUserResponse>
+            ) {
+                if (response.isSuccessful) {
+                    result.value = ApiResponse.Success(response.body()!!)
+                } else {
+                    result.value = ApiResponse.Error(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<UpdatUserResponse>, t: Throwable) {
+                result.value = ApiResponse.Error(t.message.toString())
+            }
+        })
+        return result
     }
 }

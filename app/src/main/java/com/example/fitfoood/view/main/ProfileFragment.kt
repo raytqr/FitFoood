@@ -11,6 +11,9 @@ import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.commit
+import androidx.lifecycle.Observer
+import com.example.fitfoood.data.ApiResponse
+import com.example.fitfoood.data.pref.BMIModel
 import com.example.fitfoood.databinding.FragmentProfileBinding
 import com.example.fitfoood.view.ViewModelFactory
 import com.example.fitfoood.view.setting.LogoutFragment
@@ -22,6 +25,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private val binding get() = _binding!!
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var token: String
+    private lateinit var idhealth: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,14 +46,21 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 val popupWindowTinggiSekarang = PopupWindowTinggiSekarang()
                 popupWindowTinggiSekarang.show(parentFragmentManager, "PopupWindowBeratAwal")
             }
+
+
         }
         homeViewModel = ViewModelFactory.getInstance(requireContext()).create(HomeViewModel::class.java)
 
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             token = user.token
             val username = user.username
+            idhealth = user.userId
             binding.tvItem.text = "$username"
+            fetchBMIData()
         }
+
+
+
 
         val btnAccount: CardView = view.findViewById(R.id.cardViewAccount)
         btnAccount.setOnClickListener(this)
@@ -67,6 +78,35 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         }
 
         setupAction()
+    }
+    private fun fetchBMIData() {
+        homeViewModel.getBMI(token, idhealth).observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is ApiResponse.Error -> {
+//                    binding.tvItem.text = "Error: ${result.errorMessage}"
+                }
+                is ApiResponse.Loading -> {
+                    // Handle loading state if needed
+                }
+                is ApiResponse.Success -> {
+                    val bmiData = result.data?.data?.firstOrNull()
+                    if (bmiData != null) {
+                        binding.bbSekarangText.text = bmiData.weight.toString()
+                        binding.tbSekarangText.text = bmiData.height.toString()
+                        binding.bmiNumber.text = bmiData.bmiUser.toString()
+                        binding.descBMI.text = bmiData.label
+                    }
+                    homeViewModel.saveSessionBMI(
+                        BMIModel(
+                            bmiData?.weight.toString(),
+                            bmiData?.height.toString(),
+                            bmiData?.bmiUser.toString(),
+                            bmiData?.label.toString()
+                        )
+                    )
+                }
+            }
+        })
     }
 
     private fun setupAction() {

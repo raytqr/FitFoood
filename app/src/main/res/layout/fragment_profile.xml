@@ -170,7 +170,7 @@
             app:srcCompat="@drawable/bg_berat_sasaran" />
 
         <TextView
-            android:id="@+id/bb_sasaran_text"
+            android:id="@+id/tb_sekarang_text"
             style="@style/SubHeading1_Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -185,16 +185,16 @@
         <TextView
             android:id="@+id/bb_sasaran_desc"
             style="@style/Body1_Regular"
-            android:textSize="11sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/tb_sekarang_desc"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/bg_berat_sasaran"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/bb_sasaran_text" />
+            app:layout_constraintTop_toTopOf="@+id/tb_sekarang_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.cardview.widget.CardView

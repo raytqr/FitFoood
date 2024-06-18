@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.fitfoood.data.repository.ArtikelRepository
 import com.example.fitfoood.data.repository.AuthRepository
+import com.example.fitfoood.data.repository.BMIRepository
 import com.example.fitfoood.data.repository.UserRepository
 import com.example.fitfoood.di.Injection
+import com.example.fitfoood.view.forgotpass.ForgotPassViewModel
 import com.example.fitfoood.view.login.LoginViewModel
 import com.example.fitfoood.view.main.AccountViewModel
 import com.example.fitfoood.view.main.HomeViewModel
@@ -17,14 +19,15 @@ import com.example.fitfoood.view.splash.SplashViewModel
 class ViewModelFactory(
     private val repository: ArtikelRepository,
     private val userRepository: UserRepository,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val bmiRepository: BMIRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel(repository, userRepository) as T
+                HomeViewModel(repository, userRepository, bmiRepository) as T
             }
             modelClass.isAssignableFrom(SplashViewModel::class.java) -> {
                 SplashViewModel(userRepository) as T
@@ -41,6 +44,9 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
                 AccountViewModel(userRepository) as T
             }
+            modelClass.isAssignableFrom(ForgotPassViewModel::class.java) -> {
+                AccountViewModel(userRepository) as T
+            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }
@@ -55,7 +61,8 @@ class ViewModelFactory(
                     INSTANCE = ViewModelFactory(
                         Injection.provideArtikelRepository(context),
                         Injection.provideUserRepository(context),
-                        Injection.provideAuthRepository(context)
+                        Injection.provideAuthRepository(context),
+                        Injection.provideBMIRRepository(context)
                     )
                 }
             }

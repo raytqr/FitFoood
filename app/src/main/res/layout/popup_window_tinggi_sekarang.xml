@@ -51,7 +51,7 @@
                     android:layout_height="45dp"
                     android:layout_marginTop="148dp"
                     android:gravity="center"
-                    android:text="@string/berat_awal_title"
+                    android:text="@string/tb_sekarang_title"
                     style="@style/Heading2_Bold"
                     android:textAlignment="center"
                     android:textColor="@color/black"
@@ -72,7 +72,7 @@
 
 
                 <ImageView
-                    android:id="@+id/imageView12"
+                    android:id="@+id/minBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
@@ -81,7 +81,7 @@
                     app:layout_constraintTop_toTopOf="@+id/text_bb_sasaran" />
 
                 <ImageView
-                    android:id="@+id/imageView13"
+                    android:id="@+id/plusBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -90,15 +90,30 @@
                     app:layout_constraintTop_toTopOf="@+id/text_bb_sasaran" />
 
                 <TextView
-                    android:id="@+id/text_bb_sasaran"
+                    android:id="@+id/text_tb_sasaran"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/text_bb_awal"
+                    android:text="@string/tb_sekarang_text"
                     style="@style/Heading2_Bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/popup_window_title" />
+
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:backgroundTint="@color/base_blue"
+                    android:text="@string/save"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_tb_sasaran"
+                    tools:alpha="100" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

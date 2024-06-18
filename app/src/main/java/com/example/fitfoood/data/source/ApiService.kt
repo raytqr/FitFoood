@@ -1,10 +1,14 @@
 package com.example.fitfoood.source
 
-import com.example.fitfoood.data.response.ArtikelResponse
 import com.example.fitfoood.data.response.ArtikelResponseItem
+import com.example.fitfoood.data.response.BMI
+import com.example.fitfoood.data.response.GetBMIResponse
+import com.example.fitfoood.data.response.PostBMIResponse
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
@@ -13,6 +17,16 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Call<List<ArtikelResponseItem>>
 
+    @POST("/api/users/{idhealth}/health")
+    fun postBMI(
+        @Header("Authorization") token: String,
+        @Path("idhealth") idhealth: String,
+        @Body bmi: BMI
+    ): Call<PostBMIResponse>
 
-
+    @GET("/api/users/{idhealth}/health")
+    fun getBMI(
+        @Header("Authorization") token: String,
+        @Path("idhealth") idhealth: String
+    ): Call<GetBMIResponse>
 }

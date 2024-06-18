@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".view.main.PopupWindowBeratSekarang">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/popup_window_view_with_border"
         android:layout_width="wrap_content"
@@ -44,7 +43,6 @@
                 android:background="@color/white"
                 android:minHeight="170dp">
 
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/popup_window_title"
                     style="@style/Heading2_Bold"
@@ -70,9 +68,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
                 <ImageView
-                    android:id="@+id/imageView12"
+                    android:id="@+id/minBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
@@ -81,7 +78,7 @@
                     app:layout_constraintTop_toTopOf="@+id/text_bb_sasaran" />
 
                 <ImageView
-                    android:id="@+id/imageView13"
+                    android:id="@+id/plusBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -95,10 +92,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/text_bb_sasaran"
+                    android:text="0 Kg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/popup_window_title" />
+
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:backgroundTint="@color/base_blue"
+                    android:text="@string/save"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_bb_sasaran"
+                    tools:alpha="100" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

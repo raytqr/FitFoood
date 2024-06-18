@@ -5,6 +5,9 @@ import androidx.lifecycle.MediatorLiveData
 import com.example.fitfoood.data.ApiResponse
 import com.example.fitfoood.data.response.ArtikelResponse
 import com.example.fitfoood.data.response.ArtikelResponseItem
+import com.example.fitfoood.data.response.BMI
+import com.example.fitfoood.data.response.GetBMIResponse
+import com.example.fitfoood.data.response.PostBMIResponse
 import com.example.fitfoood.source.ApiConfig
 import com.example.fitfoood.source.ApiService
 import retrofit2.Call
@@ -36,5 +39,53 @@ class ArtikelRepository {
         return result
     }
 
+    fun getBMI(token: String, idhealth: String): LiveData<ApiResponse<GetBMIResponse>> {
+        val result = MediatorLiveData<ApiResponse<GetBMIResponse>>()
+        result.value = ApiResponse.Loading
+        val apiService = ApiConfig.getApiService()
+        val client = apiService.getBMI("Bearer $token", idhealth)
+        client.enqueue(object : Callback<GetBMIResponse> {
+            override fun onResponse(
+                call: Call<GetBMIResponse>,
+                response: Response<GetBMIResponse>
+            ) {
+                if (response.isSuccessful) {
+                    result.value = ApiResponse.Success(response.body()!!)
+                } else {
+                    result.value = ApiResponse.Error(response.message())
+                }
+            }
 
+            override fun onFailure(call: Call<GetBMIResponse>, t: Throwable) {
+                result.value = ApiResponse.Error(t.message.toString())
+            }
+        })
+
+        return result
+    }
+
+    fun postBMI(token: String, idhealth: String, bmi: BMI): LiveData<ApiResponse<PostBMIResponse>> {
+        val result = MediatorLiveData<ApiResponse<PostBMIResponse>>()
+        result.value = ApiResponse.Loading
+        val apiService = ApiConfig.getApiService()
+        val client = apiService.postBMI("Bearer $token", idhealth, bmi)
+        client.enqueue(object : Callback<PostBMIResponse> {
+            override fun onResponse(
+                call: Call<PostBMIResponse>,
+                response: Response<PostBMIResponse>
+            ) {
+                if (response.isSuccessful) {
+                    result.value = ApiResponse.Success(response.body()!!)
+                } else {
+                    result.value = ApiResponse.Error(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<PostBMIResponse>, t: Throwable) {
+                result.value = ApiResponse.Error(t.message.toString())
+            }
+        })
+
+        return result
+    }
 }
