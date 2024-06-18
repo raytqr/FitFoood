@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.commit
 import com.example.fitfoood.databinding.FragmentProfileBinding
-import com.example.fitfoood.view.setting.AccountFragment
 import com.example.fitfoood.view.setting.LanguageFragment
 import com.example.fitfoood.view.setting.LogoutFragment
 import com.example.fitfoood.view.setting.ReminderFragment
