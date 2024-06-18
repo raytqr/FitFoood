@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.commit
 import com.example.fitfoood.databinding.FragmentProfileBinding
+import com.example.fitfoood.view.ViewModelFactory
 import com.example.fitfoood.view.setting.LanguageFragment
 import com.example.fitfoood.view.setting.LogoutFragment
 import com.example.fitfoood.view.setting.ReminderFragment
@@ -21,6 +22,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var token: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +48,13 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 //                startActivity(Intent(requireContext(), SettingActivity::class.java))
 //            }
 //        }
+        homeViewModel = ViewModelFactory.getInstance(requireContext()).create(HomeViewModel::class.java)
+
+        homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
+            token = user.token
+            val username = user.username
+            binding.tvItem.text = "$username"
+        }
 
         val btnAccount: CardView = view.findViewById(R.id.cardViewAccount)
         btnAccount.setOnClickListener(this)

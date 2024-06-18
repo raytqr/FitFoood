@@ -45,6 +45,9 @@ class CameraActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadLabels()
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 1)
+        }
 
         binding.switchCamera.setOnClickListener {
             cameraSelector = if (cameraSelector.equals(CameraSelector.DEFAULT_BACK_CAMERA)) CameraSelector.DEFAULT_FRONT_CAMERA
