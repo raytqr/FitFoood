@@ -77,8 +77,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
                     android:src="@drawable/icon_minus_bb"
-                    app:layout_constraintEnd_toStartOf="@+id/text_bb_sasaran"
-                    app:layout_constraintTop_toTopOf="@+id/text_bb_sasaran" />
+                    app:layout_constraintEnd_toStartOf="@+id/text_tb_sasaran"
+                    app:layout_constraintTop_toTopOf="@+id/text_tb_sasaran" />
 
                 <ImageView
                     android:id="@+id/plusBtn"
@@ -86,8 +86,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:src="@drawable/icon_plus_bb"
-                    app:layout_constraintStart_toEndOf="@+id/text_bb_sasaran"
-                    app:layout_constraintTop_toTopOf="@+id/text_bb_sasaran" />
+                    app:layout_constraintStart_toEndOf="@+id/text_tb_sasaran"
+                    app:layout_constraintTop_toTopOf="@+id/text_tb_sasaran" />
 
                 <TextView
                     android:id="@+id/text_tb_sasaran"

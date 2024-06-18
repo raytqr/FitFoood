@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import com.example.fitfoood.R
 import com.example.fitfoood.data.ApiResponse
 import com.example.fitfoood.data.response.BMI
 import com.example.fitfoood.databinding.PopupWindowBeratSekarangBinding
@@ -19,6 +21,7 @@ class PopupWindowBeratSekarang : DialogFragment() {
     private lateinit var userId: String
     private lateinit var height: String
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var fragmentManager: FragmentManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +33,7 @@ class PopupWindowBeratSekarang : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fragmentManager = parentFragmentManager
         homeViewModel = ViewModelFactory.getInstance(requireContext()).create(HomeViewModel::class.java)
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             token = user.token
@@ -38,6 +42,8 @@ class PopupWindowBeratSekarang : DialogFragment() {
 
         homeViewModel.getSessionBMI().observe(viewLifecycleOwner) { bmi ->
             this.height = bmi.height.toString()
+            val lastWeight = bmi.weight?.toIntOrNull() ?: 45
+            binding.textBbSasaran.text = "$lastWeight Kg"
         }
 
 
@@ -53,6 +59,12 @@ class PopupWindowBeratSekarang : DialogFragment() {
                     is ApiResponse.Success -> {
                         Toast.makeText(requireContext(), "Berhasil menyimpan berat", Toast.LENGTH_SHORT).show()
                         dismiss()
+
+                        val profileFragment = ProfileFragment()
+                        fragmentManager.beginTransaction().apply {
+                            replace(R.id.fragment_container, profileFragment)
+                            commit()
+                        }
                     }
                 }
             }
@@ -78,7 +90,7 @@ class PopupWindowBeratSekarang : DialogFragment() {
 
     private fun updateWeightBy(amount: Int) {
         val currentWeight = binding.textBbSasaran.text.toString().replace("Kg", "").trim().toIntOrNull() ?: 0
-        val newWeight = (currentWeight + amount).coerceAtLeast(0)
+        val newWeight = (currentWeight + amount).coerceAtLeast(1)
         binding.textBbSasaran.text = "$newWeight Kg"
     }
 

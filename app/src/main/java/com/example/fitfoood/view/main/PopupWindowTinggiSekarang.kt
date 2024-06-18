@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import com.example.fitfoood.R
 import com.example.fitfoood.data.ApiResponse
 import com.example.fitfoood.data.response.BMI
 import com.example.fitfoood.databinding.PopupWindowTinggiSekarangBinding
@@ -19,6 +21,7 @@ class PopupWindowTinggiSekarang : DialogFragment() {
     private lateinit var userId: String
     private lateinit var weight: String
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var fragmentManager: FragmentManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +33,7 @@ class PopupWindowTinggiSekarang : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fragmentManager = parentFragmentManager
         homeViewModel = ViewModelFactory.getInstance(requireContext()).create(HomeViewModel::class.java)
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             token = user.token
@@ -38,6 +42,8 @@ class PopupWindowTinggiSekarang : DialogFragment() {
 
         homeViewModel.getSessionBMI().observe(viewLifecycleOwner) { bmi ->
             this.weight = bmi.weight.toString()
+            val lastHeight = bmi.height?.toIntOrNull() ?: 160
+            binding.textTbSasaran.text = "$lastHeight cm"
         }
 
         binding.saveButton.setOnClickListener {
@@ -52,6 +58,13 @@ class PopupWindowTinggiSekarang : DialogFragment() {
                     is ApiResponse.Success -> {
                         Toast.makeText(requireContext(), "Berhasil menyimpan tinggi", Toast.LENGTH_SHORT).show()
                         dismiss()
+
+                        val profileFragment = ProfileFragment()
+                        fragmentManager.beginTransaction().apply {
+                            replace(R.id.fragment_container, profileFragment)
+                            commit()
+                        }
+
                     }
                 }
             }

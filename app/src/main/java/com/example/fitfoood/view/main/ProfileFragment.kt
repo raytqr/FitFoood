@@ -93,7 +93,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                     if (bmiData != null) {
                         binding.bbSekarangText.text = bmiData.weight.toString()
                         binding.tbSekarangText.text = bmiData.height.toString()
-                        binding.bmiNumber.text = bmiData.bmiUser.toString()
+                        val formattedBmiUser = String.format("%.2f", bmiData.bmiUser)
+                        binding.bmiNumber.text = "BMI = $formattedBmiUser"
                         binding.descBMI.text = bmiData.label
                     }
                     homeViewModel.saveSessionBMI(

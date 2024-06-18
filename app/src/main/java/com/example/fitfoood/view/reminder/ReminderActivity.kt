@@ -41,7 +41,7 @@ class ReminderActivity : AppCompatActivity() {
         tbTitle.text = "Pengingat"
 
         binding.toolbar.setOnClickListener { finish() }
-        binding.btnAdd.setOnClickListener{ startAddReminder() }
+//        binding.btnAdd.setOnClickListener{ startAddReminder() }
 
         if (Build.VERSION.SDK_INT >= 33) {
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
