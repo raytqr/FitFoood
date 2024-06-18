@@ -46,7 +46,7 @@
                 tools:listitem="@layout/food_row" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView3"
+                android:id="@+id/cardViewAddFood"
                 style="@style/CardView"
                 android:layout_width="match_parent"
                 android:layout_height="96dp"

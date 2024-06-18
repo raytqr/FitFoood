@@ -26,6 +26,7 @@ class SearchFoodActivity : AppCompatActivity() {
 
     private val scheduler: ScheduledExecutorService = Executors.newScheduledThreadPool(1)
     private var searchTask: ScheduledFuture<*>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchFoodBinding.inflate(layoutInflater)
@@ -41,6 +42,9 @@ class SearchFoodActivity : AppCompatActivity() {
         binding.btnFillManual.setOnClickListener {
             startActivityForResult(Intent(this, FillManualActivity::class.java), MANUAL_ENTRY_REQUEST_CODE)
         }
+
+        // Memuat semua makanan ke dalam foodList
+        loadAllFoods()
 
         setupRecyclerView()
 
@@ -65,6 +69,45 @@ class SearchFoodActivity : AppCompatActivity() {
             }
         })
     }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        binding = ActivitySearchFoodBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+//
+//        val tbTitle = findViewById<TextView>(R.id.title_toolbar)
+//        tbTitle.text = "Cari Makanan"
+//
+//        binding.toolbar.setOnClickListener {
+//            finish()
+//        }
+//
+//        binding.btnFillManual.setOnClickListener {
+//            startActivityForResult(Intent(this, FillManualActivity::class.java), MANUAL_ENTRY_REQUEST_CODE)
+//        }
+//
+//        setupRecyclerView()
+//
+//        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                query?.let { searchFood(it) }
+//                return true
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                // Batalkan task sebelumnya jika ada
+//                searchTask?.cancel(false)
+//
+//                // Jadwalkan task baru
+//                searchTask = scheduler.schedule({
+//                    runOnUiThread {
+//                        newText?.let { searchFood(it) }
+//                    }
+//                }, 300, TimeUnit.MILLISECONDS) // Debounce time 300ms
+//
+//                return true
+//            }
+//        })
+//    }
 
     private fun setupRecyclerView() {
         searchAdapter = FoodSearchAdapter(foodList) { food ->
@@ -80,6 +123,37 @@ class SearchFoodActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadAllFoods() {
+        val client = ApiConfig.getFoodApiService().getAllFood()
+        client.enqueue(object : Callback<List<FoodResponse>> {
+            override fun onResponse(call: Call<List<FoodResponse>>, response: Response<List<FoodResponse>>) {
+                if (response.isSuccessful) {
+
+                    binding.emptyFoodContainer.visibility = View.GONE
+                    foodList.clear()
+                    response.body()?.let {
+                        foodList.addAll(it)
+                    }
+                    searchAdapter.notifyDataSetChanged()
+                } else {
+
+                    binding.emptyFoodContainer.visibility = View.VISIBLE
+                    Log.e(TAG, "Load all foods failed: ${response.code()} ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<FoodResponse>>, t: Throwable) {
+                Log.e(TAG, "Load all foods failed: ${t.message}")
+            }
+        })
+    }
+//    private fun searchFood(query: String) {
+//        // Memfilter foodList berdasarkan input pencarian pengguna
+//        val filteredFoodList = foodList.filter { it.name.contains(query, ignoreCase = true) }
+//        foodList.clear()
+//        foodList.addAll(filteredFoodList)
+//        searchAdapter.notifyDataSetChanged()
+//    }
     private fun searchFood(query: String) {
         val client = ApiConfig.getFoodApiService().searchFood(query)
         client.enqueue(object : Callback<List<FoodResponse>> {

@@ -60,7 +60,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun startIsiManual() {
-        val intent = Intent(this, SearchFoodActivity::class.java)
+        val intent = Intent(this, ListFoodActivity::class.java)
         startActivityForResult(intent, MANUAL_ENTRY_REQUEST_CODE)
     }
 

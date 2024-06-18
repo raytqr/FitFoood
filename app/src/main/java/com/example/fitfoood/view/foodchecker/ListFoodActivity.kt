@@ -89,7 +89,7 @@ class ListFoodActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.addFood.setOnClickListener { startAddFood() }
+        binding.cardViewAddFood.setOnClickListener { startAddFood() }
         binding.cekRecButton.setOnClickListener { startCekRecom() }
     }
 
@@ -178,6 +178,8 @@ class ListFoodActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
     companion object {
         private const val ADD_FOOD_REQUEST_CODE = 1
