@@ -45,7 +45,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_fill_manual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,6 @@
         android:id="@+id/emptyFoodContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,28 +79,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/empty_food"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView7"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/btn_fill_manual"
-            style="@style/Body1_Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:backgroundTint="@color/navi"
-            android:text="@string/isi_manual"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emptyFood" />
-
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Button for manual entry -->
-
+    <Button
+        android:id="@+id/btn_fill_manual"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/navi"
+        android:text="@string/isi_manual"
+        style="@style/Body1_Bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
