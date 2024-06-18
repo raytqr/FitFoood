@@ -17,21 +17,10 @@
         app:srcCompat="@drawable/bg_home"
         tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/btn_notification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="32dp"
-        android:src="@drawable/ic_notifications_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="300dp"
         android:layout_height="82dp"
-
         android:layout_marginTop="76dp"
         android:background="@color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,8 +55,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_avatar"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="5dp"
@@ -76,7 +65,7 @@
             android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:src="@drawable/img_food_dummy" />
+            android:src="@drawable/profle_photo" />
 
     </RelativeLayout>
 
@@ -106,18 +95,22 @@
 
         <TextView
             android:id="@+id/textViewBMICard"
-            style="@style/SubHeading2_Bold"
+            style="@style/SubHeading1_Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView8"
+            android:layout_marginTop="8dp"
             android:text="@string/bmi_card"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textViewBMIDesc"
             style="@style/Body2_Regular"
+            android:textColor="@color/grey_500"
             android:layout_width="181dp"
             android:layout_height="33dp"
-            android:layout_marginTop="20dp"
+            android:layout_below="@+id/textViewBMICard"
+            android:layout_marginTop="8dp"
             android:text="@string/bmi_desc" />
 
         <ImageView
@@ -130,8 +123,8 @@
 
     <ImageView
         android:id="@+id/btn_food_recomendation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="168dp"
+        android:layout_height="68dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@+id/btn_wo_recomendation"
@@ -140,14 +133,40 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:srcCompat="@drawable/btn_makanan" />
 
-    <ImageView
-        android:id="@+id/btn_wo_recomendation"
+    <TextView
+        style="@style/SubHeading1_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:text="@string/food"
+        android:textColor="@color/grey_500"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_food_recomendation"
+        app:layout_constraintEnd_toEndOf="@+id/btn_food_recomendation"
+        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintStart_toStartOf="@+id/btn_food_recomendation"
+        app:layout_constraintTop_toTopOf="@+id/btn_food_recomendation"
+        app:layout_constraintVertical_bias="0.477" />
+
+    <ImageView
+        android:id="@+id/btn_wo_recomendation"
+        android:layout_width="190dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_food_recomendation"
-        app:srcCompat="@drawable/btn_olagraga" />
+        app:srcCompat="@drawable/btn_olahraga" />
+
+    <TextView
+        style="@style/SubHeading1_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/workout"
+        android:textColor="@color/grey_500"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_wo_recomendation"
+        app:layout_constraintEnd_toEndOf="@+id/btn_wo_recomendation"
+        app:layout_constraintHorizontal_bias="0.674"
+        app:layout_constraintStart_toEndOf="@+id/btn_food_recomendation"
+        app:layout_constraintTop_toTopOf="@+id/btn_wo_recomendation"
+        app:layout_constraintVertical_bias="0.437" />
 
     <TextView
         android:id="@+id/textView5"
@@ -185,24 +204,25 @@
 
     <LinearLayout
         android:id="@+id/home_see_all"
-        android:layout_width="72dp"
-        android:layout_height="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="@+id/textView3">\
 
 
         <TextView
             android:id="@+id/textView4"
-            style="@style/Body2_Regular"
+            style="@style/SubHeading1_Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:text="@string/home_see_all" />
 
         <ImageView
-            android:layout_width="6dp"
-            android:layout_height="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="6dp"
             app:srcCompat="@drawable/vector_next" />
 
     </LinearLayout>
@@ -211,7 +231,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="212dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

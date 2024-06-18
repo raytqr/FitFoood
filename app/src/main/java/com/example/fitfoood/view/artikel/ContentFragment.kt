@@ -1,6 +1,7 @@
 package com.example.fitfoood.view.artikel
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,7 @@ import com.example.fitfoood.databinding.FragmentContentBinding
 class ContentFragment : Fragment() {
     private var _binding: FragmentContentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var artikelAdapter: ArtikelAdapter
+    private lateinit var artikelAdapter: Artikel2Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,11 +27,11 @@ class ContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val articles = arguments?.getParcelableArrayList<ArtikelResponseItem>("category") ?: listOf()
-        artikelAdapter = ArtikelAdapter(articles)
+        val articles = arguments?.getParcelableArrayList<ArtikelResponseItem>("articles") ?: listOf()
+        artikelAdapter = Artikel2Adapter(articles)
 
         binding.recyclerView2.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(context)
             adapter = artikelAdapter
         }
     }
@@ -46,8 +47,9 @@ class ContentFragment : Fragment() {
             arguments = Bundle().apply {
                 putParcelableArrayList("articles", ArrayList(articles))
             }
-            return this
+            articles.forEach {
+                Log.d("Content Fragment", it.toString())
+            }
         }
-
     }
 }

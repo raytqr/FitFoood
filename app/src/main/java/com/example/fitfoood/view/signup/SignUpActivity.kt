@@ -1,75 +1,109 @@
 package com.example.fitfoood.view.signup
 
+import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
-import android.widget.RadioGroup
-import com.example.fitfoood.R
+import android.view.WindowInsets
+import android.view.WindowManager
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.fitfoood.data.ApiResponse
+import com.example.fitfoood.databinding.ActivityLoginBinding
 import com.example.fitfoood.databinding.ActivitySignUpBinding
-import com.example.fitfoood.view.form.FormActivity
+import com.example.fitfoood.view.ViewModelFactory
 import com.example.fitfoood.view.login.LoginActivity
-import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.textfield.TextInputEditText
+import com.example.fitfoood.view.login.LoginViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
+
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
+    private lateinit var viewModel: SignUpViewModel
+    private var dateBirth: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        viewModel = ViewModelFactory.getInstance(this).create(SignUpViewModel::class.java)
         setContentView(binding.root)
 
-        binding.SignUpButton.setOnClickListener{
-            val name = binding.nameEditText.text.toString()
-            val email = binding.emailEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
-            if(name.isEmpty() || email.isEmpty() || password.isEmpty()){
-                binding.nameEditText.error = "Field ini tidak boleh kosong"
-                binding.emailEditText.error = "Field ini tidak boleh kosong"
-                binding.passwordEditText.error = "Field ini tidak boleh kosong"
-            }else{
-                startActivity(Intent(this, FormActivity::class.java))
-                finish()
-            }
-        }
-
-        binding.LoginTextView.setOnClickListener{
+        binding.LoginTextView.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+        }
+        binding.dateEditText.setOnClickListener {
+            showDatePickerDialog()
         }
 
-        val genderRadioGroup = findViewById<RadioGroup>(R.id.genderRadioGroup)
-        genderRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.radioMan -> {
-                    // Handle 'Man' selection
-                }
-                R.id.radioWoman -> {
-                    // Handle 'Woman' selection
-                }
-            }
-        }
 
-        val dateEditText = findViewById<TextInputEditText>(R.id.dateEditText)
-        dateEditText.setOnClickListener { showDatePicker() }
+
+        setupView()
+        setupAction()
     }
 
-    private fun showDatePicker() {
-        val calendar = Calendar.getInstance()
-        val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setSelection(calendar.timeInMillis)
-            .build()
+    private fun setupView() {
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+        supportActionBar?.hide()
+    }
 
-        datePicker.addOnPositiveButtonClickListener { selection ->
-            val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
-            val date = Date(selection)
-            val dateEditText = findViewById<TextInputEditText>(R.id.dateEditText)
-            dateEditText.setText(dateFormat.format(date))
+
+
+
+    private fun setupAction() {
+        binding.SignUpButton.setOnClickListener {
+            val username = binding.nameEditText.text.toString()
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+            val confirmPassword = binding.passwordRepeatEditText.text.toString()
+            val dateOfBirth =  dateBirth
+
+
+            if (username.isBlank() || email.isBlank() || password.isBlank() || dateOfBirth.isBlank()) {
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            viewModel.register(username, email, password, dateOfBirth).observe(this) { result ->
+                when (result) {
+                    is ApiResponse.Success<*> -> {
+                        AlertDialog.Builder(this).apply {
+                            setTitle("Yeah!")
+                            setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
+                            create()
+                            show()
+                            startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
+                        }
+                    }
+                    is ApiResponse.Error<*> -> {
+                        Toast.makeText(this, "Terjadi kesalahan : ${result.message}", Toast.LENGTH_SHORT).show()
+                    }
+                    ApiResponse.Loading -> {
+
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+            dateBirth = SimpleDateFormat("dd-MM-yyyy", Locale.US).format(calendar.time)
+            binding.dateEditText.setText(dateBirth) // Update EditText with selected date
         }
 
-        datePicker.show(supportFragmentManager, "DATE_PICKER")
+        DatePickerDialog(this, dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
     }
 }
