@@ -10,6 +10,7 @@ import android.content.Intent
 import android.provider.Settings
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.commit
 import com.example.fitfoood.databinding.FragmentProfileBinding
 import com.example.fitfoood.view.setting.AccountFragment
@@ -46,16 +47,16 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 //            }
 //        }
 
-        val btnAccount: ImageView = view.findViewById(R.id.arrowAccount)
+        val btnAccount: CardView = view.findViewById(R.id.cardViewAccount)
         btnAccount.setOnClickListener(this)
 
-        val btnReminder: ImageView = view.findViewById(R.id.arrowReminder)
+        val btnReminder: CardView = view.findViewById(R.id.cardViewReminder)
         btnReminder.setOnClickListener(this)
 
-        val btnLanguage: ImageView = view.findViewById(R.id.arrowLanguage)
+        val btnLanguage: CardView = view.findViewById(R.id.cardViewLanguage)
         btnLanguage.setOnClickListener(this)
 
-        val btnLogout: ImageView = view.findViewById(R.id.arrowLogout)
+        val btnLogout: CardView = view.findViewById(R.id.cardViewLogout)
         btnLogout.setOnClickListener {
             val showPopUp = LogoutFragment()
             showPopUp.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
@@ -71,7 +72,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.arrowAccount) {
+        if (v?.id == R.id.cardViewAccount) {
             val accountFragment = AccountFragment()
             val fragmentManager = parentFragmentManager
             fragmentManager.commit {
@@ -82,7 +83,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                     AccountFragment::class.java.simpleName
                 )
             }
-        } else if (v?.id == R.id.arrowReminder) {
+        } else if (v?.id == R.id.cardViewReminder) {
             val reminderFragment = ReminderFragment()
             val fragmentManager = parentFragmentManager
             fragmentManager.commit {
@@ -93,7 +94,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                     ReminderFragment::class.java.simpleName
                 )
             }
-        } else if (v?.id == R.id.arrowLanguage) {
+        } else if (v?.id == R.id.cardViewLanguage) {
             val languageFragment = LanguageFragment()
             val fragmentManager = parentFragmentManager
             fragmentManager.commit {

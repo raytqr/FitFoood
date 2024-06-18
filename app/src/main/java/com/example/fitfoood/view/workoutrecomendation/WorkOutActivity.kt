@@ -2,6 +2,7 @@ package com.example.fitfoood.view.workoutrecomendation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitfoood.R
 import com.example.fitfoood.databinding.ActivityWorkOutBinding
@@ -23,5 +24,8 @@ class WorkOutActivity : AppCompatActivity() {
          val adapter = WorkOutAdapter(workOutList)
          binding.recyclerViewWorkOut.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
          binding.recyclerViewWorkOut.adapter = adapter
+
+         val tbTitle = findViewById<TextView>(R.id.title_toolbar)
+         tbTitle.text = getString(R.string.workout)
      }
 }

@@ -1,6 +1,7 @@
 package com.example.fitfoood.view.foodrecomendation
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitfoood.R
@@ -24,5 +25,9 @@ class FoodActivity : AppCompatActivity() {
         val adapter = FoodAdapter(foodList)
         binding.recyclerViewFood.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewFood.adapter = adapter
+
+        val tbTitle = findViewById<TextView>(R.id.title_toolbar)
+        tbTitle.text = getString(R.string.food)
+
     }
 }
