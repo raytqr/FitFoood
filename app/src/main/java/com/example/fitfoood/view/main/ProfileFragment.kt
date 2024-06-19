@@ -1,5 +1,6 @@
 package com.example.fitfoood.view.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.fitfoood.R
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.provider.Settings
+import android.util.Base64
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.commit
@@ -47,6 +50,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 popupWindowTinggiSekarang.show(parentFragmentManager, "PopupWindowBeratAwal")
             }
 
+            loadProfilePicture()
 
         }
         homeViewModel = ViewModelFactory.getInstance(requireContext()).create(HomeViewModel::class.java)
@@ -79,6 +83,17 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
         setupAction()
     }
+
+    private fun loadProfilePicture() {
+        val sharedPreferences = requireContext().getSharedPreferences("ProfilePrefs", Context.MODE_PRIVATE)
+        val encodedImage = sharedPreferences.getString("profile_picture", null)
+        if (encodedImage != null) {
+            val byteArray = Base64.decode(encodedImage, Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+            binding.imgAvatar.setImageBitmap(bitmap)
+        }
+    }
+
     private fun fetchBMIData() {
         homeViewModel.getBMI(token, idhealth).observe(viewLifecycleOwner, Observer { result ->
             when (result) {

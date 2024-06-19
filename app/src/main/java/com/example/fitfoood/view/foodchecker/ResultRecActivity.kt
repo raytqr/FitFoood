@@ -30,6 +30,8 @@ class ResultRecActivity : AppCompatActivity() {
         binding.toolbar.setOnClickListener {
             finish()
         }
+
+        homeViewModel = ViewModelFactory.getInstance(this).create(HomeViewModel::class.java)
         homeViewModel.getSessionBMI().observe(this){result->
             bmiLabel = result.label
             val recommendation = when {

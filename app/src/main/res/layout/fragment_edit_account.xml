@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--    <com.google.android.material.imageview.ShapeableImageView-->
-    <!--        android:id="@+id/img_photo"-->
+    <!--        android:id="@+id/photo_profile"-->
     <!--        android:layout_width="wrap_content"-->
     <!--        android:layout_height="wrap_content"-->
     <!--        android:layout_marginTop="32dp"-->
@@ -32,16 +32,27 @@
     <!--        app:shapeAppearanceOverlay="@style/circleImageView"-->
     <!--        tools:src="@tools:sample/avatars" />-->
 
-    <ImageView
-        android:id="@+id/img_photo"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/photo_profile"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginTop="32dp"
-        android:src="@drawable/ic_man"
+        android:src="@drawable/profle_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <ImageView
+        android:id="@+id/captureImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="112dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.632"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:srcCompat="@drawable/ic_capture" />
 
     <TextView
         android:id="@+id/tvName"
@@ -55,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_photo"
+        app:layout_constraintTop_toBottomOf="@+id/photo_profile"
         tools:alpha="100" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -200,7 +211,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/SignUpButton"
+        android:id="@+id/btn_save"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginStart="32dp"
