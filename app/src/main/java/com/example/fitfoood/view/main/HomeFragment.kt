@@ -24,6 +24,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var token: String
     private lateinit var label:String
+    private lateinit var idhealth: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,14 +43,23 @@ class HomeFragment : Fragment() {
 
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
             token = user.token
+            idhealth = user.userId
             val username = user.username.split(" ").firstOrNull() ?: user.username // Ambil kata pertama atau username jika tidak ada spasi
             binding.tvItem.text = "Hai, $username"
+
+//            fetchBMIData()
+            showRecyclerList()
+            loadProfilePicture()
         }
         homeViewModel.getSessionBMI().observe(viewLifecycleOwner){result->
             label = result.label
+            label = label.toUpperCase()
             binding.textViewBMICard.text = label
 
         }
+
+
+
 
 
         binding.apply {
@@ -65,9 +75,26 @@ class HomeFragment : Fragment() {
 
 
         }
-        showRecyclerList()
-        loadProfilePicture()
     }
+
+//    private fun fetchBMIData() {
+//        homeViewModel.getBMI(token, idhealth ).observe(viewLifecycleOwner){result->
+//            when(result){
+//                is ApiResponse.Success -> {
+//                    val bmiData = result.data?.data?.firstOrNull()
+//                    if (bmiData != null) {
+//                        binding.textViewBMICard.text = bmiData.label
+//                    }
+//                }
+//                is ApiResponse.Error -> {
+//                    // Handle error
+//                }
+//                is ApiResponse.Loading -> {
+//                    // Show loading
+//                }
+//            }
+//        }
+//    }
 
     private fun loadProfilePicture() {
         val sharedPreferences = requireContext().getSharedPreferences("ProfilePrefs", Context.MODE_PRIVATE)
@@ -100,6 +127,8 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

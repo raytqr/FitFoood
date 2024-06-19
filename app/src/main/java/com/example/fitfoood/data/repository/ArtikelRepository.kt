@@ -7,8 +7,10 @@ import com.example.fitfoood.data.response.ArtikelResponse
 import com.example.fitfoood.data.response.ArtikelResponseItem
 import com.example.fitfoood.data.response.BMI
 import com.example.fitfoood.data.response.BMIRecomendationResponse
+import com.example.fitfoood.data.response.FoodBMIResponseItem
 import com.example.fitfoood.data.response.GetBMIResponse
 import com.example.fitfoood.data.response.PostBMIResponse
+import com.example.fitfoood.data.response.WoBMIResponseItem
 import com.example.fitfoood.source.ApiConfig
 import com.example.fitfoood.source.ApiService
 import retrofit2.Call
@@ -112,6 +114,54 @@ class ArtikelRepository {
             }
         })
 
+        return result
+    }
+
+    fun getFoodRec(token: String): LiveData<ApiResponse<List<FoodBMIResponseItem>>> {
+        val result = MediatorLiveData<ApiResponse<List<FoodBMIResponseItem>>>()
+        result.value = ApiResponse.Loading
+        val apiService = ApiConfig.getApiService()
+        val client = apiService.getFoodRec("Bearer $token")
+        client.enqueue(object : Callback<List<FoodBMIResponseItem>> {
+            override fun onResponse(
+                call: Call<List<FoodBMIResponseItem>>,
+                response: Response<List<FoodBMIResponseItem>>
+            ) {
+                if (response.isSuccessful) {
+                    result.value = ApiResponse.Success(response.body()!!)
+                } else {
+                    result.value = ApiResponse.Error(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<List<FoodBMIResponseItem>>, t: Throwable) {
+                result.value = ApiResponse.Error(t.message.toString())
+            }
+        })
+        return result
+    }
+
+    fun getExerciseRec(token: String): LiveData<ApiResponse<List<WoBMIResponseItem>>> {
+        val result = MediatorLiveData<ApiResponse<List<WoBMIResponseItem>>>()
+        result.value = ApiResponse.Loading
+        val apiService = ApiConfig.getApiService()
+        val client = apiService.getExerciseRec("Bearer $token")
+        client.enqueue(object : Callback<List<WoBMIResponseItem>> {
+            override fun onResponse(
+                call: Call<List<WoBMIResponseItem>>,
+                response: Response<List<WoBMIResponseItem>>
+            ) {
+                if (response.isSuccessful) {
+                    result.value = ApiResponse.Success(response.body()!!)
+                } else {
+                    result.value = ApiResponse.Error(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<List<WoBMIResponseItem>>, t: Throwable) {
+                result.value = ApiResponse.Error(t.message.toString())
+            }
+        })
         return result
     }
 }

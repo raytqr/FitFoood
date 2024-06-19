@@ -91,9 +91,9 @@
                 android:ems="10"
                 android:padding="8dp"
                 android:textSize="14sp"
+                android:inputType="textPassword"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
-
         <Button
             android:id="@+id/loginButton"
             android:layout_width="0dp"

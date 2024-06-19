@@ -14,8 +14,11 @@ import com.example.fitfoood.data.repository.UserRepository
 import com.example.fitfoood.data.response.ArtikelResponse
 import com.example.fitfoood.data.response.ArtikelResponseItem
 import com.example.fitfoood.data.response.BMI
+import com.example.fitfoood.data.response.BMIRecomendationResponse
+import com.example.fitfoood.data.response.FoodBMIResponseItem
 import com.example.fitfoood.data.response.GetBMIResponse
 import com.example.fitfoood.data.response.PostBMIResponse
+import com.example.fitfoood.data.response.WoBMIResponseItem
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: ArtikelRepository,private val userRepository: UserRepository,private val bmiRepository: BMIRepository) : ViewModel() {
@@ -42,5 +45,13 @@ class HomeViewModel(private val repository: ArtikelRepository,private val userRe
     }
     fun getSessionBMI(): LiveData<BMIModel> {
         return bmiRepository.getSessionBMI().asLiveData()
+    }
+
+
+    fun getFoodRec(token: String): LiveData<ApiResponse<List<FoodBMIResponseItem>>> {
+        return repository.getFoodRec(token)
+    }
+    fun getWoRec(token: String): LiveData<ApiResponse<List<WoBMIResponseItem>>> {
+        return repository.getExerciseRec(token)
     }
 }

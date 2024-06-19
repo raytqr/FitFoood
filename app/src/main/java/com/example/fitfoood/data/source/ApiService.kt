@@ -3,8 +3,10 @@ package com.example.fitfoood.source
 import com.example.fitfoood.data.response.ArtikelResponseItem
 import com.example.fitfoood.data.response.BMI
 import com.example.fitfoood.data.response.BMIRecomendationResponse
+import com.example.fitfoood.data.response.FoodBMIResponseItem
 import com.example.fitfoood.data.response.GetBMIResponse
 import com.example.fitfoood.data.response.PostBMIResponse
+import com.example.fitfoood.data.response.WoBMIResponseItem
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -35,4 +37,14 @@ interface ApiService {
     fun getBMIRecomendation(
         @Path("user_id") user_id: String
     ):Call<BMIRecomendationResponse>
+
+    @GET("api/getExercise")
+    fun getExerciseRec(
+        @Header("Authorization") token: String
+    ): Call<List<WoBMIResponseItem>>
+
+    @GET("api/getFood")
+    fun getFoodRec(
+        @Header("Authorization") token: String
+    ): Call<List<FoodBMIResponseItem>>
 }

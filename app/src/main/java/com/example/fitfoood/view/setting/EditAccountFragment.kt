@@ -21,8 +21,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.fitfoood.R
 import com.example.fitfoood.databinding.FragmentEditAccountBinding
+import com.example.fitfoood.view.ViewModelFactory
+import com.example.fitfoood.view.main.AccountViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
@@ -32,6 +36,8 @@ import java.util.Locale
 
 class EditAccountFragment : Fragment() {
     private var _binding: FragmentEditAccountBinding? = null
+
+    private lateinit var accountViewModel: AccountViewModel
     private val binding get() = _binding!!
 
     private val REQUEST_CAMERA = 1
@@ -39,6 +45,7 @@ class EditAccountFragment : Fragment() {
 
     private var selectedImageUri: Uri? = null
     private var currentBitmap: Bitmap? = null
+    private lateinit var token: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,19 +64,18 @@ class EditAccountFragment : Fragment() {
         binding.toolbar.setOnClickListener {
             activity?.onBackPressed()
         }
-
-        binding.dateEditText.setOnClickListener { showDatePicker() }
-
-        binding.genderRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.radioMan -> {
-                    // Handle 'Man' selection
-                }
-                R.id.radioWoman -> {
-                    // Handle 'Woman' selection
-                }
-            }
+        if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 1)
         }
+        accountViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext())).get(AccountViewModel::class.java)
+        accountViewModel.getSession().observe(viewLifecycleOwner) { user ->
+            token = user.token
+            val dateOfBirth = user.dateOfBirth
+            binding.dumbAge.text = calculateAge(dateOfBirth)
+        }
+        observeViewModel()
+
+
 
         binding.captureImage.setOnClickListener {
             showPhotoDialog()
@@ -84,6 +90,27 @@ class EditAccountFragment : Fragment() {
 
         // Load the saved profile picture
         loadProfilePicture()
+    }
+    private fun observeViewModel() {
+        accountViewModel.getSession().observe(viewLifecycleOwner) { userModel ->
+            binding.dumbName.text = userModel.username
+            binding.dumbEmail.text = userModel.email
+        }
+    }
+
+    private fun calculateAge(dateOfBirth: String): String {
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.US)
+        val dob = sdf.parse(dateOfBirth)
+        val today = Calendar.getInstance()
+
+        val dobCalendar = Calendar.getInstance().apply { time = dob }
+        var age = today.get(Calendar.YEAR) - dobCalendar.get(Calendar.YEAR)
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dobCalendar.get(Calendar.DAY_OF_YEAR)) {
+            age--
+        }
+
+        return age.toString()
     }
 
     private fun loadProfilePicture() {
@@ -184,20 +211,7 @@ class EditAccountFragment : Fragment() {
         return output
     }
 
-    private fun showDatePicker() {
-        val calendar = Calendar.getInstance()
-        val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setSelection(calendar.timeInMillis)
-            .build()
 
-        datePicker.addOnPositiveButtonClickListener { selection ->
-            val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
-            val date = Date(selection)
-            binding.dateEditText.setText(dateFormat.format(date))
-        }
-
-        datePicker.show(parentFragmentManager, "DATE_PICKER")
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
