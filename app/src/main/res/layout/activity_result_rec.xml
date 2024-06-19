@@ -74,6 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/foodName" />
 
     <TextView
+        android:id="@+id/recommendation"
         style="@style/Body2_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

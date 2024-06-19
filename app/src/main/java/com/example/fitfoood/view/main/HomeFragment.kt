@@ -1,7 +1,10 @@
 package com.example.fitfoood
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +57,17 @@ class HomeFragment : Fragment() {
             }
         }
         showRecyclerList()
+        loadProfilePicture()
+    }
+
+    private fun loadProfilePicture() {
+        val sharedPreferences = requireContext().getSharedPreferences("ProfilePrefs", Context.MODE_PRIVATE)
+        val encodedImage = sharedPreferences.getString("profile_picture", null)
+        if (encodedImage != null) {
+            val byteArray = Base64.decode(encodedImage, Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+            binding.imgAvatar.setImageBitmap(bitmap)
+        }
     }
 
     private fun showRecyclerList() {

@@ -5,9 +5,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fitfoood.R
 import com.example.fitfoood.databinding.ActivityResultRecBinding
+import com.example.fitfoood.view.ViewModelFactory
+import com.example.fitfoood.view.main.HomeViewModel
 
 class ResultRecActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultRecBinding
+    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var bmiUser:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,5 +27,8 @@ class ResultRecActivity : AppCompatActivity() {
         binding.toolbar.setOnClickListener {
             finish()
         }
+
+        homeViewModel = ViewModelFactory.getInstance(this).create(HomeViewModel::class.java)
+
     }
 }
