@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var token: String
+    private lateinit var label:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +45,12 @@ class HomeFragment : Fragment() {
             val username = user.username.split(" ").firstOrNull() ?: user.username // Ambil kata pertama atau username jika tidak ada spasi
             binding.tvItem.text = "Hai, $username"
         }
+        homeViewModel.getSessionBMI().observe(viewLifecycleOwner){result->
+            label = result.label
+            binding.textViewBMICard.text = label
+
+        }
+
 
         binding.apply {
             btnFoodRecomendation.setOnClickListener {
@@ -55,6 +62,8 @@ class HomeFragment : Fragment() {
             homeSeeAll.setOnClickListener {
                 startActivity(Intent(requireContext(), ArtikelActivity::class.java))
             }
+
+
         }
         showRecyclerList()
         loadProfilePicture()
