@@ -8,7 +8,7 @@ import com.example.fitfoood.data.repository.AuthRepository
 import com.example.fitfoood.data.repository.BMIRepository
 import com.example.fitfoood.data.repository.UserRepository
 import com.example.fitfoood.di.Injection
-import com.example.fitfoood.view.forgotpass.ForgotPassViewModel
+import com.example.fitfoood.view.forgotpass.ForgotViewModel
 import com.example.fitfoood.view.login.LoginViewModel
 import com.example.fitfoood.view.main.AccountViewModel
 import com.example.fitfoood.view.main.HomeViewModel
@@ -44,8 +44,9 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
                 AccountViewModel(userRepository) as T
             }
-            modelClass.isAssignableFrom(ForgotPassViewModel::class.java) -> {
-                AccountViewModel(userRepository) as T
+
+            modelClass.isAssignableFrom(ForgotViewModel::class.java) -> {
+                ForgotViewModel(authRepository,userRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

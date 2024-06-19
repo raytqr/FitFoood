@@ -9,6 +9,7 @@ import com.example.fitfoood.data.RegisterRequest
 import com.example.fitfoood.data.response.LoginResponse
 import com.example.fitfoood.data.response.SignUpResponse
 import com.example.fitfoood.data.response.UpdatUserResponse
+import com.example.fitfoood.data.response.UserUpdate
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,11 +56,11 @@ class AuthRepository(
         }
     }
 
-    fun updateUser(token: String, email: String, password: String): LiveData<ApiResponse<UpdatUserResponse>> {
+    fun updateUser( idUser:String,userUpdate:UserUpdate): LiveData<ApiResponse<UpdatUserResponse>> {
         val result = MutableLiveData<ApiResponse<UpdatUserResponse>>()
         result.value = ApiResponse.Loading
 
-        val client = apiService.updateUser(token, email, password)
+        val client = apiService.updateUser( idUser, userUpdate)
         client.enqueue(object : Callback<UpdatUserResponse> {
             override fun onResponse(
                 call: Call<UpdatUserResponse>,

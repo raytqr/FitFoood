@@ -14,6 +14,7 @@ import com.example.fitfoood.data.ApiResponse
 import com.example.fitfoood.data.pref.UserModel
 import com.example.fitfoood.databinding.ActivityLoginBinding
 import com.example.fitfoood.view.ViewModelFactory
+import com.example.fitfoood.view.forgotpass.ForgotPassActivity
 import com.example.fitfoood.view.signup.SignUpActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -25,6 +26,10 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         viewModel = ViewModelFactory.getInstance(this).create(LoginViewModel::class.java)
         setContentView(binding.root)
+
+        binding.forgotPassword.setOnClickListener {
+            startActivity(Intent(this, ForgotPassActivity::class.java))
+        }
 
         setupView()
         setupAction()

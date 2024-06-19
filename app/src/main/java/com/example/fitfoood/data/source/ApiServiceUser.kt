@@ -5,6 +5,7 @@ import com.example.fitfoood.data.response.LoginResponse
 import com.example.fitfoood.data.response.SignUpResponse
 import com.example.fitfoood.data.response.UpdatUserResponse
 import com.example.fitfoood.data.response.UserResponse
+import com.example.fitfoood.data.response.UserUpdate
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -33,12 +34,11 @@ interface ApiServiceUser {
         @Field("date_of_birth") dateOfBirth: String
     ): Call<SignUpResponse>
 
-    @FormUrlEncoded
-    @PUT("api/users/{id}")
+
+    @PUT("api/users/{iduser}")
     fun updateUser(
-        @Header("Authorization") token: String,
-        @Field("email") email: String,
-        @Field("password") password: String
+        @Path("iduser") idUser: String,
+        @Body userUpdate: UserUpdate
     ): Call<UpdatUserResponse>
 
     @DELETE("api/users/{id}")

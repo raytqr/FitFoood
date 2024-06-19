@@ -28,6 +28,7 @@ class ArtikelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityArtikelBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        token= "Your Token Here"
 
          // Gantikan dengan token Anda
         homeViewModel = ViewModelFactory.getInstance(this).create(HomeViewModel::class.java)
