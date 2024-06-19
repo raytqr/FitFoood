@@ -53,6 +53,9 @@ class HomeFragment : Fragment() {
         }
         homeViewModel.getSessionBMI().observe(viewLifecycleOwner){result->
             label = result.label
+            if(label == "") {
+                label = "ideal"
+            }
             label = label.toUpperCase()
             binding.textViewBMICard.text = label
 

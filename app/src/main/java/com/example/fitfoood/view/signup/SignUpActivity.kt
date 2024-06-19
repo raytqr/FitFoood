@@ -69,6 +69,10 @@ class SignUpActivity : AppCompatActivity() {
     private fun setupAction() {
         binding.SignUpButton.setOnClickListener {
             val username = binding.nameEditText.text.toString()
+            if(username.isBlank()){
+                Toast.makeText(this, "Name is required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
             val confirmPassword = binding.passwordRepeatEditText.text.toString()

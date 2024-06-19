@@ -77,13 +77,6 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toTopOf="@+id/textView3">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="6dp"
-                    app:srcCompat="@drawable/vector_next" />
-
                 <TextView
                     android:id="@+id/textView4"
                     style="@style/SubHeading1_Regular"
@@ -91,6 +84,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="@string/home_see_all" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="6dp"
+                    app:srcCompat="@drawable/vector_next" />
+
             </LinearLayout>
 
             <RelativeLayout

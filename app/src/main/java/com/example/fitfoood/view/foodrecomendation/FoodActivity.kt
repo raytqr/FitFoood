@@ -27,6 +27,9 @@ class FoodActivity : AppCompatActivity() {
             token = user.token
             foodViewModel.getSessionBMI().observe(this) { result ->
                 bmiLabel = result.label
+                if(bmiLabel == "") {
+                    bmiLabel = "ideal"
+                }
 
                 showRecycleList()
 

@@ -28,6 +28,9 @@ class WorkOutActivity : AppCompatActivity() {
              token = user.token
              homeViewModel.getSessionBMI().observe(this){result->
                  bmiLabel = result.label
+                    if(bmiLabel == "") {
+                        bmiLabel = "ideal"
+                    }
 
                  showRecycleList()
 
