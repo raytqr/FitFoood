@@ -14,6 +14,6 @@ class SignUpViewModel(private val userRepository: UserRepository, private val au
         }
     }
 
-    fun register(username: String, email: String, password: String, dateOfBirth: String) =
-        authRepository.userRegister(username, email, password, dateOfBirth)
+    fun register(username: String, email: String, password: String, dateOfBirth: String,gender:String) =
+        authRepository.userRegister(username, email, password, dateOfBirth,gender)
 }

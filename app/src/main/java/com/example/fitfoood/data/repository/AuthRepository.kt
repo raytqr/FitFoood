@@ -41,10 +41,10 @@ class AuthRepository(
         return result
     }
 
-    fun userRegister(username: String, email: String, password: String, dateOfBirth: String) = liveData {
+    fun userRegister(username: String, email: String, password: String, dateOfBirth: String,gender:String) = liveData {
         emit(ApiResponse.Loading)
         try {
-            val response = apiService.register(RegisterRequest(username, email, password, dateOfBirth))
+            val response = apiService.register(RegisterRequest(username, email, password, dateOfBirth,gender))
             if (response.isSuccessful) {
                 emit(ApiResponse.Success(response.body()))
             } else {

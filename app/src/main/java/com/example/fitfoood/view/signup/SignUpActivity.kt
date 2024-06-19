@@ -43,9 +43,9 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.genderRadioGroup.setOnCheckedChangeListener { group, checkedId ->
             gender = if (checkedId == R.id.radioMan) {
-                "Man"
+                "Male"
             } else {
-                "Woman"
+                "Female"
             }
         }
 
@@ -84,7 +84,7 @@ class SignUpActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            viewModel.register(username, email, password, dateOfBirth).observe(this) { result ->
+            viewModel.register(username, email, password, dateOfBirth, gender).observe(this) { result ->
                 when (result) {
                     is ApiResponse.Success<*> -> {
                         showSuccessDialog(email)
