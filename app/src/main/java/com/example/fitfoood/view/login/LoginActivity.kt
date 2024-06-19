@@ -65,10 +65,21 @@ class LoginActivity : AppCompatActivity() {
                                 create()
                                 show()
                             }
+                        }else{
+                            val userData = result.data
+                            viewModel.saveSession(
+                                UserModel(
+                                    userData?.user?.username.toString(),
+                                    userData?.user?.email.toString(),
+                                    userData?.token.toString(),
+                                    userData?.user?.dateOfBirth.toString(),
+                                    userData?.user?.userId.toString(),
+                                )
+                            )
+                            startActivity(Intent(this, MainActivity::class.java))
+                            return@observe
                         }
-                        viewModel.saveSession(UserModel(result.data?.user?.username!!,email, result.data?.token!!, result.data?.user?.dateOfBirth!!, result.data.user.userId!!))
-                        startActivity(Intent(this, MainActivity::class.java))
-                        return@observe
+
                     }
                 }
             }

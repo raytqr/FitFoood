@@ -81,7 +81,7 @@ class PopupWindowTinggiSekarang : DialogFragment() {
 
     private fun BMI(): BMI {
         val height = binding.textTbSasaran.text.toString().replace("cm", "").trim().toIntOrNull() ?: 0
-        val weight = this.weight.toIntOrNull() ?: 0
+        val weight = if (this.weight.isNotEmpty()) this.weight.toIntOrNull() ?: 50 else 50
         return BMI(height, weight)
     }
 

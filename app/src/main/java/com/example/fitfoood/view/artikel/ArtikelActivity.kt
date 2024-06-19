@@ -29,9 +29,11 @@ class ArtikelActivity : AppCompatActivity() {
         binding = ActivityArtikelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        token = "your_token_here" // Gantikan dengan token Anda
+         // Gantikan dengan token Anda
         homeViewModel = ViewModelFactory.getInstance(this).create(HomeViewModel::class.java)
-
+        homeViewModel.getSession().observe(this) { user ->
+            token = user.token
+        }
 //        setupViewPager()
         showRecyclerList()
         fetchArticles()

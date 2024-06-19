@@ -2,6 +2,7 @@ package com.example.fitfoood.source
 
 import com.example.fitfoood.data.response.ArtikelResponseItem
 import com.example.fitfoood.data.response.BMI
+import com.example.fitfoood.data.response.BMIRecomendationResponse
 import com.example.fitfoood.data.response.GetBMIResponse
 import com.example.fitfoood.data.response.PostBMIResponse
 import retrofit2.Call
@@ -29,4 +30,9 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("idhealth") idhealth: String
     ): Call<GetBMIResponse>
+
+    @GET("/api/getLabelbyLabel/{user_id}")
+    fun getBMIRecomendation(
+        @Path("user_id") user_id: String
+    ):Call<BMIRecomendationResponse>
 }

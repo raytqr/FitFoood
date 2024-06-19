@@ -6,6 +6,7 @@ import com.example.fitfoood.data.ApiResponse
 import com.example.fitfoood.data.response.ArtikelResponse
 import com.example.fitfoood.data.response.ArtikelResponseItem
 import com.example.fitfoood.data.response.BMI
+import com.example.fitfoood.data.response.BMIRecomendationResponse
 import com.example.fitfoood.data.response.GetBMIResponse
 import com.example.fitfoood.data.response.PostBMIResponse
 import com.example.fitfoood.source.ApiConfig
@@ -82,6 +83,31 @@ class ArtikelRepository {
             }
 
             override fun onFailure(call: Call<PostBMIResponse>, t: Throwable) {
+                result.value = ApiResponse.Error(t.message.toString())
+            }
+        })
+
+        return result
+    }
+
+    fun getBMIRecomendation(user_id: String): LiveData<ApiResponse<BMIRecomendationResponse>> {
+        val result = MediatorLiveData<ApiResponse<BMIRecomendationResponse>>()
+        result.value = ApiResponse.Loading
+        val apiService = ApiConfig.getApiService()
+        val client = apiService.getBMIRecomendation(user_id)
+        client.enqueue(object : Callback<BMIRecomendationResponse> {
+            override fun onResponse(
+                call: Call<BMIRecomendationResponse>,
+                response: Response<BMIRecomendationResponse>
+            ) {
+                if (response.isSuccessful) {
+                    result.value = ApiResponse.Success(response.body()!!)
+                } else {
+                    result.value = ApiResponse.Error(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<BMIRecomendationResponse>, t: Throwable) {
                 result.value = ApiResponse.Error(t.message.toString())
             }
         })
