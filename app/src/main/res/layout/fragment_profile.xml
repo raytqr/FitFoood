@@ -109,6 +109,8 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
             <!-- Placeholder untuk tombol berat sekarang -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_berat_sekarang"

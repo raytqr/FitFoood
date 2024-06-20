@@ -216,26 +216,6 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordRepeatEditTextLayout"
         tools:alpha="100" />
 
-    <TextView
-        android:id="@+id/signInWith"
-        style="@style/SubHeading2_Light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/or_sign_up_with"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/SignUpButton"
-        app:layout_constraintStart_toStartOf="@+id/SignUpButton"
-        app:layout_constraintTop_toBottomOf="@+id/SignUpButton" />
-
-    <ImageView
-        android:id="@+id/logoGoogle"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/ic_google"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/signInWith"
-        app:layout_constraintStart_toStartOf="@+id/signInWith"
-        app:layout_constraintTop_toBottomOf="@+id/signInWith" />
 
     <TextView
         android:id="@+id/textView2"
@@ -247,7 +227,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.382"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoGoogle" />
+        app:layout_constraintTop_toBottomOf="@+id/SignUpButton" />
 
     <TextView
         android:id="@+id/LoginTextView"
