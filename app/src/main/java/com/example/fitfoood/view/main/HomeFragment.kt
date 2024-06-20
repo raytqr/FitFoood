@@ -47,18 +47,18 @@ class HomeFragment : Fragment() {
             val username = user.username.split(" ").firstOrNull() ?: user.username // Ambil kata pertama atau username jika tidak ada spasi
             binding.tvItem.text = "Hai, $username"
 
-//            fetchBMIData()
-            showRecyclerList()
-            loadProfilePicture()
-        }
-        homeViewModel.getSessionBMI().observe(viewLifecycleOwner){result->
-            label = result.label
-            if(label == "") {
-                label = "ideal"
-            }
-            label = label.toUpperCase()
-            binding.textViewBMICard.text = label
+            homeViewModel.getSessionBMI().observe(viewLifecycleOwner){result->
+                label = result.label
+                if(label == "") {
+                    label = "ideal"
+                }
+                val labelUp = label.toUpperCase()
+                binding.textViewBMICard.text = labelUp
 
+                showRecyclerList()
+            }
+//            fetchBMIData()
+            loadProfilePicture()
         }
 
 
@@ -113,8 +113,9 @@ class HomeFragment : Fragment() {
         homeViewModel.getAllArticles(token).observe(viewLifecycleOwner) { artikel ->
             when (artikel) {
                 is ApiResponse.Success -> {
-                    val list = artikel.data
-                    val adapter = ArtikelAdapter(list!!)
+                    var list = artikel.data ?: listOf()
+                    list = list.filter { it.aticleLabel == label }
+                    val adapter = ArtikelAdapter(list)
                     with(binding.recyclerView) {
                         layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                         setHasFixedSize(true)

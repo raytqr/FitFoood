@@ -166,5 +166,11 @@
     <string name="berat_sekarang_title">Enter the current weight</string>
     <string name="tb_sekarang_title">Enter the current height</string>
 
+
+    <string name="message_input_bmi">Enter your height and weight to calculate your BMI</string>
+    <string name="message_input_height">Enter your height in cm</string>
+    <string name="message_input_weight">Enter your weight in kg</string>
+    <string name="input_bmi">Input Your Height and Weight</string>
+
 </resources>
 

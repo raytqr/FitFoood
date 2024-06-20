@@ -23,6 +23,7 @@ class ArtikelActivity : AppCompatActivity() {
     private lateinit var token: String
     private var articles: List<ArtikelResponseItem> = listOf()
     var tabLayoutMediator: TabLayoutMediator? = null
+    private lateinit var label: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +36,17 @@ class ArtikelActivity : AppCompatActivity() {
         homeViewModel.getSession().observe(this) { user ->
             token = user.token
         }
+
+        homeViewModel.getSessionBMI().observe(this){result->
+            label = result.label
+            if(label == "") {
+                label = "ideal"
+            }
+
+            showRecyclerList()
+            fetchArticles()
+        }
 //        setupViewPager()
-        showRecyclerList()
-        fetchArticles()
     }
 
     private fun setupViewPager() {
@@ -55,6 +64,7 @@ class ArtikelActivity : AppCompatActivity() {
             when (artikel) {
                 is ApiResponse.Success -> {
                     articles = artikel.data ?: listOf()
+                    articles?.filter { it.category == label }
                     if(tabLayoutMediator == null){
                         tabLayoutMediator = TabLayoutMediator(binding.tabLayout, binding.viewPager, true, true){tab, position ->
                             tab.setText(tabTitles[position])
@@ -81,7 +91,8 @@ class ArtikelActivity : AppCompatActivity() {
         homeViewModel.getAllArticles(token).observe(this, Observer { artikel ->
             when (artikel) {
                 is ApiResponse.Success -> {
-                    val list = artikel.data ?: listOf()
+                    var list = artikel.data ?: listOf()
+                    list = list.filter { it.aticleLabel == label }
                     val adapter = ArtikelAdapter(list)
                     with(binding.recyclerView) {
                         layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

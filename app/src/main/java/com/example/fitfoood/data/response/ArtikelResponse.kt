@@ -27,5 +27,8 @@ data class ArtikelResponseItem(
 	val title: String? = null,
 
 	@field:SerializedName("category")
-	val category: String? = null
+	val category: String? = null,
+
+	@field:SerializedName("articlelabel")
+	val aticleLabel: String? = null
 ) : Parcelable
