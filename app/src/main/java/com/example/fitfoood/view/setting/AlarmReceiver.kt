@@ -17,11 +17,25 @@ import com.example.fitfoood.R
 class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        val title = intent.getStringExtra(EXTRA_TITLE)
-        val message = intent.getStringExtra(EXTRA_MESSAGE)
-        val notifId = intent.getIntExtra(EXTRA_NOTIF_ID, 0)
-        if (title != null && message != null) {
-            showAlarmNotification(context, title, message, notifId)
+        if (intent.action == Intent.ACTION_BOOT_COMPLETED || intent.action == Intent.ACTION_LOCKED_BOOT_COMPLETED) {
+            // Handle setting alarms again if needed
+            // For simplicity, re-set an example alarm
+            val sharedPreferences = context.getSharedPreferences("AlarmPrefs", Context.MODE_PRIVATE)
+            val notifId = sharedPreferences.getInt("notif_id", -1)
+            val timeInMillis = sharedPreferences.getLong("time_in_millis", -1)
+            val title = sharedPreferences.getString("title", null)
+            val message = sharedPreferences.getString("message", null)
+
+            if (notifId != -1 && timeInMillis != -1L && title != null && message != null) {
+                setOneTimeAlarm(context, TYPE_ONE_TIME, timeInMillis, notifId, title, message)
+            }
+        } else {
+            val title = intent.getStringExtra(EXTRA_TITLE)
+            val message = intent.getStringExtra(EXTRA_MESSAGE)
+            val notifId = intent.getIntExtra(EXTRA_NOTIF_ID, 0)
+            if (title != null && message != null) {
+                showAlarmNotification(context, title, message, notifId)
+            }
         }
     }
 
@@ -33,7 +47,24 @@ class AlarmReceiver : BroadcastReceiver() {
         intent.putExtra(EXTRA_TITLE, title)
         intent.putExtra(EXTRA_MESSAGE, message)
         val pendingIntent = PendingIntent.getBroadcast(context, notifId, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
-        alarmManager.set(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
+
+        // Use setExactAndAllowWhileIdle for exact timing
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
+        } else {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
+        }
+
+        // Save alarm details in SharedPreferences
+        val sharedPreferences = context.getSharedPreferences("AlarmPrefs", Context.MODE_PRIVATE)
+        with(sharedPreferences.edit()) {
+            putInt("notif_id", notifId)
+            putLong("time_in_millis", timeInMillis)
+            putString("title", title)
+            putString("message", message)
+            apply()
+        }
+
         Toast.makeText(context, "$title alarm set up", Toast.LENGTH_SHORT).show()
     }
 
@@ -57,9 +88,7 @@ class AlarmReceiver : BroadcastReceiver() {
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
             .setSound(alarmSound)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(channelId,
-                channelName,
-                NotificationManager.IMPORTANCE_DEFAULT)
+            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
             channel.enableVibration(true)
             channel.vibrationPattern = longArrayOf(1000, 1000, 1000, 1000, 1000)
             builder.setChannelId(channelId)
