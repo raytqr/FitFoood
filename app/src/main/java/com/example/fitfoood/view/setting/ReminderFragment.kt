@@ -2,6 +2,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.fitfoood.R
 import com.example.fitfoood.databinding.FragmentReminderBinding
@@ -26,12 +28,17 @@ class ReminderFragment : Fragment(), View.OnClickListener, TimePickerFragment.Di
     private lateinit var alarmReceiver: AlarmReceiver
     private lateinit var sharedPreferences: SharedPreferences
 
+    private var isNotificationPermissionGranted = false
+
     private val requestNotificationPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                Toast.makeText(requireContext(), "Notifications permission granted", Toast.LENGTH_SHORT).show()
+                if (!isNotificationPermissionGranted) {
+                    isNotificationPermissionGranted = true
+                    Toast.makeText(requireContext(), "Notifications permission granted", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(requireContext(), "Notifications permission rejected", Toast.LENGTH_SHORT).show()
             }
@@ -48,8 +55,14 @@ class ReminderFragment : Fragment(), View.OnClickListener, TimePickerFragment.Di
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (Build.VERSION.SDK_INT >= 33) {
-            requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        // Check if notification permission is granted
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+            isNotificationPermissionGranted = true
+        }
+
+        // Request notification permission if not granted
+        if (!isNotificationPermissionGranted) {
+            requestNotificationPermission()
         }
 
         sharedPreferences = requireContext().getSharedPreferences("AlarmPreferences", Context.MODE_PRIVATE)
@@ -81,6 +94,12 @@ class ReminderFragment : Fragment(), View.OnClickListener, TimePickerFragment.Di
         }
 
         loadAlarmState()
+    }
+
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
     }
 
     private fun requestExactAlarmPermission() {
@@ -176,7 +195,7 @@ class ReminderFragment : Fragment(), View.OnClickListener, TimePickerFragment.Di
             alarmReceiver.setOneTimeAlarm(requireContext(), AlarmReceiver.TYPE_ONE_TIME, calendar.timeInMillis, alarmId, title, message)
             saveAlarmTime(alarmId, time)
         } else {
-            Toast.makeText(requireContext(), "Time not set", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(), "Time not set", Toast.LENGTH_SHORT).show()
         }
     }
 
