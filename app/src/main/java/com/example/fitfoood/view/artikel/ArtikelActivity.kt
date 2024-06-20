@@ -64,7 +64,7 @@ class ArtikelActivity : AppCompatActivity() {
             when (artikel) {
                 is ApiResponse.Success -> {
                     articles = artikel.data ?: listOf()
-                    articles?.filter { it.category == label }
+                    articles = articles.filter { it.aticleLabel == label }
                     if(tabLayoutMediator == null){
                         tabLayoutMediator = TabLayoutMediator(binding.tabLayout, binding.viewPager, true, true){tab, position ->
                             tab.setText(tabTitles[position])

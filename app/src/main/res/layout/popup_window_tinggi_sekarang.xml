@@ -62,10 +62,10 @@
 
                 <ImageView
                     android:id="@+id/imageView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginTop="32dp"
-                    android:src="@drawable/bg_popup_bb"
+                    android:src="@drawable/bg_popup_tb"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

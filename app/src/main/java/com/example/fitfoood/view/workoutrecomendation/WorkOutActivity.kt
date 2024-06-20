@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitfoood.R
 import com.example.fitfoood.data.ApiResponse
-import com.example.fitfoood.data.response.WoBMIResponseItem
 import com.example.fitfoood.databinding.ActivityWorkOutBinding
 import com.example.fitfoood.view.ViewModelFactory
 import com.example.fitfoood.view.main.HomeViewModel
@@ -28,15 +27,13 @@ class WorkOutActivity : AppCompatActivity() {
              token = user.token
              homeViewModel.getSessionBMI().observe(this){result->
                  bmiLabel = result.label
-                    if(bmiLabel == "") {
-                        bmiLabel = "ideal"
-                    }
-
-                 showRecycleList()
+                     if (bmiLabel == "") {
+                         bmiLabel = "ideal"
+                     }
+                     showRecycleList()
+                 binding.bmiHead.text = bmiLabel
 
              }
-
-
          }
 
 
@@ -47,6 +44,7 @@ class WorkOutActivity : AppCompatActivity() {
          binding.toolbar.setOnClickListener {
              finish()
          }
+
 
 
      }

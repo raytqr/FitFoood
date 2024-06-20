@@ -30,11 +30,9 @@ class FoodActivity : AppCompatActivity() {
                 if(bmiLabel == "") {
                     bmiLabel = "ideal"
                 }
-
                 showRecycleList()
-
+                binding.bmiHead.text = bmiLabel
             }
-
         }
 
         val tbTitle = findViewById<TextView>(R.id.title_toolbar)
