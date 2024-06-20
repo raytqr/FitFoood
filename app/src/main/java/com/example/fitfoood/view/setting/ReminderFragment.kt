@@ -1,12 +1,13 @@
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -25,7 +26,7 @@ class ReminderFragment : Fragment(), View.OnClickListener, TimePickerFragment.Di
     private lateinit var alarmReceiver: AlarmReceiver
     private lateinit var sharedPreferences: SharedPreferences
 
-    private val requestPermissionLauncher =
+    private val requestNotificationPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
@@ -48,7 +49,7 @@ class ReminderFragment : Fragment(), View.OnClickListener, TimePickerFragment.Di
         super.onViewCreated(view, savedInstanceState)
 
         if (Build.VERSION.SDK_INT >= 33) {
-            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
 
         sharedPreferences = requireContext().getSharedPreferences("AlarmPreferences", Context.MODE_PRIVATE)
@@ -59,7 +60,11 @@ class ReminderFragment : Fragment(), View.OnClickListener, TimePickerFragment.Di
         binding?.setDinnerTime?.setOnClickListener(this)
         binding?.switchEatReminder?.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                setAlarms()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    requestExactAlarmPermission()
+                } else {
+                    setAlarms()
+                }
             } else {
                 cancelAlarms()
             }
@@ -78,24 +83,67 @@ class ReminderFragment : Fragment(), View.OnClickListener, TimePickerFragment.Di
         loadAlarmState()
     }
 
+    private fun requestExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as android.app.AlarmManager
+            if (!alarmManager.canScheduleExactAlarms()) {
+                val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+                startActivity(intent)
+            } else {
+                setAlarms()
+            }
+        } else {
+            setAlarms()
+        }
+    }
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.set_breakfast_time -> {
+                binding?.switchEatReminder?.isChecked = false
                 val timePickerFragmentOne = TimePickerFragment()
                 timePickerFragmentOne.setListener(this)
                 timePickerFragmentOne.show(parentFragmentManager, BREAKFAST_TIME_PICKER_ONCE_TAG)
             }
             R.id.set_lunch_time -> {
+                binding?.switchEatReminder?.isChecked = false
                 val timePickerFragmentOne = TimePickerFragment()
                 timePickerFragmentOne.setListener(this)
                 timePickerFragmentOne.show(parentFragmentManager, LUNCH_TIME_PICKER_ONCE_TAG)
             }
             R.id.set_dinner_time -> {
+                binding?.switchEatReminder?.isChecked = false
                 val timePickerFragmentOne = TimePickerFragment()
                 timePickerFragmentOne.setListener(this)
                 timePickerFragmentOne.show(parentFragmentManager, DINNER_TIME_PICKER_ONCE_TAG)
             }
         }
+    }
+
+    override fun onDialogTimeSet(tag: String?, hourOfDay: Int, minute: Int) {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+        calendar.set(Calendar.MINUTE, minute)
+
+        val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+        when (tag) {
+            BREAKFAST_TIME_PICKER_ONCE_TAG -> {
+                binding?.tvBreakfastTime?.text = dateFormat.format(calendar.time)
+                saveAlarmTime(BREAKFAST_ALARM_ID, dateFormat.format(calendar.time))
+            }
+            LUNCH_TIME_PICKER_ONCE_TAG -> {
+                binding?.tvLunchTime?.text = dateFormat.format(calendar.time)
+                saveAlarmTime(LUNCH_ALARM_ID, dateFormat.format(calendar.time))
+            }
+            DINNER_TIME_PICKER_ONCE_TAG -> {
+                binding?.tvDinnerTime?.text = dateFormat.format(calendar.time)
+                saveAlarmTime(DINNER_ALARM_ID, dateFormat.format(calendar.time))
+            }
+        }
+
+        // Re-enable switchEatReminder after setting the alarm
+        binding?.switchEatReminder?.isChecked = true
     }
 
     private fun setAlarms() {
@@ -151,29 +199,6 @@ class ReminderFragment : Fragment(), View.OnClickListener, TimePickerFragment.Di
 
     private fun saveAlarmState(isChecked: Boolean) {
         sharedPreferences.edit().putBoolean("ALARM_STATE", isChecked).apply()
-    }
-
-    override fun onDialogTimeSet(tag: String?, hourOfDay: Int, minute: Int) {
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-        calendar.set(Calendar.MINUTE, minute)
-
-        val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-
-        when (tag) {
-            BREAKFAST_TIME_PICKER_ONCE_TAG -> {
-                binding?.tvBreakfastTime?.text = dateFormat.format(calendar.time)
-                saveAlarmTime(BREAKFAST_ALARM_ID, dateFormat.format(calendar.time))
-            }
-            LUNCH_TIME_PICKER_ONCE_TAG -> {
-                binding?.tvLunchTime?.text = dateFormat.format(calendar.time)
-                saveAlarmTime(LUNCH_ALARM_ID, dateFormat.format(calendar.time))
-            }
-            DINNER_TIME_PICKER_ONCE_TAG -> {
-                binding?.tvDinnerTime?.text = dateFormat.format(calendar.time)
-                saveAlarmTime(DINNER_ALARM_ID, dateFormat.format(calendar.time))
-            }
-        }
     }
 
     override fun onDestroyView() {

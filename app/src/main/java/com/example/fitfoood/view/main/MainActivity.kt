@@ -2,13 +2,9 @@ package com.example.fitfoood
 
 import ProfileFragment
 import android.Manifest
-import android.app.AlarmManager
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -67,8 +63,8 @@ class MainActivity : AppCompatActivity() {
         // Set default selection
         binding.bottomNavigation.selectedItemId = R.id.navigation_home
 
-        // Request the exact alarm permission
-        requestExactAlarmPermission()
+
+//        requestExactAlarmPermission()
     }
 
     private fun showFragment(fragment: Fragment) {
@@ -117,13 +113,13 @@ class MainActivity : AppCompatActivity() {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun requestExactAlarmPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            if (!alarmManager.canScheduleExactAlarms()) {
-                val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
-                startActivity(intent)
-            }
-        }
-    }
+//    private fun requestExactAlarmPermission() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//            val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+//            if (!alarmManager.canScheduleExactAlarms()) {
+//                val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+//                startActivity(intent)
+//            }
+//        }
+//    }
 }
