@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
             viewModel.login(email, password).observe(this) {result ->
                 when(result) {
                     is ApiResponse.Error -> {
-                        Toast.makeText(this, "Terjadi kesalahan :"+result.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Password atau email yang Anda masukkan salah", Toast.LENGTH_SHORT).show()
                     }
                     ApiResponse.Loading -> {}
                     is ApiResponse.Success -> {
