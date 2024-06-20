@@ -43,6 +43,7 @@
                 android:background="@color/white"
                 android:minHeight="170dp">
 
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/popup_window_title"
                     style="@style/Heading2_Bold"
@@ -50,15 +51,13 @@
                     android:layout_height="45dp"
                     android:layout_marginTop="148dp"
                     android:gravity="center"
-                    android:text="@string/tb_sekarang_title"
+                    android:text="@string/bb_sekarang_title"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-
 
                 <ImageView
                     android:id="@+id/imageView11"

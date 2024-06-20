@@ -164,6 +164,7 @@
     <string name="tb_sekarang_text">150 cm</string>
     <string name="berat_sekarang_title">Masukkan berat badan saat ini</string>
     <string name="tb_sekarang_title">Masukkan tinggi badan saat ini</string>
+    <string name="bb_sekarang_title">Masukkan berat badan saat ini</string>
 
     <string name="message_input_bmi">Masukkan tinggi dan berat badan Anda</string>
     <string name="message_input_weight">Masukkan berat badan Anda</string>
