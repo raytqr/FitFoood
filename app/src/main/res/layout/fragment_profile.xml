@@ -16,6 +16,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
+
+            <!-- Placeholder untuk gambar background dan avatar -->
             <ImageView
                 android:id="@+id/bg_home"
                 android:layout_width="485dp"
@@ -62,6 +64,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/profle_photo" />
 
+            <!-- Placeholder untuk BMI -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
@@ -102,9 +105,9 @@
                     app:layout_constraintStart_toStartOf="@+id/bmiNumber"
                     app:layout_constraintTop_toBottomOf="@+id/bmiNumber" />
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- Placeholder untuk tombol berat sekarang -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_berat_sekarang"
                 android:layout_width="110dp"
@@ -153,18 +156,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/bb_sekarang_text" />
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+            <!-- Placeholder untuk tombol tinggi sekarang -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_tinggi_sekarang"
                 android:layout_width="110dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="8dp"
                 app:layout_constraintStart_toEndOf="@+id/btn_berat_sekarang"
-                app:layout_constraintTop_toTopOf="@+id/btn_berat_sekarang" >
-
+                app:layout_constraintTop_toTopOf="@+id/btn_berat_sekarang">
 
                 <ImageView
                     android:id="@+id/bg_tinggi_sekarang"
@@ -192,7 +193,7 @@
                     tools:layout_editor_absoluteY="6dp" />
 
                 <TextView
-                    android:id="@+id/bb_sasaran_desc"
+                    android:id="@+id/bg_tinggi_sekarang_desc"
                     style="@style/Body1_Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -200,12 +201,14 @@
                     android:text="@string/tb_sekarang_desc"
                     android:textColor="@color/white"
                     android:textSize="11sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/bg_tinggi_sekarang"
                     app:layout_constraintHorizontal_bias="0.51"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tb_sekarang_text" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- Placeholder untuk card akun -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewAccount"
                 android:layout_width="match_parent"
@@ -260,6 +263,7 @@
 
             </androidx.cardview.widget.CardView>
 
+            <!-- Placeholder untuk card reminder -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewReminder"
                 android:layout_width="match_parent"
@@ -314,6 +318,7 @@
 
             </androidx.cardview.widget.CardView>
 
+            <!-- Placeholder untuk card bahasa -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewLanguage"
                 android:layout_width="match_parent"
@@ -368,6 +373,7 @@
 
             </androidx.cardview.widget.CardView>
 
+            <!-- Placeholder untuk card logout -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewLogout"
                 android:layout_width="match_parent"
@@ -424,3 +430,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </ScrollView>
+
