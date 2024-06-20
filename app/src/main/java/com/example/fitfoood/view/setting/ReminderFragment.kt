@@ -1,11 +1,6 @@
-package com.example.fitfoood.view.setting
-
-import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.Manifest
 import android.content.Context
-import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,126 +9,184 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.getSystemService
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.fitfoood.R
-import com.example.fitfoood.databinding.ActivityMain2Binding
 import com.example.fitfoood.databinding.FragmentReminderBinding
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
+import com.example.fitfoood.view.setting.AlarmReceiver
+import com.example.fitfoood.view.setting.TimePickerFragment
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
-class ReminderFragment : Fragment() {
+class ReminderFragment : Fragment(), View.OnClickListener, TimePickerFragment.DialogTimeListener {
+
     private var binding: FragmentReminderBinding? = null
-    private var timePicker: MaterialTimePicker? = null
-    private var calendar: Calendar? = null
-    private var alarmManager: AlarmManager? = null
-    private var pendingIntent: PendingIntent? = null
+    private lateinit var alarmReceiver: AlarmReceiver
+    private lateinit var sharedPreferences: SharedPreferences
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                Toast.makeText(requireContext(), "Notifications permission granted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Notifications permission rejected", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentReminderBinding.inflate(inflater, container, false)
-        createNotificationChannel()
-
-        binding!!.setBreakfastTime.setOnClickListener {
-            timePicker = MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(12)
-                .setMinute(0)
-                .setTitleText("Select Alarm Time")
-                .build()
-            timePicker!!.show(childFragmentManager, "androidknowldge")
-            timePicker!!.addOnPositiveButtonClickListener {
-                if (timePicker!!.hour > 12) {
-                    binding!!.setBreakfastTime.text =
-                        String.format("%02d", timePicker!!.hour - 12) + ":" + String.format(
-                            "%02d",
-                            timePicker!!.minute
-                        ) + " PM"
-                } else {
-                    binding!!.setBreakfastTime.text =
-                        timePicker!!.hour.toString() + ":" + timePicker!!.minute + " AM"
-                }
-                calendar = Calendar.getInstance()
-                calendar?.set(Calendar.HOUR_OF_DAY, timePicker!!.hour)
-                calendar?.set(Calendar.MINUTE, timePicker!!.minute)
-                calendar?.set(Calendar.SECOND, 0)
-                calendar?.set(Calendar.MILLISECOND, 0)
-            }
-        }
-
-        binding!!.switchEatReminder.setOnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
-            if (isChecked) {
-                if (calendar == null) {
-                    // Handle case where time is not selected before toggling switch on
-                    Toast.makeText(
-                        requireContext(),
-                        "Please select an alarm time first",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return@setOnCheckedChangeListener
-                }
-                setAlarm()
-            } else {
-                cancelAlarm()
-            }
-        }
-
-        return binding!!.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (Build.VERSION.SDK_INT >= 33) {
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+
+        sharedPreferences = requireContext().getSharedPreferences("AlarmPreferences", Context.MODE_PRIVATE)
+
+        // Listener one time alarm
+        binding?.setBreakfastTime?.setOnClickListener(this)
+        binding?.setLunchTime?.setOnClickListener(this)
+        binding?.setDinnerTime?.setOnClickListener(this)
+        binding?.switchEatReminder?.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                setAlarms()
+            } else {
+                cancelAlarms()
+            }
+            saveAlarmState(isChecked)
+        }
+
+        alarmReceiver = AlarmReceiver()
+
         val tbTitle = view.findViewById<TextView>(R.id.title_toolbar)
         tbTitle.text = getString(R.string.reminder)
 
         binding?.toolbar?.setOnClickListener {
-            requireActivity().onBackPressed()
+            activity?.onBackPressed()
+        }
+
+        loadAlarmState()
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.set_breakfast_time -> {
+                val timePickerFragmentOne = TimePickerFragment()
+                timePickerFragmentOne.setListener(this)
+                timePickerFragmentOne.show(parentFragmentManager, BREAKFAST_TIME_PICKER_ONCE_TAG)
+            }
+            R.id.set_lunch_time -> {
+                val timePickerFragmentOne = TimePickerFragment()
+                timePickerFragmentOne.setListener(this)
+                timePickerFragmentOne.show(parentFragmentManager, LUNCH_TIME_PICKER_ONCE_TAG)
+            }
+            R.id.set_dinner_time -> {
+                val timePickerFragmentOne = TimePickerFragment()
+                timePickerFragmentOne.setListener(this)
+                timePickerFragmentOne.show(parentFragmentManager, DINNER_TIME_PICKER_ONCE_TAG)
+            }
         }
     }
 
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name: CharSequence = "fitfoodchannel"
-            val desc = "Channel for Alarm Manager"
-            val imp = NotificationManager.IMPORTANCE_HIGH
-            val channel = NotificationChannel("androidknowledge", name, imp)
-            channel.description = desc
-            val notificationManager = requireContext().getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
+    private fun setAlarms() {
+        val onceTimeBreakfast = binding?.tvBreakfastTime?.text.toString()
+        setAlarm(BREAKFAST_ALARM_ID, onceTimeBreakfast, "Breakfast Time", "Time to breakfast!")
+
+        val onceTimeLunch = binding?.tvLunchTime?.text.toString()
+        setAlarm(LUNCH_ALARM_ID, onceTimeLunch, "Lunch Time", "Time to lunch!")
+
+        val onceTimeDinner = binding?.tvDinnerTime?.text.toString()
+        setAlarm(DINNER_ALARM_ID, onceTimeDinner, "Dinner Time", "Time to dinner!")
+    }
+
+    private fun cancelAlarms() {
+        alarmReceiver.cancelAlarm(requireContext(), BREAKFAST_ALARM_ID)
+        alarmReceiver.cancelAlarm(requireContext(), LUNCH_ALARM_ID)
+        alarmReceiver.cancelAlarm(requireContext(), DINNER_ALARM_ID)
+    }
+
+    private fun setAlarm(alarmId: Int, time: String, title: String, message: String) {
+        if (time.isNotEmpty()) {
+            val calendar = Calendar.getInstance()
+            val timeArray = time.split(":").toTypedArray()
+            calendar.set(Calendar.HOUR_OF_DAY, timeArray[0].toInt())
+            calendar.set(Calendar.MINUTE, timeArray[1].toInt())
+            calendar.set(Calendar.SECOND, 0)
+            if (calendar.timeInMillis <= System.currentTimeMillis()) {
+                calendar.add(Calendar.DAY_OF_MONTH, 1) // Set for the next day if time is in the past
+            }
+            alarmReceiver.setOneTimeAlarm(requireContext(), AlarmReceiver.TYPE_ONE_TIME, calendar.timeInMillis, alarmId, title, message)
+            saveAlarmTime(alarmId, time)
+        } else {
+            Toast.makeText(requireContext(), "Time not set", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun cancelAlarm() {
-        val intent = Intent(requireContext(), AlarmReceiver::class.java)
-        pendingIntent =
-            PendingIntent.getBroadcast(requireContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE)
-        if (alarmManager == null) {
-            alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        }
-        alarmManager?.cancel(pendingIntent ?: return)
-        Toast.makeText(requireContext(), "Alarm Canceled", Toast.LENGTH_SHORT).show()
+    private fun saveAlarmTime(alarmId: Int, time: String) {
+        sharedPreferences.edit().putString("ALARM_TIME_$alarmId", time).apply()
     }
 
-    private fun setAlarm() {
-        alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(requireContext(), AlarmReceiver::class.java)
-        val localPendingIntent =
-            PendingIntent.getBroadcast(requireContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE)
-        if (localPendingIntent != null) {
-            pendingIntent = localPendingIntent
-            alarmManager!!.setInexactRepeating(
-                AlarmManager.RTC_WAKEUP, calendar!!.timeInMillis, AlarmManager.INTERVAL_DAY,
-                pendingIntent!!
-            )
-            Toast.makeText(requireContext(), "Alarm Set", Toast.LENGTH_SHORT).show()
+    private fun loadAlarmState() {
+        val isAlarmEnabled = sharedPreferences.getBoolean("ALARM_STATE", false)
+        binding?.switchEatReminder?.isChecked = isAlarmEnabled
+        if (isAlarmEnabled) {
+            val breakfastTime = sharedPreferences.getString("ALARM_TIME_$BREAKFAST_ALARM_ID", "")
+            val lunchTime = sharedPreferences.getString("ALARM_TIME_$LUNCH_ALARM_ID", "")
+            val dinnerTime = sharedPreferences.getString("ALARM_TIME_$DINNER_ALARM_ID", "")
+            binding?.tvBreakfastTime?.text = breakfastTime
+            binding?.tvLunchTime?.text = lunchTime
+            binding?.tvDinnerTime?.text = dinnerTime
         }
+    }
+
+    private fun saveAlarmState(isChecked: Boolean) {
+        sharedPreferences.edit().putBoolean("ALARM_STATE", isChecked).apply()
+    }
+
+    override fun onDialogTimeSet(tag: String?, hourOfDay: Int, minute: Int) {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+        calendar.set(Calendar.MINUTE, minute)
+
+        val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+        when (tag) {
+            BREAKFAST_TIME_PICKER_ONCE_TAG -> {
+                binding?.tvBreakfastTime?.text = dateFormat.format(calendar.time)
+                saveAlarmTime(BREAKFAST_ALARM_ID, dateFormat.format(calendar.time))
+            }
+            LUNCH_TIME_PICKER_ONCE_TAG -> {
+                binding?.tvLunchTime?.text = dateFormat.format(calendar.time)
+                saveAlarmTime(LUNCH_ALARM_ID, dateFormat.format(calendar.time))
+            }
+            DINNER_TIME_PICKER_ONCE_TAG -> {
+                binding?.tvDinnerTime?.text = dateFormat.format(calendar.time)
+                saveAlarmTime(DINNER_ALARM_ID, dateFormat.format(calendar.time))
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
+    companion object {
+        private const val BREAKFAST_TIME_PICKER_ONCE_TAG = "BreakfastTimePickerOnce"
+        private const val LUNCH_TIME_PICKER_ONCE_TAG = "LunchTimePickerOnce"
+        private const val DINNER_TIME_PICKER_ONCE_TAG = "DinnerTimePickerOnce"
+        private const val BREAKFAST_ALARM_ID = 100
+        private const val LUNCH_ALARM_ID = 101
+        private const val DINNER_ALARM_ID = 102
     }
 }

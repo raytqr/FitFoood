@@ -1,5 +1,6 @@
 package com.example.fitfoood.view.main
 
+import ReminderFragment
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,7 +21,6 @@ import com.example.fitfoood.data.pref.BMIModel
 import com.example.fitfoood.databinding.FragmentProfileBinding
 import com.example.fitfoood.view.ViewModelFactory
 import com.example.fitfoood.view.setting.LogoutFragment
-import com.example.fitfoood.view.setting.ReminderFragment
 
 class ProfileFragment : Fragment(), View.OnClickListener {
 

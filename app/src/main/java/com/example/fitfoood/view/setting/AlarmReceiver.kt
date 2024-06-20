@@ -1,45 +1,79 @@
 package com.example.fitfoood.view.setting
 
-import android.Manifest
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
+import android.media.RingtoneManager
+import android.os.Build
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.example.fitfoood.R
 
 class AlarmReceiver : BroadcastReceiver() {
+
     override fun onReceive(context: Context, intent: Intent) {
-        val nextActivity = Intent(context, NotifictaionActivity::class.java)
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        val pendingIntent =
-            PendingIntent.getActivity(context, 0, nextActivity, PendingIntent.FLAG_IMMUTABLE)
-        val builder = NotificationCompat.Builder(context, "androidknoledge")
-            .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-            .setContentTitle("Reminder")
-            .setContentText("It's time to breakfast")
-            .setAutoCancel(true)
-            .setDefaults(NotificationCompat.DEFAULT_ALL)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setContentIntent(pendingIntent)
-        val notificationManagerCompat = NotificationManagerCompat.from(context)
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
+        val title = intent.getStringExtra(EXTRA_TITLE)
+        val message = intent.getStringExtra(EXTRA_MESSAGE)
+        val notifId = intent.getIntExtra(EXTRA_NOTIF_ID, 0)
+        if (title != null && message != null) {
+            showAlarmNotification(context, title, message, notifId)
         }
-        notificationManagerCompat.notify(123, builder.build())
+    }
+
+    fun setOneTimeAlarm(context: Context, type: String, timeInMillis: Long, notifId: Int, title: String, message: String) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlarmReceiver::class.java)
+        intent.putExtra(EXTRA_TYPE, type)
+        intent.putExtra(EXTRA_NOTIF_ID, notifId)
+        intent.putExtra(EXTRA_TITLE, title)
+        intent.putExtra(EXTRA_MESSAGE, message)
+        val pendingIntent = PendingIntent.getBroadcast(context, notifId, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        alarmManager.set(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
+        Toast.makeText(context, "$title alarm set up", Toast.LENGTH_SHORT).show()
+    }
+
+    fun cancelAlarm(context: Context, notifId: Int) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, notifId, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        alarmManager.cancel(pendingIntent)
+    }
+
+    private fun showAlarmNotification(context: Context, title: String, message: String, notifId: Int) {
+        val channelId = "Channel_1"
+        val channelName = "AlarmManager channel"
+        val notificationManagerCompat = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val builder = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(R.drawable.fit_food_logo)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setColor(ContextCompat.getColor(context, android.R.color.transparent))
+            .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
+            .setSound(alarmSound)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT)
+            channel.enableVibration(true)
+            channel.vibrationPattern = longArrayOf(1000, 1000, 1000, 1000, 1000)
+            builder.setChannelId(channelId)
+            notificationManagerCompat.createNotificationChannel(channel)
+        }
+        val notification = builder.build()
+        notificationManagerCompat.notify(notifId, notification)
+    }
+
+    companion object {
+        const val TYPE_ONE_TIME = "OneTimeAlarm"
+        const val EXTRA_TYPE = "type"
+        const val EXTRA_NOTIF_ID = "notif_id"
+        const val EXTRA_TITLE = "title"
+        const val EXTRA_MESSAGE = "message"
     }
 }

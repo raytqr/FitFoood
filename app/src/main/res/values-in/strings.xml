@@ -144,5 +144,25 @@
     <string name="confirm_password">Konfirmasi Kata Sandi</string>
     <string name="or_sign_in_with">- Atau masuk dengan -</string>
     <string name="or_sign_up_with">- Atau daftar dengan -</string>
+    <string name="profile_name">"Nama Profil"</string>
+    <string name="account_setting">Pengaturan Akun</string>
+    <string name="account_edit">Edit Akun</string>
+    <string name="submit">Kirim</string>
+    <string name="food">Makanan</string>
+    <string name="workout">Olahraga</string>
+    <string name="food_list">Daftar Makanan</string>
+    <string name="food_recommendation">Rekomendasi Makanan</string>
+    <string name="search_food">Cari Makanan</string>
+    <string name="food_name">Nama Makanan</string>
+    <string name="number_of_calories">Jumlah Kalori</string>
+    <string name="desc_no_prediction">Model tidak dapat memprediksi makanan dari gambar. \nSilahkan masukkan secara manual.</string>
+    <string name="total_calories">Total Kalori</string>
+    <string name="recommendation_result">Hasil Rekomendasi</string>
+    <string name="dummy_bmi">BMI 21</string>
+    <string name="desc_bmi">Berat badan Anda kelebihan</string>
+    <string name="tb_sekarang_desc">Tinggi Badan Saat Ini</string>
+    <string name="tb_sekarang_text">150 cm</string>
+    <string name="berat_sekarang_title">Masukkan berat badan saat ini</string>
+    <string name="tb_sekarang_title">Masukkan tinggi badan saat ini</string>
 
 </resources>
