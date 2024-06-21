@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.FitFoood" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.Theme.FitFood" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/navi</item>
@@ -13,7 +13,7 @@
         <item name="android:statusBarColor">@color/navi</item>
     </style>
 
-    <style name="Theme.FitFoood" parent="Base.Theme.FitFoood" />
+    <style name="Theme.FitFood" parent="Base.Theme.FitFood" />
     
     <style name="Heading1_Light">
         <item name="android:textSize">24dp</item>

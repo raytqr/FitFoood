@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FitFoood</string>
+    <string name="app_name">FitFood</string>
     <string name="title_menu_1">Ketahui Kategori Berat Badan Anda</string>
     <string name="title_menu_2">Rekomendasi Makanan dan Olahraga</string>
     <string name="title_menu_3">Notifikasi Pengingat</string>
